@@ -1,0 +1,10 @@
+export {default as Article} from "./article";
+export {default as ArticleEditing} from "./article-editing";
+export {default as ArticleReading} from "./article-reading";
+export {default as ArticleWriting} from "./article-writing";
+export {default as Dashboard} from "./dashboard";
+export {default as Login} from "./login";
+export {default as Question} from "./question";
+export {default as QuestionDetail} from "./question-detail";
+export {default as Register} from "./register";
+export {default as Waiting} from "./waiting";
