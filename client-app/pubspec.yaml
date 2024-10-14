@@ -1,0 +1,96 @@
+name: wooahan
+description: "Senior Care Service – We're Still Going Strong"
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  #Default
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Collection
+  collection: ^1.18.0
+
+  # Icons
+  cupertino_icons: ^1.0.6
+
+  # Localization
+  intl: ^0.19.0
+  timezone: ^0.9.4
+
+  # Logger
+  logger: ^2.4.0
+
+  # GetX
+  get: ^4.6.6
+
+  # Svg
+  flutter_svg: ^2.0.10+1
+
+  # Shimmer
+  shimmer: ^3.0.0
+
+  # Cached Network Image
+  cached_network_image: ^3.4.1
+  cached_memory_image: ^1.5.0
+
+  # Extended Nested Scroll View
+  extended_nested_scroll_view: ^6.2.1
+
+  # Storage
+  get_storage: ^2.1.1
+  flutter_secure_storage: ^9.2.2
+
+  # Environment Encrypted
+  envied: ^0.5.4+1
+
+dev_dependencies:
+  # Default
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+  # Localization
+  intl_translation: ^0.20.0
+
+  # app icon
+  flutter_launcher_icons: ^0.13.1
+
+  # Environment Encrypted
+  envied_generator: ^0.5.4+1
+  build_runner: ^2.4.11
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/icons/
+
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Thin.otf
+          weight: 100
+        - asset: assets/fonts/Pretendard-ExtraLight.otf
+          weight: 200
+        - asset: assets/fonts/Pretendard-Light.otf
+          weight: 300
+        - asset: assets/fonts/Pretendard-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Pretendard-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Pretendard-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Pretendard-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Pretendard-ExtraBold.otf
+          weight: 800
+        - asset: assets/fonts/Pretendard-Black.otf
+          weight: 900
