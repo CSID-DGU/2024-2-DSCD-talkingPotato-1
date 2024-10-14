@@ -1,4 +1,4 @@
-package com.dongguk.dscd.woowahan.app
+package com.dongguk.dscd.wooahan.app
 
 import io.flutter.embedding.android.FlutterActivity
 
