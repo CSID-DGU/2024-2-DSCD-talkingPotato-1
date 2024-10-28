@@ -11,23 +11,23 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
 
   @override
   Widget buildView(BuildContext context) {
-    return Obx(
-      () => Theme(
-        data: ThemeData(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+    return Theme(
+      data: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: ColorSystem.neutral.shade100,
+              blurRadius: 8,
+              offset: const Offset(0, -4),
+            ),
+          ],
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: ColorSystem.neutral.shade100,
-                blurRadius: 8,
-                offset: const Offset(0, -4),
-              ),
-            ],
-          ),
-          child: BottomNavigationBar(
+        child: Obx(
+          () => BottomNavigationBar(
             // State Management
             currentIndex: viewModel.selectedIndex,
             onTap: viewModel.updateIndex,
