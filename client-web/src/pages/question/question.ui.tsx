@@ -1,19 +1,17 @@
 import {ReactElement} from "react";
 import * as Styled from "./question.style.ts";
-import {useSideBarStore} from "@shared/store";
-import {RootLayout} from "@shared/layouts";
 import {QuestionTopBar} from "@features/question/components";
+import {RootLayout} from "@shared/layouts";
 
 
 const Question = (): ReactElement => {
 
-    const {isExpanded} = useSideBarStore();
-
     return (
         <RootLayout>
-            <Styled.Container isExpanded={isExpanded}>
+            <Styled.PageContainer>
                 <QuestionTopBar/>
-            </Styled.Container>
+                <Styled.ScrollableContainer/>
+            </Styled.PageContainer>
         </RootLayout>
     )
 }

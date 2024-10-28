@@ -1,19 +1,18 @@
 import {styled} from "styled-components";
 
-interface ContainerProps {
-    isExpanded: boolean;
-}
-
-export const Container = styled.div<ContainerProps>`
+export const PageContainer = styled.div`
     display: flex;
-    flex: 1;
-
-    width: 100vw;
-    height: 100vh;
-
-    overflow-y: auto;
-    margin-left: ${(props) => props.isExpanded ? "288.4px" : "96px"};
-
     flex-direction: column;
-    align-items: start;
+    width: 100%;
+    height: 100%;
+`;
+
+export const ScrollableContainer = styled.div`
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+    gap: 10px;
 `;

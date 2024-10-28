@@ -1,17 +1,16 @@
 import {ReactElement} from "react";
 import * as Styled from "./dashboard.style.ts";
-import {useSideBarStore} from "@shared/store";
 import {RootLayout} from "@shared/layouts";
 import {DashboardTopBar} from "@features/dashboard/components";
 
 const Dashboard = (): ReactElement => {
-    const {isExpanded} = useSideBarStore();
 
     return (
         <RootLayout>
-            <Styled.Container isExpanded={isExpanded}>
+            <Styled.PageContainer>
                 <DashboardTopBar/>
-            </Styled.Container>
+                <Styled.ScrollableContainer/>
+            </Styled.PageContainer>
         </RootLayout>
     )
 }
