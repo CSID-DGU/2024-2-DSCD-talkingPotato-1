@@ -1,17 +1,26 @@
-import {ReactElement} from "react";
+import {ReactElement, useEffect, useState} from "react";
 import * as Styled from "./article.style.ts";
-import {useSideBarStore} from "@shared/store";
 import {RootLayout} from "@shared/layouts";
-import {ArticleTopBar} from "@features/article/components";
+import {ArticleItemInterface} from "@features/article/article-list/article-item/article-item.lib.ts";
+import {ArticleList, ArticleTopBar} from "@features/article";
+import ArticleItemMock from "@features/article/article-list/article-item/article-item.mock.ts";
 
 const Article = (): ReactElement => {
-    const {isExpanded} = useSideBarStore();
+
+    const [articles, setArticles] = useState<ArticleItemInterface[]>([]);
+
+    useEffect(() => {
+        setArticles(ArticleItemMock);
+    }, []);
 
     return (
         <RootLayout>
-            <Styled.Container isExpanded={isExpanded}>
+            <Styled.PageContainer>
                 <ArticleTopBar/>
-            </Styled.Container>
+                <Styled.ScrollableContainer>
+                    <ArticleList articles={articles}/>
+                </Styled.ScrollableContainer>
+            </Styled.PageContainer>
         </RootLayout>
     )
 }

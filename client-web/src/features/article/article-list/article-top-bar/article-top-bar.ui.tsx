@@ -1,9 +1,9 @@
 import React from "react";
-import * as Styled from "./style";
+import * as Styled from "./article-top-bar.style";
 import {HeadExtra, SizedBox} from "@shared/components";
 import {theme} from "@app/styles";
-import SearchInput from "@features/question/components/top-bar/question-top-bar/search-input";
-import SearchButton from "@features/question/components/top-bar/question-top-bar/search-button";
+import {SearchInput} from "@features/article/article-list/article-top-bar/search-input";
+import {SearchButton} from "@features/article/article-list/article-top-bar/search-button";
 
 export default function ArticleTopBar(): React.ReactElement {
     return (

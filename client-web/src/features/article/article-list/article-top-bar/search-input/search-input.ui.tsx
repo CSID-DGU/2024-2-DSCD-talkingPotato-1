@@ -1,5 +1,5 @@
 import React from "react";
-import * as Styled from "./style";
+import * as Styled from "./search-input.style";
 
 export default function SearchInput(): React.ReactElement {
     return (

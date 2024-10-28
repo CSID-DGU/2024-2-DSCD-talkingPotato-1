@@ -1,5 +1,5 @@
 import React from "react";
-import * as Styled from "./style";
+import * as Styled from "./search-button.style";
 import {Head1} from "@shared/components";
 import {theme} from "@app/styles";
 

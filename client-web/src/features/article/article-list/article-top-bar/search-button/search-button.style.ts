@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import theme from "@styles/theme.ts";
+import {theme} from "@app/styles";
 
 export const Container = styled.div`
 

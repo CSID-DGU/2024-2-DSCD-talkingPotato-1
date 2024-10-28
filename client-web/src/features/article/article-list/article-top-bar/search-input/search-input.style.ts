@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import theme from "@styles/theme.ts";
+import {theme} from "@app/styles";
+
 
 export const Container = styled.input`
     padding: 20px 32px;
