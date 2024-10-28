@@ -14,7 +14,7 @@ class RootScreen extends BaseScreen<RootViewModel> {
   bool get wrapWithInnerSafeArea => true;
 
   @override
-  bool get setTopInnerSafeArea => true;
+  bool get setTopInnerSafeArea => false;
 
   @override
   bool get setBottomInnerSafeArea => true;
