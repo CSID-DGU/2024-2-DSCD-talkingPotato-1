@@ -1,0 +1,1 @@
+export {default as ArticleEditing} from "./article-editing.ui";

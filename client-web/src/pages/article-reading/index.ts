@@ -1,0 +1,1 @@
+export {default as ArticleReading} from "./article-reading.ui";

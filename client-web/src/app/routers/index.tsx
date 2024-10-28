@@ -13,8 +13,7 @@ import {
     QuestionDetail,
     Register,
     Waiting
-} from "@pages/index.tsx";
-
+} from "@pages/index.ts";
 
 export default function Router() {
 

@@ -1,10 +1,9 @@
-import React from "react";
-import * as Styled from "./style";
+import {ReactElement} from "react";
+import * as Styled from "./article-writing.style.ts";
 import {DefaultLayout} from "@shared/layouts";
 import {ArticleWritingTopBar} from "@features/article/components";
 
-export default function ArticleWriting(): React.ReactElement {
-
+const ArticleWriting = (): ReactElement => {
     return (
         <DefaultLayout>
             <Styled.Container>
@@ -13,3 +12,5 @@ export default function ArticleWriting(): React.ReactElement {
         </DefaultLayout>
     )
 }
+
+export default ArticleWriting;

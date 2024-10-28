@@ -1,9 +1,9 @@
-import React from "react";
-import * as Styled from "./style";
+import {ReactElement} from "react";
+import * as Styled from "./article-editing.style.ts";
 import {DefaultLayout} from "@shared/layouts";
 import {ArticleEditingTopBar} from "@features/article/components";
 
-export default function ArticleEditing(): React.ReactElement {
+const ArticleEditing = (): ReactElement => {
     return (
         <DefaultLayout>
             <Styled.Container>
@@ -12,3 +12,5 @@ export default function ArticleEditing(): React.ReactElement {
         </DefaultLayout>
     )
 }
+
+export default ArticleEditing;

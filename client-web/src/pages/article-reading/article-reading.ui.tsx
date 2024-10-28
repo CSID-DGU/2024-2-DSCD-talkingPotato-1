@@ -1,9 +1,9 @@
-import React from "react";
-import * as Styled from "./style";
+import {ReactElement} from "react";
+import * as Styled from "./article-reading.style.ts";
 import {DefaultLayout} from "@shared/layouts";
 import {ArticleReadingTopBar} from "@features/article/components";
 
-export default function ArticleReading(): React.ReactElement {
+const ArticleReading = (): ReactElement => {
     return (
         <DefaultLayout>
             <Styled.Container>
@@ -12,3 +12,5 @@ export default function ArticleReading(): React.ReactElement {
         </DefaultLayout>
     )
 }
+
+export default ArticleReading;

@@ -1,13 +1,12 @@
 import React from 'react';
 
-import * as Styled from "./style";
+import * as Styled from "./default-layout.style.ts";
 
 interface props {
     children: React.ReactNode;
 }
 
-export default function DefaultLayout(props: props) {
-
+const DefaultLayout = (props: props) => {
     return (
         <Styled.Container>
             {props.children}
@@ -15,3 +14,4 @@ export default function DefaultLayout(props: props) {
     )
 }
 
+export default DefaultLayout;

@@ -1,11 +1,11 @@
-import React from "react";
-import * as Styled from "./style";
+import {ReactElement} from "react";
+import * as Styled from "./question.style.ts";
 import {useSideBarStore} from "@shared/store";
 import {RootLayout} from "@shared/layouts";
 import {QuestionTopBar} from "@features/question/components";
 
 
-export default function Question(): React.ReactElement {
+const Question = (): ReactElement => {
 
     const {isExpanded} = useSideBarStore();
 
@@ -17,3 +17,5 @@ export default function Question(): React.ReactElement {
         </RootLayout>
     )
 }
+
+export default Question;

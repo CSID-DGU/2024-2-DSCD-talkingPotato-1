@@ -1,18 +1,19 @@
-import React from "react";
-import * as Styled from "./style";
+import {ReactElement} from "react";
+import * as Styled from "./article.style.ts";
 import {useSideBarStore} from "@shared/store";
 import {RootLayout} from "@shared/layouts";
-import {DashboardTopBar} from "@features/dashboard/components";
+import {ArticleTopBar} from "@features/article/components";
 
-export default function Dashboard(): React.ReactElement {
-
+const Article = (): ReactElement => {
     const {isExpanded} = useSideBarStore();
 
     return (
         <RootLayout>
             <Styled.Container isExpanded={isExpanded}>
-                <DashboardTopBar/>
+                <ArticleTopBar/>
             </Styled.Container>
         </RootLayout>
     )
 }
+
+export default Article;

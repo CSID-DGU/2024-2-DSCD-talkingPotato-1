@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import * as Styled from './style';
+import React, {ReactElement, useEffect, useState} from "react";
+import * as Styled from './login.style.ts';
 import {useNavigate} from "react-router-dom";
 import {useAlertMessage} from "@shared/lib";
 import {CONSTANTS} from "@app/constants/constants.ts";
@@ -8,7 +8,7 @@ import {Alert, RoundButton, SizedBox} from "@shared/components";
 import {theme} from "@app/styles";
 import {Input} from "@features/auth/components";
 
-export default function Login(): React.ReactElement {
+const Login = (): ReactElement => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -60,3 +60,5 @@ export default function Login(): React.ReactElement {
         </DefaultLayout>
     )
 }
+
+export default Login;
