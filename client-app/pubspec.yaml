@@ -49,6 +49,9 @@ dependencies:
   # Environment Encrypted
   envied: ^0.5.4+1
 
+  # Percent Indicator
+  percent_indicator: ^4.2.3
+
 dev_dependencies:
   # Default
   flutter_test:
