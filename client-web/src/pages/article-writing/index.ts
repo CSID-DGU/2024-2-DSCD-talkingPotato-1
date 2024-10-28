@@ -1,0 +1,1 @@
+export {default as ArticleWriting} from "./article-writing.ui";

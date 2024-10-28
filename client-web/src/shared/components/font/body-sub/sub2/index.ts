@@ -1,0 +1,1 @@
+export {default as Sub2} from "./sub2.ui";

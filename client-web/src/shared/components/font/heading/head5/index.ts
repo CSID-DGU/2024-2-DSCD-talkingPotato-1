@@ -1,0 +1,1 @@
+export {default as Head5} from "./head5.ui";
