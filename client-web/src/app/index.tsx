@@ -2,7 +2,7 @@ import {BrowserRouter} from "react-router-dom";
 import {ThemeProvider} from "styled-components";
 import {GlobalStyle} from "@app/styles/global.ts";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {ErrorBoundary} from "@shared/components";
+import ErrorBoundary from "@shared/components/error-boundary";
 import theme from "@app/styles/theme.ts";
 import Router from "./routers";
 

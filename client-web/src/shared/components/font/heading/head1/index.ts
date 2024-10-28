@@ -1,0 +1,1 @@
+export {default as Head1} from "./head1.ui";

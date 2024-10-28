@@ -1,0 +1,1 @@
+export {default as Head4} from "./head4.ui";

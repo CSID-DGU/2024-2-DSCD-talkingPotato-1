@@ -1,6 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import {CONSTANTS} from "@app/constants/constants.ts"
-import {PrivateRoute} from "@shared/components";
+import {PrivateRoute} from "@shared/components/private-route";
 
 import {
     Article,
