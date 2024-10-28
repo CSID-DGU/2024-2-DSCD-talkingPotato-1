@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 
 class TextDefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -21,6 +22,7 @@ class TextDefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       padding: const EdgeInsets.only(left: 4, right: 4),
       decoration: BoxDecoration(
+        color: ColorSystem.white,
         border: Border(
           bottom: BorderSide(
             color: Colors.grey[200]!,
@@ -33,8 +35,8 @@ class TextDefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           title,
           style: FontSystem.H3,
         ),
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
+        surfaceTintColor: ColorSystem.white,
+        backgroundColor: ColorSystem.white,
         automaticallyImplyLeading: false,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         centerTitle: false,
