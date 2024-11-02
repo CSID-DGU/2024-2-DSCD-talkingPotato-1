@@ -43,7 +43,7 @@ class ScheduleOverviewState {
     );
   }
 
-  factory ScheduleOverviewState.fromMap(Map<String, dynamic> data) {
+  factory ScheduleOverviewState.fromJson(Map<String, dynamic> data) {
     return ScheduleOverviewState(
       id: data['id'],
       takenAt: data['taken_at'],
@@ -57,7 +57,7 @@ class ScheduleOverviewState {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'taken_at': takenAt,
