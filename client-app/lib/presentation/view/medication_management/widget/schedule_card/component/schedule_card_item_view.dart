@@ -22,31 +22,54 @@ class ScheduleCardItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTapContext,
-      child: Container(
-        padding: const EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: ColorSystem.white,
-          boxShadow: [
-            BoxShadow(
-              color: ColorSystem.neutral.withOpacity(0.2),
-              offset: const Offset(0, 2),
-              blurRadius: 6,
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: ColorSystem.white,
+              boxShadow: [
+                BoxShadow(
+                  color: ColorSystem.neutral.withOpacity(0.2),
+                  offset: const Offset(0, 2),
+                  blurRadius: 6,
+                ),
+              ],
             ),
-          ],
-        ),
-        child: Row(
-          children: [
-            if (state.drugImageUrl == null)
-              _buildEmptyImageView()
-            else
-              _buildDefaultImageView(),
-            const SizedBox(width: 16),
-            _buildTextView(),
-            const SizedBox(width: 8),
-            _buildCheckBox(),
-          ],
-        ),
+            child: Row(
+              children: [
+                if (state.drugImageUrl == null)
+                  _buildEmptyImageView()
+                else
+                  _buildDefaultImageView(),
+                const SizedBox(width: 16),
+                _buildTextView(),
+                const SizedBox(width: 8),
+                _buildCheckBox(),
+              ],
+            ),
+          ),
+          // 다 먹은 경우 흰색 덮개를 덮어준다. 또한 이는 전체를 덮는다.
+          IgnorePointer(
+            ignoring: true,
+            child: AnimatedContainer(
+              width: Get.width,
+              height: state.drugType == 'CUSTOM' ||
+                      state.drugType == 'ETC_MEDICINE' ||
+                      state.drugType == 'OTC_MEDICINE'
+                  ? 46 + 32
+                  : 95 + 32,
+              duration: const Duration(milliseconds: 200),
+              decoration: BoxDecoration(
+                color: state.isTaken
+                    ? ColorSystem.white.withOpacity(0.7)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

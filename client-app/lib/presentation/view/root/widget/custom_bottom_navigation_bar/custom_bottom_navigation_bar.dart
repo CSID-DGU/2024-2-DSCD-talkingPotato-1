@@ -37,7 +37,7 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
             type: BottomNavigationBarType.fixed,
 
             // When not selected
-            unselectedItemColor: ColorSystem.neutral.shade200,
+            unselectedItemColor: ColorSystem.neutral.shade400,
             unselectedLabelStyle: FontSystem.Sub3,
 
             // When selected
