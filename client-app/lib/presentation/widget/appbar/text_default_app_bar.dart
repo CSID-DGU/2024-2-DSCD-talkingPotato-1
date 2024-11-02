@@ -6,21 +6,21 @@ import 'package:wooahan/app/config/font_system.dart';
 class TextDefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const TextDefaultAppBar({
     super.key,
+    required this.preferredSize,
     required this.title,
     this.actions = const <Widget>[],
-    required this.preferredSize,
   });
+
+  @override
+  final Size preferredSize;
 
   final String title;
   final List<Widget> actions;
 
   @override
-  final Size preferredSize;
-
-  @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 4, right: 4),
+      padding: const EdgeInsets.only(left: 4, right: 16),
       decoration: BoxDecoration(
         color: ColorSystem.white,
         border: Border(

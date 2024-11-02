@@ -114,7 +114,7 @@ abstract class ColorSystem {
 
   /// Red Color
   static const MaterialColor blue = MaterialColor(
-    _bludValue,
+    _blueValue,
     <int, Color>{
       900: Color(0xFF102670),
       800: Color(0xFF002459),
@@ -128,5 +128,5 @@ abstract class ColorSystem {
       50: Color(0xFFE9FAFF),
     },
   );
-  static const int _bludValue = 0xFFFF2E2B;
+  static const int _blueValue = 0xFF03599B;
 }
