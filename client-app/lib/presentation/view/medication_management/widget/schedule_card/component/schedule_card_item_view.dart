@@ -29,13 +29,6 @@ class ScheduleCardItemView extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: ColorSystem.white,
-              boxShadow: [
-                BoxShadow(
-                  color: ColorSystem.neutral.withOpacity(0.2),
-                  offset: const Offset(0, 2),
-                  blurRadius: 6,
-                ),
-              ],
             ),
             child: Row(
               children: [

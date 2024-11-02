@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wooahan/app/config/color_system.dart';
+import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/app/utility/log_util.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view/medication_management/widget/schedule_card/schedule_card_list_view.dart';
@@ -12,6 +14,9 @@ class MedicationManagementScreen
   const MedicationManagementScreen({super.key});
 
   @override
+  Color? get screenBackgroundColor => ColorSystem.neutral.shade100;
+
+  @override
   PreferredSizeWidget? buildAppBar(BuildContext context) {
     return TextDefaultAppBar(
       preferredSize: const Size.fromHeight(64),
@@ -21,9 +26,18 @@ class MedicationManagementScreen
           onTap: () {
             LogUtil.info('Edit button taped');
           },
-          child: const Icon(
-            Icons.edit_note_outlined,
-            size: 28,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.edit_note_outlined,
+                size: 28,
+              ),
+              Text(
+                '수정하기',
+                style: FontSystem.Sub3.copyWith(height: 1.0),
+              )
+            ],
           ),
         ),
       ],
