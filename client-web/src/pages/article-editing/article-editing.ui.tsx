@@ -1,13 +1,13 @@
-import {ReactElement} from "react";
 import * as Styled from "./article-editing.style.ts";
+import {ReactElement} from "react";
 import {DefaultLayout} from "@shared/layouts";
-import {ArticleEditingTopBar} from "@features/article/components";
+import {ArticleUpdateTopBar} from "@features/article";
 
 const ArticleEditing = (): ReactElement => {
     return (
         <DefaultLayout>
             <Styled.Container>
-                <ArticleEditingTopBar/>
+                <ArticleUpdateTopBar/>
             </Styled.Container>
         </DefaultLayout>
     )

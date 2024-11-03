@@ -1,0 +1,1 @@
+export {default as ArticleUpdateTopBar} from "./article-update-top-bar.ui";

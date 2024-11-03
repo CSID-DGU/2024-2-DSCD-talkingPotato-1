@@ -1,0 +1,1 @@
+export {default as ArticleDetailHeader} from "./article-detail-header.ui.tsx";

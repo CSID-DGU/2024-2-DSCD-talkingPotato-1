@@ -1,7 +1,7 @@
 import {QuestionListLib} from "@features/question/question-list/question-list.lib.ts";
 import {ReactElement} from "react";
 import * as Styled from "./question-item.style";
-import {Spacer, Sub3} from "@shared/components";
+import {Spacer, Sub2, Sub3} from "@shared/components";
 import {theme} from "@app/styles";
 import {convertDateToKoreanString, convertStringToDate} from "@shared/utils";
 import {ItemBadge} from "@features/question/question-list/question-item/item-badge";
@@ -28,7 +28,7 @@ export const QuestionItem = (props: props): ReactElement => {
 
     return (
         <Styled.Container>
-            <Sub3 text={props.question.content} textAlign={"start"} color={theme.colorSystem.neutral["300"]}/>
+            <Sub2 text={props.question.content} textAlign={"start"} color={theme.colorSystem.neutral["300"]}/>
             <Styled.Row>
                 <Sub3 text={convertDateToKoreanString(convertStringToDate(props.question.createdAt))}
                       color={theme.colorSystem.neutral["500"]} textAlign={"end"}/>

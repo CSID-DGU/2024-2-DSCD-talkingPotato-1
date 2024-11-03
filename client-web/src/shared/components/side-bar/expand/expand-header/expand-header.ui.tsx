@@ -2,8 +2,6 @@ import React from "react";
 import * as Styled from "./expand-header.style.ts";
 import DisposeChevron from "@shared/assets/icons/DisposeChevron.svg";
 import Setting from "@shared/assets/icons/Setting.svg";
-
-import Home from "@shared/assets/icons/Home.svg?react"
 import Article from "@shared/assets/icons/Article.svg?react"
 import Question from "@shared/assets/icons/Question.svg?react"
 import {useNavigate} from "react-router-dom";
@@ -40,11 +38,6 @@ export default function ExpandHeader(): React.ReactElement {
                 <SvgButton src={Setting} width={"60px"} height={"60px"}/>
             </Styled.Row>
             <SizedBox height={"60px"}/>
-            <ExpandItem Icon={Home} type={"dashboard"} sizedBoxWidth={"20.03px"}
-                        onClick={() => handlePageUpdate("dashboard")}
-                        width={"27.967px"}
-                        height={"28px"}/>
-            <SizedBox height={"8px"}/>
             <ExpandItem Icon={Article} type={"article"} sizedBoxWidth={"13.78px"}
                         onClick={() => handlePageUpdate("article")}
                         width={"34.222223px"}

@@ -7,7 +7,6 @@ import {
     ArticleEditing,
     ArticleReading,
     ArticleWriting,
-    Dashboard,
     Login,
     Question,
     QuestionDetail,
@@ -23,7 +22,6 @@ export default function Router() {
             <Route path={CONSTANTS.ROUTER.REGISTER} element={<Register/>}/>
             <Route path={CONSTANTS.ROUTER.WAITING} element={<Waiting/>}/>
             <Route element={<PrivateRoute/>}>
-                <Route path={CONSTANTS.ROUTER.DASHBOARD} element={<Dashboard/>}/>
                 <Route path={CONSTANTS.ROUTER.ARTICLE} element={<Article/>}/>
                 <Route path={CONSTANTS.ROUTER.ARTICLE_WRITE} element={<ArticleWriting/>}/>
                 <Route path={CONSTANTS.ROUTER.ARTICLE_READ + ":id"} element={<ArticleReading/>}/>

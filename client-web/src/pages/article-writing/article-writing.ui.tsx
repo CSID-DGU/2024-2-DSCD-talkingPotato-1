@@ -1,13 +1,13 @@
 import {ReactElement} from "react";
 import * as Styled from "./article-writing.style.ts";
 import {DefaultLayout} from "@shared/layouts";
-import {ArticleWritingTopBar} from "@features/article/components";
+import {ArticleCreateTopBar} from "@features/article";
 
 const ArticleWriting = (): ReactElement => {
     return (
         <DefaultLayout>
             <Styled.Container>
-                <ArticleWritingTopBar/>
+                <ArticleCreateTopBar/>
             </Styled.Container>
         </DefaultLayout>
     )

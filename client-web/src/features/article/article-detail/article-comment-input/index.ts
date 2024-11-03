@@ -1,0 +1,1 @@
+export {default as ArticleCommentInput} from "./article-comment-input.ui";

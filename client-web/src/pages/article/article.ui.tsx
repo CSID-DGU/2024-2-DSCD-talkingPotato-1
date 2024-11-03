@@ -1,11 +1,10 @@
-import {ReactElement, useEffect, useState} from "react";
 import * as Styled from "./article.style.ts";
-import {RootLayout} from "@shared/layouts";
-import {ArticleItemInterface} from "@features/article/article-list/article-item/article-item.lib.ts";
-import {ArticleList, ArticleTopBar, CreateButton} from "@features/article";
-import ArticleItemMock from "@features/article/article-list/article-item/article-item.mock.ts";
+import {ReactElement, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {ArticleItemInterface} from "@features/article/article-list/article-item/article-item.lib.ts";
 import {CONSTANTS} from "@app/constants/constants.ts";
+import {ArticleList, ArticleListMock, ArticleTopBar, CreateButton} from "@features/article";
+import {RootLayout} from "@shared/layouts";
 
 const Article = (): ReactElement => {
 
@@ -17,7 +16,7 @@ const Article = (): ReactElement => {
     }
 
     useEffect(() => {
-        setArticles(ArticleItemMock);
+        setArticles(ArticleListMock);
     }, []);
 
     return (

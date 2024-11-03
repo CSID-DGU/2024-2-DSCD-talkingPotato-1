@@ -4,10 +4,12 @@ interface SizedBoxProps {
     width?: string;
     height?: string;
     background?: string;
+    margin?: string;
 }
 
 export const SizedBox = styled.div<SizedBoxProps>`
     width: ${(props) => props.width || "0px"};
     height: ${(props) => props.height || "0px"};
     background-color: ${(props) => props.background || "transparent"};
+    margin: ${(props) => props.margin || "0px"};
 `;

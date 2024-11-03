@@ -1,1 +1,1 @@
-export type SideBarPage = 'dashboard' | 'article' | 'question';
+export type SideBarPage = 'article' | 'question';
