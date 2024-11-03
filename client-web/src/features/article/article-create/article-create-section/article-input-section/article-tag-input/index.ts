@@ -1,0 +1,1 @@
+export {default as ArticleTagInput} from "./article-tag-input.ui";
