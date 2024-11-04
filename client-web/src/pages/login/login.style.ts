@@ -5,9 +5,10 @@ export const Container = styled.div`
     flex-direction: column;
 
     width: 32%;
-    height: 60vh;
+    height: calc(100vh - 100px);
 
     align-items: center;
+    justify-content: center;
 `;
 
 
