@@ -1,1 +1,0 @@
-export {default as ArticleContentInput} from "./article-content-input.ui";

@@ -10,6 +10,6 @@ export const Container = styled.input`
 
     width: 100%;
 
-    border: 1.5px solid ${({theme}) => theme.colorSystem.neutral["300"]};
+    border: 1.5px solid ${({theme}) => theme.colorSystem.neutral["700"]};
     border-radius: 12px;
 `;

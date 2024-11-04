@@ -1,1 +1,0 @@
-export {default as ArticlePreviewSection} from "./article-preview-section.ui";

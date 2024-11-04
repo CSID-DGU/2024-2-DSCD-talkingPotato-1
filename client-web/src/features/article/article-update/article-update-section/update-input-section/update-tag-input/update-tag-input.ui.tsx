@@ -1,4 +1,4 @@
-import * as Styled from "./article-tag-input.style";
+import * as Styled from "./update-tag-input.style.ts";
 import {ChangeEvent, ReactElement} from "react";
 import {SizedBox, Sub2} from "@shared/components";
 import {theme} from "@app/styles";
@@ -8,7 +8,7 @@ interface props {
     handleTagChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const ArticleTagInput = (props: props): ReactElement => {
+export const UpdateTagInput = (props: props): ReactElement => {
 
     return (
         <Styled.Container>
@@ -23,4 +23,4 @@ export const ArticleTagInput = (props: props): ReactElement => {
     )
 }
 
-export default ArticleTagInput;
+export default UpdateTagInput;

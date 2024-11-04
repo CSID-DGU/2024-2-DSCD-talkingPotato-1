@@ -4,9 +4,10 @@ import {useNavigate} from "react-router-dom";
 import {useAlertMessage} from "@shared/lib";
 import {CONSTANTS} from "@app/constants/constants.ts";
 import {DefaultLayout} from "@shared/layouts";
-import {Alert, RoundButton, SizedBox} from "@shared/components";
+import {Alert, RoundButton, SizedBox, SvgIcon} from "@shared/components";
 import {theme} from "@app/styles";
 import {Input} from "@features/auth/components";
+import Title from "@shared/assets/icons/Title.svg?react";
 
 const Login = (): ReactElement => {
 
@@ -46,6 +47,7 @@ const Login = (): ReactElement => {
     return (
         <DefaultLayout>
             <Styled.Container>
+                <SvgIcon Icon={Title} width={"100%"} height={"100%"}/>
                 <Styled.InputContainer>
                     <Input text={"이메일"} type={"email"} placeholder={"이메일을 입력해주세요."} onChange={handleEmail}/>
                     <SizedBox height={"48px"}/>

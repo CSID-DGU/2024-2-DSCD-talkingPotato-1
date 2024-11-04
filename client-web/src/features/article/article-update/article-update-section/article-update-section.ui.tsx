@@ -1,6 +1,6 @@
-import * as Styled from "./article-create-section.style";
+import * as Styled from "./article-update-section.style.ts";
 import {ChangeEvent, Dispatch, ReactElement, SetStateAction} from "react";
-import {CreateInputSection, CreatePreviewSection} from "@features/article";
+import {UpdateInputSection, UpdatePreviewSection} from "@features/article";
 
 interface props {
     title: string;
@@ -16,11 +16,11 @@ export const ArticleCreateSection = (props: props): ReactElement => {
 
     return (
         <Styled.Container>
-            <CreateInputSection title={props.title} handleTitleChange={props.handleTitleChange}
+            <UpdateInputSection title={props.title} handleTitleChange={props.handleTitleChange}
                                 tagInput={props.tagInput} handleTagInputChange={props.handleTagInputChange}
                                 markdownValue={props.markdownValue}
                                 setMarkdownValue={props.setMarkdownValue}/>
-            <CreatePreviewSection title={props.title} tags={props.tags} markdownValue={props.markdownValue!}/>
+            <UpdatePreviewSection title={props.title} tags={props.tags} markdownValue={props.markdownValue!}/>
         </Styled.Container>
     )
 }

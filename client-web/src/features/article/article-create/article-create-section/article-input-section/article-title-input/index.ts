@@ -1,1 +1,0 @@
-export {default as ArticleTitleInput} from "./article-title-input.ui";

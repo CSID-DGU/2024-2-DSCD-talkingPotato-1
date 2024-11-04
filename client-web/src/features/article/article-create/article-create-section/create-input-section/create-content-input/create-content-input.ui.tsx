@@ -1,5 +1,5 @@
 import {Dispatch, ReactElement, SetStateAction} from "react";
-import * as Styled from "./article-content-input.style";
+import * as Styled from "./create-content-input.style.ts";
 import {SizedBox, Sub2} from "@shared/components";
 import {theme} from "@app/styles";
 import {MarkdownEditor} from "@features/article/markdown-editor/markdown-editor.ui.tsx";
@@ -9,7 +9,7 @@ interface props {
     setMarkdownValue: Dispatch<SetStateAction<string | undefined>>;
 }
 
-export const ArticleContentInput = (props: props): ReactElement => {
+export const CreateContentInput = (props: props): ReactElement => {
 
     return (
         <Styled.Container>
@@ -24,4 +24,4 @@ export const ArticleContentInput = (props: props): ReactElement => {
     )
 }
 
-export default ArticleContentInput;
+export default CreateContentInput;

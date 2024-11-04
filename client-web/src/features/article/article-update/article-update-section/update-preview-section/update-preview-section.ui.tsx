@@ -1,9 +1,9 @@
-import * as Styled from "./article-preview-section.style";
+import * as Styled from "./update-preview-section.style.ts";
 import {Fragment, ReactElement} from "react";
 import {Head0, SizedBox} from "@shared/components";
 import {
     ArticleCreateTag
-} from "@features/article/article-create/article-create-section/article-preview-section/article-create-tag";
+} from "@features/article/article-create/article-create-section/create-preview-section/article-create-tag";
 import {theme} from "@app/styles";
 import {MarkdownViewer} from "@features/article";
 
@@ -13,7 +13,7 @@ interface props {
     markdownValue: string;
 }
 
-export const ArticlePreviewSection = (props: props): ReactElement => {
+export const UpdatePreviewSection = (props: props): ReactElement => {
 
     return (
         <Styled.Container>
@@ -42,4 +42,4 @@ export const ArticlePreviewSection = (props: props): ReactElement => {
     )
 }
 
-export default ArticlePreviewSection;
+export default UpdatePreviewSection;
