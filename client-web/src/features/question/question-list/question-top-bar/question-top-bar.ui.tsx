@@ -1,9 +1,9 @@
 import React from "react";
-import * as Styled from "./style.ts";
+import * as Styled from "./question-top-bar.style";
 import {HeadExtra, SizedBox} from "@shared/components";
-import SearchInput from "@features/question/components/top-bar/question-top-bar/search-input";
-import SearchButton from "@features/question/components/top-bar/question-top-bar/search-button";
 import {theme} from "@app/styles";
+import SearchInput from "@features/question/question-list/question-top-bar/search-input";
+import SearchButton from "@features/question/question-list/question-top-bar/search-button";
 
 export default function QuestionTopBar(): React.ReactElement {
     return (
@@ -18,7 +18,7 @@ export default function QuestionTopBar(): React.ReactElement {
                     </Styled.SearchSection>
                 </Styled.Row>
             </Styled.Container>
-            <SizedBox height={"1px"} width={"100%"} background={theme.colorSystem.neutral["500"]}/>
+            <SizedBox height={"1px"} width={"100%"} background={theme.colorSystem.neutral["700"]}/>
         </Styled.Column>
     )
 }

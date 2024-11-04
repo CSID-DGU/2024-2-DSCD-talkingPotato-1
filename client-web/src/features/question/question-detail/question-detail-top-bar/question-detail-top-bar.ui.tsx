@@ -1,11 +1,11 @@
 import React from "react";
-import * as Styled from "./style.ts";
+import * as Styled from "./question-detail-top-bar.style";
 import Back from "@shared/assets/icons/Back.svg?react";
 import {useConfirmMessage} from "@shared/lib";
 import {Confirm, Head1, SizedBox, SvgIcon} from "@shared/components";
 import {theme} from "@app/styles";
 
-export default function QuestionReadingTopBar(): React.ReactElement {
+export default function QuestionDetailTopBar(): React.ReactElement {
 
     const {
         confirmMessage,
@@ -46,7 +46,7 @@ export default function QuestionReadingTopBar(): React.ReactElement {
                     </Styled.ButtonWrapper>
                 </Styled.Row>
             </Styled.Container>
-            <SizedBox height={"1px"} width={"100%"} background={theme.colorSystem.neutral["500"]}/>
+            <SizedBox height={"1px"} width={"100%"} background={theme.colorSystem.neutral["700"]}/>
             {
                 isConfirmOpen && (
                     <Confirm title={confirmTitle} content={confirmMessage} onConfirm={handleOnConfirm}

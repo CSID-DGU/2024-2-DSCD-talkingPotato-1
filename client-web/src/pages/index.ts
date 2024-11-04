@@ -4,6 +4,6 @@ export * from "./article-reading";
 export * from "./article-writing";
 export * from "./login";
 export * from "./question";
-export * from "./question-detail";
+export * from "./question-reading";
 export * from "./register";
 export * from "./waiting";

@@ -9,4 +9,6 @@ export const Sub3 = styled.div<FontProps>`
     line-height: ${theme.fontSystem.sub3.lineHeight};
     text-align: ${(props) => props.textAlign || "center"};
     white-space: pre-wrap;
+
+    cursor: ${(props) => props.cursor || "none"};
 `;

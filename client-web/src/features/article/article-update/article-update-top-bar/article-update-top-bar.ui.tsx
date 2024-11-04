@@ -41,7 +41,7 @@ export const ArticleUpdateTopBar = (): ReactElement => {
                     </Styled.SearchSection>
                 </Styled.Row>
             </Styled.Container>
-            <SizedBox height={"1px"} width={"100%"} background={theme.colorSystem.neutral["500"]}/>
+            <SizedBox height={"1px"} width={"100%"} background={theme.colorSystem.neutral["700"]}/>
             {
                 isConfirmOpen && (
                     <Confirm title={confirmTitle} content={confirmMessage} onCancel={() => setIsConfirmOpen(false)}

@@ -6,12 +6,16 @@ import {theme} from "@app/styles";
 import {convertDateToKoreanString, convertStringToDate} from "@shared/utils";
 import {ItemBadge} from "@features/question/question-list/question-item/item-badge";
 import {AnswerStatus} from "@features/question/question-list/question-item/question-item.lib.ts";
+import {useNavigate} from "react-router-dom";
+import {CONSTANTS} from "@app/constants/constants.ts";
 
 interface props {
     question: QuestionListLib;
 }
 
 export const QuestionItem = (props: props): ReactElement => {
+
+    const navigate = useNavigate();
 
     const getStatus = (status: string): AnswerStatus | never => {
         switch (status) {
@@ -26,8 +30,12 @@ export const QuestionItem = (props: props): ReactElement => {
         }
     }
 
+    const handleOnClick = () => {
+        navigate(CONSTANTS.ROUTER.QUESTION_DETAIL + props.question.id);
+    }
+
     return (
-        <Styled.Container>
+        <Styled.Container onClick={handleOnClick}>
             <Sub2 text={props.question.content} textAlign={"start"} color={theme.colorSystem.neutral["300"]}/>
             <Styled.Row>
                 <Sub3 text={convertDateToKoreanString(convertStringToDate(props.question.createdAt))}
