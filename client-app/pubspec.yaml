@@ -68,10 +68,21 @@ dev_dependencies:
   envied_generator: ^0.5.4+1
   build_runner: ^2.4.11
 
+  # Image Picker
+  image_picker: ^1.1.2
+
+  # Animation
+  rive: ^0.13.15
+  animated_text_kit: ^4.2.2
+
+  # STT
+  speech_to_text: ^7.0.0
+
 flutter:
   uses-material-design: true
 
   assets:
+    - assets/animations/
     - assets/images/
     - assets/icons/
     - assets/icons/

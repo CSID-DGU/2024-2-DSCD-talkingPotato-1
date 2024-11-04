@@ -8,7 +8,7 @@ class PrimaryFillButton extends BaseFillButton {
     required super.width,
     required super.height,
     required super.content,
-    required super.onPressed,
+    super.onPressed,
   });
 
   @override

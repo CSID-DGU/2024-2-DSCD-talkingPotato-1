@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wooahan/app/config/app_routes.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/utility/log_util.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
@@ -89,7 +90,7 @@ class HomeScreen extends BaseScreen<HomeViewModel> {
           content: '사진의 글자를 읽어요',
           assetPath: 'assets/icons/stt.svg',
           onPressed: () {
-            LogUtil.info('TTS button tapped');
+            Get.toNamed(AppRoutes.TEXT_TO_SPEECH_CONVERTER);
           },
         ),
         const SizedBox(width: 20),
@@ -102,7 +103,7 @@ class HomeScreen extends BaseScreen<HomeViewModel> {
           content: '말을 하면 적어줘요',
           assetPath: 'assets/icons/tts.svg',
           onPressed: () {
-            LogUtil.info('STT button tapped');
+            Get.toNamed(AppRoutes.SPEECH_TO_TEXT_CONVERTER);
           },
         ),
       ],
