@@ -10,14 +10,3 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
 `;
-
-
-export const InputContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-
-    justify-content: start;
-    align-items: start;
-`;

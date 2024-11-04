@@ -1,8 +1,11 @@
 import {ChangeEvent, ReactElement, useState} from "react";
 import * as Styled from './login.style.ts';
 import {DefaultLayout} from "@shared/layouts";
-import {LoginForm} from "@features/auth";
-import LoginHeader from "@features/auth/login/login-header/login-header.ui.tsx";
+import {LoginForm, LoginHeader} from "@features/auth";
+
+/**
+ * Todo: Password Visibility
+ */
 
 const Login = (): ReactElement => {
 
@@ -16,7 +19,6 @@ const Login = (): ReactElement => {
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
     }
-
 
     return (
         <DefaultLayout>
