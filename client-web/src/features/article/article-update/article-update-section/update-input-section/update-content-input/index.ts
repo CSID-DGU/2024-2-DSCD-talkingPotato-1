@@ -1,0 +1,1 @@
+export {default as UpdateContentInput} from "./update-content-input.ui.tsx";

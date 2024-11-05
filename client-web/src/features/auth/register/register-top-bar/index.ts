@@ -1,0 +1,1 @@
+export {default as RegisterTopBar} from "./register-top-bar.ui";

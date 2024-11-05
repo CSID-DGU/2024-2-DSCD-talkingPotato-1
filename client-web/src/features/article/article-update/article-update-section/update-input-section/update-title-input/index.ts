@@ -1,0 +1,1 @@
+export {default as UpdateTitleInput} from "./update-title-input.ui.tsx";

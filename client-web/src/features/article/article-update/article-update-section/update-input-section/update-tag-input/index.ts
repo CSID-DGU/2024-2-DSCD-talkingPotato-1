@@ -1,0 +1,1 @@
+export {default as UpdateTagInput} from "./update-tag-input.ui.tsx";

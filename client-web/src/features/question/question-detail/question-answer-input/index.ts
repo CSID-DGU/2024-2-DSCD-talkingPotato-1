@@ -1,0 +1,1 @@
+export {default as QuestionAnswerInput} from "./question-answer-input.ui";

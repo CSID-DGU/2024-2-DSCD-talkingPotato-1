@@ -1,1 +1,0 @@
-export {default as QuestionDetail} from "./question-detail.ui";

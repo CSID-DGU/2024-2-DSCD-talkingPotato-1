@@ -1,0 +1,1 @@
+export {default as QuestionDetail} from "./question-reading.ui.tsx";

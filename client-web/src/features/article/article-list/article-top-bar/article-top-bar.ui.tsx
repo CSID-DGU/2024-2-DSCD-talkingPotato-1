@@ -18,7 +18,7 @@ export default function ArticleTopBar(): React.ReactElement {
                     </Styled.SearchSection>
                 </Styled.Row>
             </Styled.Container>
-            <SizedBox height={"1px"} width={"100%"} background={theme.colorSystem.neutral["500"]}/>
+            <SizedBox height={"1px"} width={"100%"} background={theme.colorSystem.neutral["700"]}/>
         </Styled.Column>
     )
 }

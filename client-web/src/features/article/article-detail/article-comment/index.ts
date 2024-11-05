@@ -1,0 +1,1 @@
+export {default as ArticleComment} from "./article-comment.ui";

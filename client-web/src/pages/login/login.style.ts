@@ -5,18 +5,8 @@ export const Container = styled.div`
     flex-direction: column;
 
     width: 32%;
-    height: 60vh;
+    height: calc(100vh - 100px);
 
     align-items: center;
-`;
-
-
-export const InputContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
 `;

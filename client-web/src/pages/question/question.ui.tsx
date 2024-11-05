@@ -1,11 +1,10 @@
 import {ReactElement, useEffect, useState} from "react";
 import * as Styled from "./question.style.ts";
-import {QuestionTopBar} from "@features/question/components";
 import {RootLayout} from "@shared/layouts";
 import {QuestionList} from "@features/question/question-list";
 import {QuestionListLib} from "@features/question/question-list/question-list.lib.ts";
 import QuestionListMock from "@features/question/question-list/question-list.mock.ts";
-
+import {QuestionTopBar} from "@features/question";
 
 const Question = (): ReactElement => {
 

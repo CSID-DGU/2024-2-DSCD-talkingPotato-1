@@ -6,9 +6,7 @@ import svgr from 'vite-plugin-svgr'
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react(), svgr()],
-    optimizeDeps: {
-        exclude: ['@uiw/react-md-editor']
-    },
+    optimizeDeps: {},
     resolve: {
         alias: {
             "@app": path.resolve(__dirname, 'src/app'),
