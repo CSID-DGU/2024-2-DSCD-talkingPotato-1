@@ -227,6 +227,7 @@ $RECYCLE.BIN/
 *.json
 
 # Resources
+.resource
 application-local.yml
 application-dev.yml
 

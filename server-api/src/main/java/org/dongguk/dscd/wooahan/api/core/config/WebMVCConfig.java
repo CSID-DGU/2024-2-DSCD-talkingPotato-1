@@ -29,7 +29,6 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(final InterceptorRegistry registry) {
         registry.addInterceptor(accountIDInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns(Constants.NO_NEED_AUTH_URLS);
+                .addPathPatterns("/**");
     }
 }
