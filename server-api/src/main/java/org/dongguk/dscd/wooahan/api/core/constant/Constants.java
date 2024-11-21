@@ -24,13 +24,11 @@ public class Constants {
         public static final List<String> URLS = List.of(
                 // Security
                 "/auth/login",
-                "/oauth/login",
                 "/auth/reissue/token",
                 "/auth/reissue/password",
                 "/auth/validations/email",
                 "/auth/validations/authentication-code",
-                "/auth/sign-up",
-                "/oauth/sign-up"
+                "/auth/sign-up"
         );
     }
 
