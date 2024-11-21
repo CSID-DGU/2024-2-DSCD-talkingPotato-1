@@ -114,6 +114,14 @@ public class SignUpByDefaultService  implements SignUpByDefaultUseCase {
         return accountRepository.findBySerialId(serialEmail).isPresent();
     }
 
+    /**
+     * 계정 생성
+     *
+     * @param role 계정 권한
+     * @param serialId 계정 ID
+     * @param requestDto 계정 생성 요청 DTO
+     * @return 계정 ID
+     */
     private UUID generateAccount(
             ERole role,
             String serialId,

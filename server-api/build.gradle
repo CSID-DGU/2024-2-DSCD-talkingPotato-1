@@ -35,6 +35,9 @@ dependencies {
 	// Spring Boot
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
+	// Spring Boot Mail
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
 	// Spring Security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.bouncycastle:bcpkix-jdk18on:1.78.1'

@@ -19,14 +19,17 @@ public class LoginByDefaultService implements LoginByDefaultUseCase {
 
     @Override
     @Transactional
-    public void execute(UserPrincipal principal, DefaultJsonWebTokenDto jsonWebTokenDto) {
-        UUID userId = principal.getId();
+    public void execute(
+            UserPrincipal principal,
+            DefaultJsonWebTokenDto jsonWebTokenDto
+    ) {
+        UUID accountId = principal.getId();
         String refreshToken = jsonWebTokenDto.refreshToken();
 
         if (refreshToken != null) {
             refreshTokenRepository.save(
                     RefreshToken.builder()
-                            .accountId(userId)
+                            .accountId(accountId)
                             .value(refreshToken)
                             .build()
             );

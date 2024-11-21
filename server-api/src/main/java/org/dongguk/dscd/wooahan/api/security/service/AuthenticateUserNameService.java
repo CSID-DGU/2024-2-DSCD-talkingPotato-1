@@ -17,6 +17,7 @@ public class AuthenticateUserNameService implements AuthenticateUserNameUseCase 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("username: " + username);
         Account account = accountRepository.findBySerialId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
 

@@ -11,15 +11,15 @@ services:
       MYSQL_ROOT_PASSWORD: Wooahan11!
       MYSQL_DATABASE: wooahan
       TZ: Asia/Seoul
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
 
   redis:
     image: redis
     container_name: wooahan-redis
     ports:
       - "6379:6379"
+    environment:
+      TZ: Asia/Seoul
     volumes:
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
-      - ./redis-data:/data
+      - ./.resource/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./.resource/redis/data:/data
     command: redis-server /usr/local/etc/redis/redis.conf
