@@ -35,22 +35,7 @@ public class Constants {
     }
 
     public static class PublicGet {
-        public static final List<String> URLS = List.of(
-                // Drug
-                "/v1/drugs/**",
-                "/v1/medicines/**",
-                "/v1/vitamins/**",
-
-                // Article
-                "/v1/articles/**",
-
-                // Review
-                "/v1/drugs/*/reviews/**",
-
-                // HashTag & Category
-                "/v1/hash-tags/**",
-                "/v1/categories/**"
-        );
+        public static final List<String> URLS = List.of();
     }
 
     public static class PublicPut {
