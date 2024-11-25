@@ -20,6 +20,7 @@ public enum ErrorCode {
     NOT_FOUND_EXPERT(40404, HttpStatus.NOT_FOUND, "존재하지 않는 전문가입니다."),
     NOT_FOUND_ADMIN(40404, HttpStatus.NOT_FOUND, "존재하지 않는 관리자입니다."),
     NOT_FOUND_ARTICLE(40405, HttpStatus.NOT_FOUND, "존재하지 않는 칼럼입니다."),
+    NOT_FOUND_COMMENT(40406, HttpStatus.NOT_FOUND, "존재하지 않는 댓글입니다."),
 
     // Invalid Argument Error
     MISSING_REQUEST_PARAMETER(40000, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
@@ -42,6 +43,7 @@ public enum ErrorCode {
     ACCESS_DENIED(40300, HttpStatus.FORBIDDEN, "접근 권한이 없습니다."),
     NOT_LOGIN_USER(40301, HttpStatus.FORBIDDEN, "로그인하지 않은 사용자입니다."),
     ACCESS_DENIED_ARTICLE(40302, HttpStatus.FORBIDDEN, "칼럼에 대한 접근 권한이 없습니다."),
+    ACCESS_DENIED_COMMENT(40303, HttpStatus.FORBIDDEN, "댓글에 대한 접근 권한이 없습니다."),
 
     // Unauthorized Error
     FAILURE_LOGIN(40100, HttpStatus.UNAUTHORIZED, "잘못된 아이디 또는 비밀번호입니다."),
