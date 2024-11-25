@@ -9,5 +9,8 @@ public interface ReadArticleListUseCase {
      * @param query 쿼리
      * @param pageable 페이지 정보
      */
-    ReadArticleListDto execute(String query, Pageable pageable);
+    ReadArticleListDto execute(
+            String query,
+            Pageable pageable
+    );
 }

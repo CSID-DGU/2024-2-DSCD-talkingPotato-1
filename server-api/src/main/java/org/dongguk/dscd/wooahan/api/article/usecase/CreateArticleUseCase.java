@@ -7,7 +7,7 @@ import java.util.UUID;
 public interface CreateArticleUseCase {
     /**
      * 칼럼 생성
-     * @param accountId 계정 아이디
+     * @param accountId 계정 ID
      * @param requestDto 칼럼 생성 DTO
      */
     void execute(

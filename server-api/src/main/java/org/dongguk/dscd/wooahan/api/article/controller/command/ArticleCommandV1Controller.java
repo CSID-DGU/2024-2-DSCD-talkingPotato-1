@@ -20,9 +20,7 @@ import java.util.UUID;
 public class ArticleCommandV1Controller {
 
     private final CreateArticleUseCase createArticleDtoUseCase;
-
     private final UpdateArticleUseCase updateArticleUseCase;
-
     private final DeleteArticleUseCase deleteArticleUseCase;
 
     /**
@@ -68,6 +66,7 @@ public class ArticleCommandV1Controller {
      *
      * @param accountId 계정 ID
      * @param articleId 칼럼 ID
+     * @return 응답 DTO
      */
     @PreAuthorize("hasAnyRole('EXPERT', 'ADMIN')")
     @DeleteMapping("/{articleId}")

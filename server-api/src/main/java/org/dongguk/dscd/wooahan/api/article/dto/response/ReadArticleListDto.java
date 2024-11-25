@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Builder
 public record ReadArticleListDto (
+        @JsonProperty("articles")
         List<ReadArticleDto> articles
 ) {
 

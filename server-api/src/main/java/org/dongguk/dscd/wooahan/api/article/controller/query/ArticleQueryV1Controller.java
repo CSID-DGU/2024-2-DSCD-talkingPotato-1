@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticleQueryV1Controller {
 
     private final ReadArticleListUseCase readArticleListUseCase;
-
     private final ReadArticleUseCase readArticleUseCase;
 
     /**
