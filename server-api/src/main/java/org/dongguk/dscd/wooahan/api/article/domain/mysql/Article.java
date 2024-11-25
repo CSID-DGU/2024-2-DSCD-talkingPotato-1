@@ -7,8 +7,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.dongguk.dscd.wooahan.api.expert.domain.mysql.Expert;
+import org.dongguk.dscd.wooahan.api.tag.domain.mysql.ArticleTag;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -34,6 +37,15 @@ public class Article {
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    /* -------------------------------------------- */
+    /* Relation Column - Child -------------------- */
+    /* -------------------------------------------- */
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private List<ArticleTag> articleTags = new ArrayList<>();
 
     /* -------------------------------------------- */
     /* Relation Column - Parent ------------------- */
@@ -62,4 +74,5 @@ public class Article {
     public void updateTitle(String title) { this.title = title; }
 
     public void updateContent(String content) { this.content = content; }
+
 }
