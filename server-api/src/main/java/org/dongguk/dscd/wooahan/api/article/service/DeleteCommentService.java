@@ -17,7 +17,10 @@ public class DeleteCommentService implements DeleteCommentUseCase {
     private final CommentRepository commentRepository;
 
     @Override
-    public void execute(UUID accountId, Long commentId) {
+    public void execute(
+            UUID accountId,
+            Long commentId
+    ) {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_COMMENT));
 
