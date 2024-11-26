@@ -19,7 +19,7 @@ import java.util.UUID;
 @RequestMapping("/v1/articles")
 public class ArticleCommandV1Controller {
 
-    private final CreateArticleUseCase createArticleDtoUseCase;
+    private final CreateArticleUseCase createArticleUseCase;
     private final UpdateArticleUseCase updateArticleUseCase;
     private final DeleteArticleUseCase deleteArticleUseCase;
 
@@ -36,7 +36,7 @@ public class ArticleCommandV1Controller {
             @AccountID UUID accountId,
             @RequestBody @Valid CreateArticleDto requestDto
     ) {
-        createArticleDtoUseCase.execute(accountId, requestDto);
+        createArticleUseCase.execute(accountId, requestDto);
 
         return ResponseDto.ok(null);
     }
