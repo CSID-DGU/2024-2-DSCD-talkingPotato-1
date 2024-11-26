@@ -1,5 +1,6 @@
 package org.dongguk.dscd.wooahan.api.question.controller.command;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.dongguk.dscd.wooahan.api.core.annotation.common.AccountID;
 import org.dongguk.dscd.wooahan.api.core.dto.ResponseDto;
@@ -30,7 +31,7 @@ public class QuestionCommandV1Controller {
     @PostMapping
     public ResponseDto<?> createQuestion(
             @AccountID UUID accountId,
-            @RequestBody CreateQuestionRequestDto requestDto
+            @RequestBody @Valid CreateQuestionRequestDto requestDto
     ) {
         createQuestionUseCase.execute(accountId, requestDto);
 

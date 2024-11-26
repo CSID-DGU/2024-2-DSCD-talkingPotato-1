@@ -25,6 +25,7 @@ public class CreateQuestionService implements CreateQuestionUseCase {
             UUID accountId,
             CreateQuestionRequestDto requestDto
     ) {
+        // TODO: AI 답변 이벤트 생성
         User user = userRepository.findById(accountId)
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_USER));
 
