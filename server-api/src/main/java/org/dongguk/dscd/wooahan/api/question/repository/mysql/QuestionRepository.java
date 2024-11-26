@@ -21,17 +21,17 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
                     ELSE 'EXPERT'
                 END as answerStatus,
                 (SELECT COUNT(a) FROM Answer a WHERE a.question = q) as answerCount,
-                e.nickname as nickname, e.id as creatorId
+                u.nickname as nickname, u.id as creatorId
             FROM Question q
-            JOIN q.creator e""")
+            JOIN q.creator u""")
     Page<ReadQuestionListProjection> findAllWithDetail(Pageable pageable);
 
     @Query("""
             SELECT
                 q.id as id, q.content as content, q.createdAt as createdAt,
                 (SELECT COUNT(a) FROM Answer a WHERE a.question = q) as answerCount,
-                e.nickname as nickname, e.id as creatorId
+                u.nickname as nickname, u.id as creatorId
             FROM Question q
-            JOIN q.creator e""")
+            JOIN q.creator u""")
     Optional<ReadQuestionProjection> findByIdWithDetail(Long id);
 }

@@ -12,9 +12,9 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("""
             SELECT
                 c.id as id, c.content as content, c.createdAt as createdAt,
-                e.nickname as nickname, e.id as creatorId
+                u.nickname as nickname, u.id as creatorId
             FROM Comment c
-            JOIN c.creator e
+            JOIN c.creator u
             WHERE c.article.id = :articleId""")
     List<ReadCommentListProjection> findAllWithDetailByArticleId(Long articleId);
 }

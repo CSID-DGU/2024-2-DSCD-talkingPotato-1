@@ -6,6 +6,7 @@ import lombok.Builder;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 public record ReadQuestionListDto (
@@ -29,7 +30,7 @@ public record ReadQuestionListDto (
             @JsonProperty("nickname")
             String nickname,
             @JsonProperty("creator_id")
-            String creatorId
+            UUID creatorId
     ) {
     }
 }

@@ -1,6 +1,7 @@
 package org.dongguk.dscd.wooahan.api.question.dto.projection;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public interface ReadQuestionProjection {
     Long getId();
@@ -8,5 +9,5 @@ public interface ReadQuestionProjection {
     LocalDateTime getCreatedAt();
     Integer getAnswerCount();
     String getNickname();
-    String getCreatorId();
+    UUID getCreatorId();
 }
