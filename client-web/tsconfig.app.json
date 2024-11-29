@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.app.tsbuildinfo",
     "types": [
       "vite-plugin-svgr/client"
     ],
     "paths": {
       "@app/*": [
         "src/app/*"
+      ],
+      "@entities/*": [
+        "src/entities/*"
       ],
       "@features/*": [
         "src/features/*"
@@ -43,10 +47,5 @@
   "include": [
     "src",
     "./src/**/*.d.ts"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
   ]
 }
