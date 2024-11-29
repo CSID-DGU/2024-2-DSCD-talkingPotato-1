@@ -1,1 +1,0 @@
-export {default as MarkdownViewer} from "./markdown-viewer.ui";

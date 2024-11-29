@@ -3,7 +3,7 @@ import {Fragment, ReactElement} from "react";
 import {Head0, SizedBox} from "@shared/components";
 import {
     ArticleCreateTag
-} from "@features/article/article-create/article-create-section/create-preview-section/article-create-tag";
+} from "@features/article/create-article/article-create-section/create-preview-section/article-create-tag";
 import {theme} from "@app/styles";
 import {MarkdownViewer} from "@features/article";
 
