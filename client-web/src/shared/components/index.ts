@@ -7,6 +7,9 @@ export * from "./infinite-line";
 export * from "./private-route/private-route.tsx";
 export * from "./side-bar";
 export * from "./spacer";
-export * from "./svg-button"
+export * from "./svg-button";
 export * from "./svg-icon";
 export * from "./sized-box";
+export * from "./loading-indicator";
+export * from "./markdown-editor";
+export * from "./markdown-viewer";

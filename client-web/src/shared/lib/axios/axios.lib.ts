@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import AxiosConvertor from "@shared/lib/axios/axios.convertor.ts";
 
 const accessToken = Cookies.get('access_token');
 
@@ -21,6 +22,14 @@ instance.interceptors.request.use((config) => {
             config.withCredentials = true;
         }
 
+        if (config.data) {
+            config.data = AxiosConvertor.convertCamelToSnake(config.data);
+        }
+
+        if (config.params) {
+            config.params = AxiosConvertor.convertCamelToSnake(config.params);
+        }
+
         return config;
 
     }, (error) => {
@@ -29,7 +38,10 @@ instance.interceptors.request.use((config) => {
 );
 
 instance.interceptors.response.use(
-    response => response,
+    (response) => {
+        response.data = AxiosConvertor.convertSnakeToCamel(response.data);
+        return response;
+    },
     async (error) => {
         if (error.response && error.response.status === 401 && error.response.data.error.code === "40101") {
             const originalRequest = error.config;

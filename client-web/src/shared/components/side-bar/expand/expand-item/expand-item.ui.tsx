@@ -18,7 +18,7 @@ export default function ExpandItem(props: props): React.ReactElement {
 
     const {currentPage} = useSideBarStore();
 
-    const text = props.type == "dashboard" ? "대시보드" : props.type == "article" ? "칼럼" : "질문";
+    const text = props.type == "article" ? "칼럼" : "질문";
 
     return (
         <Styled.Container isSelected={currentPage == props.type} onClick={props.onClick}>
