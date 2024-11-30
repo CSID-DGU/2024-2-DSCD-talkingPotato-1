@@ -39,6 +39,9 @@ public enum ErrorCode {
     DUPLICATED_RESOURCE(40004, HttpStatus.BAD_REQUEST, "중복된 리소스입니다."),
     DUPLICATE_PASSWORD(40004, HttpStatus.BAD_REQUEST, "이전 비밀번호와 동일한 비밀번호입니다."),
 
+    // Conflict Error
+    CONFLICT_MEDICATION(40900, HttpStatus.CONFLICT, "이미 등록된 약입니다."),
+
     // Access Denied Error
     ACCESS_DENIED(40300, HttpStatus.FORBIDDEN, "접근 권한이 없습니다."),
     NOT_LOGIN_USER(40301, HttpStatus.FORBIDDEN, "로그인하지 않은 사용자입니다."),
