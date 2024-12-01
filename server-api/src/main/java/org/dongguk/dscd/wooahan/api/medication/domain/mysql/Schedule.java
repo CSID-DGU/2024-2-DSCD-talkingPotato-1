@@ -1,6 +1,7 @@
 package org.dongguk.dscd.wooahan.api.medication.domain.mysql;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.dongguk.dscd.wooahan.api.medication.domain.type.ETakenTime;
@@ -26,6 +27,7 @@ public class Schedule {
     @Column(name = "took_at", nullable = false)
     private LocalDate tookAt;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "taken_time", nullable = false)
     private ETakenTime takenTime;
 
@@ -40,6 +42,7 @@ public class Schedule {
     /* -------------------------------------------- */
     /* Functions ---------------------------------- */
     /* -------------------------------------------- */
+    @Builder
     public Schedule(
             LocalDate tookAt,
             ETakenTime takenTime,

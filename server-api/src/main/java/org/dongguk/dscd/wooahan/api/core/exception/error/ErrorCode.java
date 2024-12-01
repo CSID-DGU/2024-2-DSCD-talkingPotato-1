@@ -21,6 +21,8 @@ public enum ErrorCode {
     NOT_FOUND_ADMIN(40404, HttpStatus.NOT_FOUND, "존재하지 않는 관리자입니다."),
     NOT_FOUND_ARTICLE(40405, HttpStatus.NOT_FOUND, "존재하지 않는 칼럼입니다."),
     NOT_FOUND_COMMENT(40406, HttpStatus.NOT_FOUND, "존재하지 않는 댓글입니다."),
+    NOT_FOUND_MEDICATION(40407, HttpStatus.NOT_FOUND, "존재하지 않는 약입니다."),
+    NOT_FOUND_SCHEDULE(40408, HttpStatus.NOT_FOUND, "존재하지 않는 복용 기록입니다."),
 
     // Invalid Argument Error
     MISSING_REQUEST_PARAMETER(40000, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
@@ -41,6 +43,7 @@ public enum ErrorCode {
 
     // Conflict Error
     CONFLICT_MEDICATION(40900, HttpStatus.CONFLICT, "이미 등록된 약입니다."),
+    CONFLICT_SCHEDULE(40901, HttpStatus.CONFLICT, "이미 복용한 약입니다."),
 
     // Access Denied Error
     ACCESS_DENIED(40300, HttpStatus.FORBIDDEN, "접근 권한이 없습니다."),
