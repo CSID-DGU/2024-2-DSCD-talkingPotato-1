@@ -71,4 +71,21 @@ public class Medication {
 
         this.creator = creator;
     }
+
+    public void updateIsTakenInBreakfast(Boolean isTakenInBreakfast) {
+        this.isTakenInBreakfast = isTakenInBreakfast;
+    }
+
+    public void updateIsTakenInLunch(Boolean isTakenInLunch) {
+        this.isTakenInLunch = isTakenInLunch;
+    }
+
+    public void updateIsTakenInDinner(Boolean isTakenInDinner) {
+        this.isTakenInDinner = isTakenInDinner;
+    }
+
+    public void updateIsTakenInDaily(Boolean isTakenInDaily) {
+        this.isTakenInDaily = isTakenInDaily;
+    }
+
 }
