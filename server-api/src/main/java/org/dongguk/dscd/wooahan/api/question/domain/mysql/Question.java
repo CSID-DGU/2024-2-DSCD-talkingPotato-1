@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.dongguk.dscd.wooahan.api.user.domain.mysql.User;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,6 +31,12 @@ public class Question {
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    /* -------------------------------------------- */
+    /* Relation Column - Child -------------------- */
+    /* -------------------------------------------- */
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<Answer> answers = new ArrayList<>();
 
     /* -------------------------------------------- */
     /* Relation Column - Parent ------------------- */

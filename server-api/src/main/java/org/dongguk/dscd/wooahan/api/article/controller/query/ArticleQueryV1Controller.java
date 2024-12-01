@@ -5,10 +5,7 @@ import org.dongguk.dscd.wooahan.api.article.usecase.ReadArticleListUseCase;
 import org.dongguk.dscd.wooahan.api.article.usecase.ReadArticleUseCase;
 import org.dongguk.dscd.wooahan.api.core.dto.ResponseDto;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,8 +22,9 @@ public class ArticleQueryV1Controller {
      * @return 응답 DTO
      */
     @GetMapping
-    public ResponseDto<?> readArticleList(String query,
-                                          Pageable pageable
+    public ResponseDto<?> readArticleList(
+        @RequestParam(required = false) String query,
+        Pageable pageable
     ) {
         return ResponseDto.ok(readArticleListUseCase.execute(query, pageable));
     }
