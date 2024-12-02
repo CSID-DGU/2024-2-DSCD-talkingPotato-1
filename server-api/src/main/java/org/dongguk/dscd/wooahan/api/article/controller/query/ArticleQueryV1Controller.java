@@ -23,7 +23,7 @@ public class ArticleQueryV1Controller {
      */
     @GetMapping
     public ResponseDto<?> readArticleList(
-        @RequestParam(required = false) String query,
+        @RequestParam(required = false, name = "q") String query,
         Pageable pageable
     ) {
         return ResponseDto.ok(readArticleListUseCase.execute(query, pageable));
