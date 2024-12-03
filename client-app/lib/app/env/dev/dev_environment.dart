@@ -10,6 +10,12 @@ class DevEnvironment implements Environment {
   @EnviedField(varName: 'API_SERVER_URL', defaultValue: '', obfuscate: true)
   static final String API_SERVER_URL = _DevEnvironment.API_SERVER_URL;
 
+  @EnviedField(varName: 'DRUG_SERVER_URL', defaultValue: '', obfuscate: true)
+  static final String DRUG_SERVER_URL = _DevEnvironment.DRUG_SERVER_URL;
+
   @override
   String get apiServerUrl => API_SERVER_URL;
+
+  @override
+  String get drugServerUrl => DRUG_SERVER_URL;
 }

@@ -15,4 +15,11 @@ abstract class AppRoutes {
 
   static const String TEXT_TO_SPEECH_CONVERTER = '/text-to-speech-converter';
   static const String SPEECH_TO_TEXT_CONVERTER = '/speech-to-text-converter';
+
+  static const String MEDICATION = '/medication';
+  static const String DRUG = "/drug";
+
+  static const String ID_PATH = '/:id';
+  static const String ADDING_PATH = '/adding';
+  static const String EDITING_PATH = '/editing';
 }

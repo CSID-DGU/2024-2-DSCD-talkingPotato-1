@@ -42,7 +42,7 @@ abstract class FontSystem {
     fontWeight: FontWeight.w700,
     fontFamily: AppConfig.APP_FONT_STYLE,
     color: ColorSystem.black,
-    height: 1.25,
+    height: 1.714,
   );
 
   static const TextStyle H6 = TextStyle(

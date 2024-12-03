@@ -43,9 +43,9 @@ class DrugFloatingActionButton extends StatelessWidget {
             width: 20,
             height: 20,
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: 8),
           Text(
-            '약 추가하기',
+            '복약 추가하기',
             style: FontSystem.H4.copyWith(
               color: ColorSystem.white,
             ),

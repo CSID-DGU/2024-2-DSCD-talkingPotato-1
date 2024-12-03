@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-import 'package:wooahan/domain/entity/speech_to_text_state.dart';
+import 'package:wooahan/domain/entity/stt/speech_to_text_state.dart';
 
 class SpeechToTextConverterViewModel extends GetxController {
   late final PageController pageController;

@@ -10,11 +10,13 @@ class TextBackAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.actions = const <Widget>[],
     this.onBackPress,
+    this.backgroundColor = ColorSystem.white,
     required this.preferredSize,
   });
 
   final String title;
   final List<Widget> actions;
+  final Color backgroundColor;
   final Function()? onBackPress;
 
   @override
@@ -39,8 +41,8 @@ class TextBackAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         centerTitle: false,
-        surfaceTintColor: ColorSystem.white,
-        backgroundColor: ColorSystem.white,
+        surfaceTintColor: backgroundColor,
+        backgroundColor: backgroundColor,
         automaticallyImplyLeading: true,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         titleSpacing: 0,
@@ -48,7 +50,7 @@ class TextBackAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: IconButton(
           style: TextButton.styleFrom(
             splashFactory: NoSplash.splashFactory,
-            foregroundColor: ColorSystem.white,
+            foregroundColor: backgroundColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16.0),
             ),
