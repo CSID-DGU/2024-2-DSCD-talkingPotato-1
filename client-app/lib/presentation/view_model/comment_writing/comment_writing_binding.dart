@@ -1,9 +1,0 @@
-import 'package:get/get.dart';
-import 'package:wooahan/presentation/view_model/comment_writing/comment_writing_view_model.dart';
-
-class CommentWritingBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut<CommentWritingViewModel>(() => CommentWritingViewModel());
-  }
-}

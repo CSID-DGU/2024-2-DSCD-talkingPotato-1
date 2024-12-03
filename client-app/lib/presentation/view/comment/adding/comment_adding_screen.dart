@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
-import 'package:wooahan/presentation/view_model/comment_writing/comment_writing_view_model.dart';
+import 'package:wooahan/presentation/view_model/comment/adding/comment_adding_view_model.dart';
 import 'package:wooahan/presentation/widget/common/appbar/text_back_app_bar.dart';
 import 'package:wooahan/presentation/widget/common/button/primary/primary_fill_button.dart';
 
-class CommentWritingScreen extends BaseScreen<CommentWritingViewModel> {
-  const CommentWritingScreen({super.key});
+class CommentAddingScreen extends BaseScreen<CommentAddingViewModel> {
+  const CommentAddingScreen({super.key});
 
   @override
   PreferredSizeWidget? buildAppBar(BuildContext context) {

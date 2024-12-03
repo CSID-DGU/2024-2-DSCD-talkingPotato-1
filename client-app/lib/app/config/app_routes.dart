@@ -16,13 +16,11 @@ abstract class AppRoutes {
   static const String TEXT_TO_SPEECH_CONVERTER = '/text-to-speech-converter';
   static const String SPEECH_TO_TEXT_CONVERTER = '/speech-to-text-converter';
 
-  static const String COMMENT_WRITING = '/comment-writing';
-  static const String QUESTION_WRITING = '/question-writing';
-
   static const String MEDICATION = '/medication';
   static const String DRUG = "/drug";
 
   static const String ARTICLE = '/article';
+  static const String COMMENT = '/comment';
   static const String QUESTION = '/question';
 
   static const String ID_PATH = '/detail/:id';

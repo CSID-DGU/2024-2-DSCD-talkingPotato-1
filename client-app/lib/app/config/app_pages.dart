@@ -4,7 +4,7 @@ import 'package:wooahan/core/screen/no_implement_screen.dart';
 import 'package:wooahan/presentation/view/article/default/article_screen.dart';
 import 'package:wooahan/presentation/view/article/detail/article_detail_screen.dart';
 import 'package:wooahan/presentation/view/article/searching/article_searching_screen.dart';
-import 'package:wooahan/presentation/view/comment_writing/comment_writing_screen.dart';
+import 'package:wooahan/presentation/view/comment/adding/comment_adding_screen.dart';
 import 'package:wooahan/presentation/view/drug/detail/drug_detail_screen.dart';
 import 'package:wooahan/presentation/view/medication/adding/medication_adding_screen.dart';
 import 'package:wooahan/presentation/view/medication/editing/medication_editing_screen.dart';
@@ -19,7 +19,7 @@ import 'package:wooahan/presentation/view_model/article/default/article_binding.
 import 'package:wooahan/presentation/view_model/article/detail/article_detail_binding.dart';
 import 'package:wooahan/presentation/view_model/article/searching/article_searching_binding.dart';
 import 'package:wooahan/presentation/view_model/board/board_binding.dart';
-import 'package:wooahan/presentation/view_model/comment_writing/comment_writing_binding.dart';
+import 'package:wooahan/presentation/view_model/comment/adding/comment_adding_binding.dart';
 import 'package:wooahan/presentation/view_model/drug/detail/drug_detail_binding.dart';
 import 'package:wooahan/presentation/view_model/home/home_binding.dart';
 import 'package:wooahan/presentation/view_model/medication/adding/medication_adding_binding.dart';
@@ -79,6 +79,17 @@ abstract class AppPages {
       ],
     ),
     GetPage(
+      name: AppRoutes.COMMENT,
+      page: () => const NoImplementScreen(),
+      children: [
+        GetPage(
+          name: AppRoutes.ADDING_PATH,
+          page: () => const CommentAddingScreen(),
+          binding: CommentAddingBinding(),
+        ),
+      ],
+    ),
+    GetPage(
       name: AppRoutes.QUESTION,
       page: () => const QuestionScreen(),
       binding: QuestionBinding(),
@@ -110,11 +121,6 @@ abstract class AppPages {
           binding: DrugDetailBinding(),
         )
       ],
-    ),
-    GetPage(
-      name: AppRoutes.COMMENT_WRITING,
-      page: () => const CommentWritingScreen(),
-      binding: CommentWritingBinding(),
     ),
     GetPage(
       name: AppRoutes.TEXT_TO_SPEECH_CONVERTER,

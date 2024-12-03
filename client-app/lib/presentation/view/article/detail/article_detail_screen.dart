@@ -63,7 +63,7 @@ class ArticleDetailScreen extends GetView<ArticleDetailViewModel> {
         content: '댓글 작성하기',
         onPressed: () {
           Get.toNamed(
-            AppRoutes.COMMENT_WRITING,
+            AppRoutes.COMMENT + AppRoutes.ADDING_PATH,
             arguments: {
               'type': 'article',
               'id': viewModel.articleDetail.id,
