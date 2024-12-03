@@ -4,7 +4,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/domain/entity/schedule/schedule_summary_state.dart';
-import 'package:wooahan/presentation/widget/image/svg_image_view.dart';
+import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
 class TimelineCardItemView extends StatelessWidget {
   const TimelineCardItemView({

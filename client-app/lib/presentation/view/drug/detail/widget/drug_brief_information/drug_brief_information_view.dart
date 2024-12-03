@@ -5,8 +5,8 @@ import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/core/screen/base_widget.dart';
 import 'package:wooahan/presentation/view_model/drug/detail/drug_detail_view_model.dart';
-import 'package:wooahan/presentation/widget/image/network_image_view.dart';
-import 'package:wooahan/presentation/widget/image/svg_image_view.dart';
+import 'package:wooahan/presentation/widget/common/image/network_image_view.dart';
+import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
 class DrugBriefInformationView extends BaseWidget<DrugDetailViewModel> {
   const DrugBriefInformationView({super.key});

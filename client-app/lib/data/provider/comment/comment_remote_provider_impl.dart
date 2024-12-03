@@ -1,0 +1,21 @@
+import 'package:get/get.dart';
+import 'package:wooahan/core/provider/base_connect.dart';
+import 'package:wooahan/core/wrapper/response_wrapper.dart';
+import 'package:wooahan/data/provider/comment/comment_remote_provider.dart';
+
+class CommentRemoteProviderImpl extends BaseConnect
+    implements CommentRemoteProvider {
+  @override
+  Future<ResponseWrapper> getArticleCommentList({
+    required int articleId,
+    required int page,
+    required int size,
+  }) async {
+    Response response = await get(
+      '/articles/$articleId/comments',
+      headers: BaseConnect.useBearerToken,
+    );
+
+    return ResponseWrapper.fromJson(response.body);
+  }
+}

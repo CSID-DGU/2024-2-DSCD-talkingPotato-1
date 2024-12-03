@@ -8,7 +8,7 @@ import 'package:wooahan/presentation/view/medication/default/widget/schedule_car
 import 'package:wooahan/presentation/view/medication/default/widget/schedule_header/schedule_header_view.dart';
 import 'package:wooahan/presentation/view/medication/default/widget/timeline_card/timeline_card_list_view.dart';
 import 'package:wooahan/presentation/view_model/medication/default/medication_view_model.dart';
-import 'package:wooahan/presentation/widget/appbar/text_default_app_bar.dart';
+import 'package:wooahan/presentation/widget/common/appbar/text_default_app_bar.dart';
 
 class MedicationScreen extends BaseScreen<MedicationViewModel> {
   const MedicationScreen({super.key});

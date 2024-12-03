@@ -34,7 +34,7 @@ class ScheduleCardListView extends BaseWidget<MedicationViewModel> {
               }
 
               Get.toNamed(
-                "${AppRoutes.DRUG}/${viewModel.scheduleDetailList[index].drugId}",
+                "${AppRoutes.DRUG}/detail/${viewModel.scheduleDetailList[index].drugId}",
                 arguments: {
                   "type": viewModel.scheduleDetailList[index].drugType,
                 },

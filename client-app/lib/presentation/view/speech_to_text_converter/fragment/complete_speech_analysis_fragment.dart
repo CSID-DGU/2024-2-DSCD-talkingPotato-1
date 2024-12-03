@@ -4,7 +4,7 @@ import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view_model/speech_to_text_converter/speech_to_text_converter_view_model.dart';
-import 'package:wooahan/presentation/widget/button/primary/primary_fill_button.dart';
+import 'package:wooahan/presentation/widget/common/button/primary/primary_fill_button.dart';
 
 class CompleteSpeechAnalysisFragment
     extends BaseScreen<SpeechToTextConverterViewModel> {

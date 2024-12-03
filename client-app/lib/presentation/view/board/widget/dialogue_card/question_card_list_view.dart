@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/core/screen/base_widget.dart';
-import 'package:wooahan/domain/entity/question_overview_state.dart';
+import 'package:wooahan/domain/entity/question/question_overview_state.dart';
 import 'package:wooahan/presentation/view/board/widget/dialogue_card/component/question_card_item_view.dart';
 import 'package:wooahan/presentation/view_model/board/board_view_model.dart';
-import 'package:wooahan/presentation/widget/line/infinity_horizon_line.dart';
+import 'package:wooahan/presentation/widget/common/line/infinity_horizon_line.dart';
 
 class QuestionCardListView extends BaseWidget<BoardViewModel> {
   const QuestionCardListView({super.key});

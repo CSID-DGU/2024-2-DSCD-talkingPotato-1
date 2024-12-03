@@ -6,7 +6,7 @@ import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view/drug/detail/widget/drug_brief_information/drug_brief_information_view.dart';
 import 'package:wooahan/presentation/view/drug/detail/widget/drug_detail_information/drug_detail_information_view.dart';
 import 'package:wooahan/presentation/view_model/drug/detail/drug_detail_view_model.dart';
-import 'package:wooahan/presentation/widget/appbar/text_back_app_bar.dart';
+import 'package:wooahan/presentation/widget/common/appbar/text_back_app_bar.dart';
 
 class DrugDetailScreen extends BaseScreen<DrugDetailViewModel> {
   const DrugDetailScreen({super.key});

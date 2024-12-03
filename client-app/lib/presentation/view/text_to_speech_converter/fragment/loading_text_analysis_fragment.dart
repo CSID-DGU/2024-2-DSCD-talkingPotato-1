@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view_model/text_to_speech_converter/text_to_speech_converter_view_model.dart';
-import 'package:wooahan/presentation/widget/animation/rive_animation_view.dart';
+import 'package:wooahan/presentation/widget/common/animation/rive_animation_view.dart';
 
 class LoadingTextAnalysisFragment
     extends BaseScreen<TextToSpeechConverterViewModel> {

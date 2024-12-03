@@ -8,7 +8,7 @@ import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view/home/widget/convert_button/convert_button.dart';
 import 'package:wooahan/presentation/view/home/widget/user_information/user_information_view.dart';
 import 'package:wooahan/presentation/view_model/home/home_view_model.dart';
-import 'package:wooahan/presentation/widget/image/svg_image_view.dart';
+import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
 class HomeScreen extends BaseScreen<HomeViewModel> {
   const HomeScreen({super.key});

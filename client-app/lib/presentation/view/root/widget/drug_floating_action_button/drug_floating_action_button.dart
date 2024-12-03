@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
-import 'package:wooahan/presentation/widget/image/svg_image_view.dart';
+import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
 class DrugFloatingActionButton extends StatelessWidget {
   const DrugFloatingActionButton({

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view_model/medication/editing/medication_editing_view_model.dart';
-import 'package:wooahan/presentation/widget/appbar/text_back_app_bar.dart';
+import 'package:wooahan/presentation/widget/common/appbar/text_back_app_bar.dart';
 
 class MedicationEditingScreen extends BaseScreen<MedicationEditingViewModel> {
   const MedicationEditingScreen({super.key});

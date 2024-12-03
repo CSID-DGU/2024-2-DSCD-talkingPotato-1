@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
-import 'package:wooahan/domain/entity/question_overview_state.dart';
+import 'package:wooahan/domain/entity/question/question_overview_state.dart';
 
 class QuestionCardItemView extends StatelessWidget {
   const QuestionCardItemView({

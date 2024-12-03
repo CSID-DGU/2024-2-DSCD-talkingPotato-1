@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/domain/entity/schedule/schedule_detail_state.dart';
-import 'package:wooahan/presentation/widget/image/network_image_view.dart';
-import 'package:wooahan/presentation/widget/image/svg_image_view.dart';
+import 'package:wooahan/presentation/widget/common/image/network_image_view.dart';
+import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
 class ScheduleCardItemView extends StatelessWidget {
   const ScheduleCardItemView({

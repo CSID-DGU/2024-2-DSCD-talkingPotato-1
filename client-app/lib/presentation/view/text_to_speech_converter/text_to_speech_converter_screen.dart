@@ -5,7 +5,7 @@ import 'package:wooahan/presentation/view/text_to_speech_converter/fragment/comp
 import 'package:wooahan/presentation/view/text_to_speech_converter/fragment/loading_text_analysis_fragment.dart';
 import 'package:wooahan/presentation/view/text_to_speech_converter/fragment/selecting_picture_fragment.dart';
 import 'package:wooahan/presentation/view_model/text_to_speech_converter/text_to_speech_converter_view_model.dart';
-import 'package:wooahan/presentation/widget/appbar/text_back_app_bar.dart';
+import 'package:wooahan/presentation/widget/common/appbar/text_back_app_bar.dart';
 
 class TextToSpeechConverterScreen
     extends BaseScreen<TextToSpeechConverterViewModel> {

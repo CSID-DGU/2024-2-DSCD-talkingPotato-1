@@ -4,7 +4,7 @@ import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/core/screen/base_widget.dart';
 import 'package:wooahan/presentation/view_model/root/root_view_model.dart';
-import 'package:wooahan/presentation/widget/image/svg_image_view.dart';
+import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
 class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
   const CustomBottomNavigationBar({super.key});
