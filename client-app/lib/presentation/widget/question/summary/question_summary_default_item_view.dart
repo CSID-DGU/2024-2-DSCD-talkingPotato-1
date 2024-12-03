@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
-import 'package:wooahan/domain/entity/question/question_overview_state.dart';
+import 'package:wooahan/domain/entity/question/question_summary_state.dart';
 
-class QuestionCardItemView extends StatelessWidget {
-  const QuestionCardItemView({
+class QuestionSummaryDefaultItemView extends StatelessWidget {
+  const QuestionSummaryDefaultItemView({
     super.key,
     required this.state,
     required this.onTap,
   });
 
-  final QuestionOverviewState state;
-  final Function() onTap;
+  final QuestionSummaryState state;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         color: ColorSystem.white,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              state.question,
+              state.preview,
               style: FontSystem.Sub3,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
@@ -34,7 +34,7 @@ class QuestionCardItemView extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '${state.createdAt} | ${state.creator}',
+                  '${state.createdAt} | ${state.creator} | ${state.answerCnt}개의 답변',
                   style: FontSystem.Sub3.copyWith(
                     color: ColorSystem.neutral,
                   ),
@@ -54,18 +54,18 @@ class QuestionCardItemView extends StatelessWidget {
     Color? backgroundColor;
     Color? textColor;
 
-    switch (state.answerType) {
-      case 'pending':
+    switch (state.answerStatus) {
+      case 'NONE':
         backgroundColor = ColorSystem.neutral.shade200;
         textColor = ColorSystem.neutral;
         badgeText = '답변 대기중';
         break;
-      case 'answered_by_expert':
+      case 'AI':
         backgroundColor = ColorSystem.primary;
         textColor = ColorSystem.white;
         badgeText = '전문가 첫 답변';
         break;
-      case 'answered_by_llm':
+      case 'EXPERT':
         backgroundColor = ColorSystem.blue;
         textColor = ColorSystem.white;
         badgeText = 'AI 첫 답변';

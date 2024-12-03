@@ -11,66 +11,64 @@ class ArticleDetailView extends BaseWidget<ArticleDetailViewModel> {
 
   @override
   Widget buildView(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 32),
-          Obx(
-            () => Wrap(
-              children: [
-                for (final tag in viewModel.articleDetail.tags)
-                  Container(
-                    margin: const EdgeInsets.only(right: 4),
-                    child: Text(
-                      "#$tag",
-                      style: FontSystem.H5.copyWith(
-                        color: ColorSystem.primary,
-                      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 32),
+        Obx(
+          () => Wrap(
+            children: [
+              for (final tag in viewModel.articleDetail.tags)
+                Container(
+                  margin: const EdgeInsets.only(right: 4),
+                  child: Text(
+                    "#$tag",
+                    style: FontSystem.H5.copyWith(
+                      color: ColorSystem.primary,
                     ),
                   ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 8),
-          Obx(
-            () => Text(
-              viewModel.articleDetail.title,
-              style: FontSystem.H1,
-            ),
-          ),
-          const SizedBox(height: 32),
-          Container(
-            constraints: BoxConstraints(
-              minHeight: 200,
-            ),
-            child: Text(
-              viewModel.articleDetail.content,
-              style: FontSystem.H6,
-            ),
-          ),
-          const SizedBox(height: 32),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Obx(
-                () => Text(
-                  '${viewModel.articleDetail.createdAt} | ${viewModel.articleDetail.creator} | ${viewModel.articleDetail.commentCnt}의 댓글 ',
-                  style: FontSystem.H6.copyWith(
-                    color: ColorSystem.neutral,
-                  ),
                 ),
-              ),
             ],
           ),
-          const SizedBox(height: 32),
-          InfinityHorizonLine(
-            gap: 1,
-            color: ColorSystem.neutral.shade200,
+        ),
+        const SizedBox(height: 8),
+        Obx(
+          () => Text(
+            viewModel.articleDetail.title,
+            style: FontSystem.H1,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 32),
+        Container(
+          constraints: const BoxConstraints(
+            minHeight: 200,
+          ),
+          child: Text(
+            viewModel.articleDetail.content,
+            style: FontSystem.H6,
+          ),
+        ),
+        const SizedBox(height: 32),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Obx(
+              () => Text(
+                '${viewModel.articleDetail.createdAt} | ${viewModel.articleDetail.creator} | ${viewModel.articleDetail.commentCnt}의 댓글 ',
+                style: FontSystem.H6.copyWith(
+                  color: ColorSystem.neutral,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 32),
+        InfinityHorizonLine(
+          gap: 1,
+          color: ColorSystem.neutral.shade200,
+        ),
+      ],
     );
   }
 }

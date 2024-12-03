@@ -1,21 +1,22 @@
 import 'package:get/get.dart';
 import 'package:wooahan/core/wrapper/state_wrapper.dart';
-import 'package:wooahan/domain/condition/article/read_article_summary_list_condition.dart';
-import 'package:wooahan/domain/condition/search_term/upsert_article_search_term_list_condition.dart';
-import 'package:wooahan/domain/entity/article/article_summary_state.dart';
-import 'package:wooahan/domain/usecase/article/read_article_summary_list_use_case.dart';
-import 'package:wooahan/domain/usecase/search_term/read_article_search_term_list_use_case.dart';
-import 'package:wooahan/domain/usecase/search_term/upsert_article_search_term_list_use_case.dart';
+import 'package:wooahan/domain/condition/question/read_question_summary_list_condition.dart';
+import 'package:wooahan/domain/condition/search_term/upsert_question_search_term_list_condition.dart';
+import 'package:wooahan/domain/entity/question/question_summary_state.dart';
+import 'package:wooahan/domain/usecase/question/read_question_summary_list_use_case.dart';
+import 'package:wooahan/domain/usecase/search_term/read_question_search_term_list_use_case.dart';
+import 'package:wooahan/domain/usecase/search_term/upsert_question_search_term_list_use_case.dart';
 
-class ArticleSearchingViewModel extends GetxController {
+class QuestionSearchingViewModel extends GetxController {
   /* ------------------------------------------------------ */
   /* DI Fields -------------------------------------------- */
   /* ------------------------------------------------------ */
-  late final ReadArticleSummaryListUseCase _readArticleSummaryListUseCase;
-  late final ReadArticleSearchTermListUseCase _readArticleSearchTermListUseCase;
+  late final ReadQuestionSummaryListUseCase _readQuestionSummaryListUseCase;
+  late final ReadQuestionSearchTermListUseCase
+      _readQuestionSearchTermListUseCase;
 
-  late final UpsertArticleSearchTermListUseCase
-      _upsertArticleSearchTermListUseCase;
+  late final UpsertQuestionSearchTermListUseCase
+      _upsertQuestionSearchTermListCondition;
 
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
@@ -27,7 +28,7 @@ class ArticleSearchingViewModel extends GetxController {
 
   late final RxString _searchTerm;
   late final RxList<String> _recentSearchTermList;
-  late final RxList<ArticleSummaryState> _articleSummaryList;
+  late final RxList<QuestionSummaryState> _questionSummaryList;
 
   /* ------------------------------------------------------ */
   /* Public Fields ---------------------------------------- */
@@ -39,7 +40,7 @@ class ArticleSearchingViewModel extends GetxController {
 
   String get searchTerm => _searchTerm.value;
   List<String> get recentSearchTermList => _recentSearchTermList;
-  List<ArticleSummaryState> get articleSummaryList => _articleSummaryList;
+  List<QuestionSummaryState> get questionSummaryList => _questionSummaryList;
 
   get clearSearchTerm => null;
 
@@ -50,12 +51,13 @@ class ArticleSearchingViewModel extends GetxController {
   void onInit() {
     super.onInit();
 
-    _readArticleSummaryListUseCase = Get.find<ReadArticleSummaryListUseCase>();
-    _readArticleSearchTermListUseCase =
-        Get.find<ReadArticleSearchTermListUseCase>();
+    _readQuestionSummaryListUseCase =
+        Get.find<ReadQuestionSummaryListUseCase>();
+    _readQuestionSearchTermListUseCase =
+        Get.find<ReadQuestionSearchTermListUseCase>();
 
-    _upsertArticleSearchTermListUseCase =
-        Get.find<UpsertArticleSearchTermListUseCase>();
+    _upsertQuestionSearchTermListCondition =
+        Get.find<UpsertQuestionSearchTermListUseCase>();
 
     _mode = 'searching'.obs;
 
@@ -64,7 +66,7 @@ class ArticleSearchingViewModel extends GetxController {
 
     _searchTerm = ''.obs;
     _recentSearchTermList = <String>[].obs;
-    _articleSummaryList = <ArticleSummaryState>[].obs;
+    _questionSummaryList = <QuestionSummaryState>[].obs;
   }
 
   @override
@@ -76,7 +78,7 @@ class ArticleSearchingViewModel extends GetxController {
 
   void fetchRecentSearchTermList() {
     StateWrapper<List<String>> state =
-        _readArticleSearchTermListUseCase.execute();
+        _readQuestionSearchTermListUseCase.execute();
 
     _recentSearchTermList.value = state.data!;
   }
@@ -93,15 +95,15 @@ class ArticleSearchingViewModel extends GetxController {
     _mode.value = 'searched';
 
     _recentSearchTermList.insert(0, _searchTerm.value);
-    await _upsertArticleSearchTermListUseCase.execute(
-      UpsertArticleSearchTermListCondition(
+    await _upsertQuestionSearchTermListCondition.execute(
+      UpsertQuestionSearchTermListCondition(
         searchTerms: _recentSearchTermList,
       ),
     );
 
-    StateWrapper<List<ArticleSummaryState>> state =
-        await _readArticleSummaryListUseCase.execute(
-      ReadArticleSummaryListCondition(
+    StateWrapper<List<QuestionSummaryState>> state =
+        await _readQuestionSummaryListUseCase.execute(
+      ReadQuestionSummaryListCondition(
         searchTerm: _searchTerm.value,
         page: 1,
         size: 100,
@@ -112,26 +114,26 @@ class ArticleSearchingViewModel extends GetxController {
       return;
     }
 
-    _articleSummaryList.value = state.data!;
+    _questionSummaryList.value = state.data!;
 
     _isLoading.value = false;
   }
 
-  void clearRecentSearchTermList() {
-    _recentSearchTermList.clear();
+  void removeInRecentSearchTerm(int index) {
+    _recentSearchTermList.removeAt(index);
 
-    _upsertArticleSearchTermListUseCase.execute(
-      UpsertArticleSearchTermListCondition(
+    _upsertQuestionSearchTermListCondition.execute(
+      UpsertQuestionSearchTermListCondition(
         searchTerms: _recentSearchTermList,
       ),
     );
   }
 
-  void removeRecentSearchTerm(int index) {
-    _recentSearchTermList.removeAt(index);
+  void removeAllInRecentSearchTermList() {
+    _recentSearchTermList.clear();
 
-    _upsertArticleSearchTermListUseCase.execute(
-      UpsertArticleSearchTermListCondition(
+    _upsertQuestionSearchTermListCondition.execute(
+      UpsertQuestionSearchTermListCondition(
         searchTerms: _recentSearchTermList,
       ),
     );

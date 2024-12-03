@@ -8,6 +8,10 @@ import 'package:wooahan/presentation/view/comment_writing/comment_writing_screen
 import 'package:wooahan/presentation/view/drug/detail/drug_detail_screen.dart';
 import 'package:wooahan/presentation/view/medication/adding/medication_adding_screen.dart';
 import 'package:wooahan/presentation/view/medication/editing/medication_editing_screen.dart';
+import 'package:wooahan/presentation/view/question/adding/question_adding_screen.dart';
+import 'package:wooahan/presentation/view/question/default/question_screen.dart';
+import 'package:wooahan/presentation/view/question/detail/question_detail_screen.dart';
+import 'package:wooahan/presentation/view/question/searching/question_searching_screen.dart';
 import 'package:wooahan/presentation/view/root/root_screen.dart';
 import 'package:wooahan/presentation/view/speech_to_text_converter/speech_to_text_converter_screen.dart';
 import 'package:wooahan/presentation/view/text_to_speech_converter/text_to_speech_converter_screen.dart';
@@ -21,6 +25,10 @@ import 'package:wooahan/presentation/view_model/home/home_binding.dart';
 import 'package:wooahan/presentation/view_model/medication/adding/medication_adding_binding.dart';
 import 'package:wooahan/presentation/view_model/medication/default/medication_binding.dart';
 import 'package:wooahan/presentation/view_model/medication/editing/medication_editing_binding.dart';
+import 'package:wooahan/presentation/view_model/question/adding/question_adding_binding.dart';
+import 'package:wooahan/presentation/view_model/question/default/question_binding.dart';
+import 'package:wooahan/presentation/view_model/question/detail/question_detail_binding.dart';
+import 'package:wooahan/presentation/view_model/question/searching/question_searching_binding.dart';
 import 'package:wooahan/presentation/view_model/root/root_binding.dart';
 import 'package:wooahan/presentation/view_model/speech_to_text_converter/speech_to_text_converter_binding.dart';
 import 'package:wooahan/presentation/view_model/text_to_speech_converter/text_to_speech_converter_binding.dart';
@@ -67,6 +75,28 @@ abstract class AppPages {
           name: AppRoutes.ID_PATH,
           page: () => const ArticleDetailScreen(),
           binding: ArticleDetailBinding(),
+        ),
+      ],
+    ),
+    GetPage(
+      name: AppRoutes.QUESTION,
+      page: () => const QuestionScreen(),
+      binding: QuestionBinding(),
+      children: [
+        GetPage(
+          name: AppRoutes.ADDING_PATH,
+          page: () => const QuestionAddingScreen(),
+          binding: QuestionAddingBinding(),
+        ),
+        GetPage(
+          name: AppRoutes.SEARCHING_PATH,
+          page: () => const QuestionSearchingScreen(),
+          binding: QuestionSearchingBinding(),
+        ),
+        GetPage(
+          name: AppRoutes.ID_PATH,
+          page: () => const QuestionDetailScreen(),
+          binding: QuestionDetailBinding(),
         ),
       ],
     ),

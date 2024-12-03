@@ -1,22 +1,25 @@
 import 'package:get/get.dart';
 import 'package:wooahan/core/wrapper/state_wrapper.dart';
 import 'package:wooahan/domain/condition/article/read_article_brief_list_condition.dart';
+import 'package:wooahan/domain/condition/question/read_question_brief_list_condition.dart';
 import 'package:wooahan/domain/entity/article/article_brief_state.dart';
-import 'package:wooahan/domain/entity/question/question_overview_state.dart';
+import 'package:wooahan/domain/entity/question/question_brief_state.dart';
 import 'package:wooahan/domain/usecase/article/read_article_brief_list_use_case.dart';
+import 'package:wooahan/domain/usecase/question/read_question_brief_list_use_case.dart';
 
 class BoardViewModel extends GetxController {
   /* ------------------------------------------------------ */
   /* DI Fields -------------------------------------------- */
   /* ------------------------------------------------------ */
   late final ReadArticleBriefListUseCase _readArticleBriefListUseCase;
+  late final ReadQuestionBriefListUseCase _readQuestionBriefListUseCase;
 
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
   /* ------------------------------------------------------ */
   late final RxBool _isLoading;
   late final RxList<ArticleBriefState> _articleBriefList;
-  late final RxList<QuestionOverviewState> _questionOverviewList;
+  late final RxList<QuestionBriefState> _questionBriefList;
 
   /* ------------------------------------------------------ */
   /* Public Fields ---------------------------------------- */
@@ -24,7 +27,7 @@ class BoardViewModel extends GetxController {
 
   bool get isLoading => _isLoading.value;
   List<ArticleBriefState> get articleBriefList => _articleBriefList;
-  List<QuestionOverviewState> get questionOverviewList => _questionOverviewList;
+  List<QuestionBriefState> get questionBriefList => _questionBriefList;
 
   /* ------------------------------------------------------ */
   /* Method ----------------------------------------------- */
@@ -34,10 +37,11 @@ class BoardViewModel extends GetxController {
     super.onInit();
 
     _readArticleBriefListUseCase = Get.find<ReadArticleBriefListUseCase>();
+    _readQuestionBriefListUseCase = Get.find<ReadQuestionBriefListUseCase>();
 
     _isLoading = true.obs;
     _articleBriefList = <ArticleBriefState>[].obs;
-    _questionOverviewList = <QuestionOverviewState>[].obs;
+    _questionBriefList = <QuestionBriefState>[].obs;
   }
 
   @override
@@ -45,10 +49,12 @@ class BoardViewModel extends GetxController {
     super.onReady();
 
     _isLoading.value = true;
+
     await Future.wait([
       _fetchArticleBriefList(),
       _fetchQuestionOverviewList(),
     ]);
+
     _isLoading.value = false;
   }
 
@@ -69,30 +75,18 @@ class BoardViewModel extends GetxController {
   }
 
   Future<void> _fetchQuestionOverviewList() async {
-    // List<QuestionOverviewState> questionOverviewList = [
-    //   QuestionOverviewState(
-    //     id: 1,
-    //     title: '질문 제목',
-    //     content: '질문 내용',
-    //     answerCount: 3,
-    //     createdAt: DateTime.now(),
-    //   ),
-    //   QuestionOverviewState(
-    //     id: 2,
-    //     title: '질문 제목',
-    //     content: '질문 내용',
-    //     answerCount: 3,
-    //     createdAt: DateTime.now(),
-    //   ),
-    //   QuestionOverviewState(
-    //     id: 3,
-    //     title: '질문 제목',
-    //     content: '질문 내용',
-    //     answerCount: 3,
-    //     createdAt: DateTime.now(),
-    //   ),
-    // ];
-    //
-    // _questionOverviewList.assignAll(questionOverviewList);
+    StateWrapper<List<QuestionBriefState>> state =
+        await _readQuestionBriefListUseCase.execute(
+      ReadQuestionBriefListCondition(
+        page: 1,
+        size: 3,
+      ),
+    );
+
+    if (!state.success) {
+      return;
+    }
+
+    _questionBriefList.assignAll(state.data!);
   }
 }

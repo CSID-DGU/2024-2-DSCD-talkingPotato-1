@@ -1,20 +1,28 @@
 import 'package:get/get.dart';
+import 'package:wooahan/data/provider/answer/answer_remote_provider.dart';
+import 'package:wooahan/data/provider/answer/answer_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/article/article_remote_provider.dart';
 import 'package:wooahan/data/provider/article/article_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/comment/comment_remote_provider.dart';
 import 'package:wooahan/data/provider/comment/comment_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/drug/drug_remote_provider.dart';
 import 'package:wooahan/data/provider/drug/drug_remote_provider_impl.dart';
+import 'package:wooahan/data/provider/question/question_remote_provider.dart';
+import 'package:wooahan/data/provider/question/question_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/schedule/schedule_remote_provider.dart';
 import 'package:wooahan/data/provider/schedule/schedule_remote_provider_impl.dart';
+import 'package:wooahan/data/repository/answer/answer_repository_impl.dart';
 import 'package:wooahan/data/repository/article/article_repository_impl.dart';
 import 'package:wooahan/data/repository/comment/comment_repository_impl.dart';
 import 'package:wooahan/data/repository/drug/drug_repository_impl.dart';
+import 'package:wooahan/data/repository/question/question_repository_impl.dart';
 import 'package:wooahan/data/repository/schedule/schedule_repository_impl.dart';
 import 'package:wooahan/data/repository/search_term/search_term_repository_impl.dart';
+import 'package:wooahan/domain/repository/answer/answer_repository.dart';
 import 'package:wooahan/domain/repository/article/article_repository.dart';
 import 'package:wooahan/domain/repository/comment/comment_repository.dart';
 import 'package:wooahan/domain/repository/drug/drug_repository.dart';
+import 'package:wooahan/domain/repository/question/question_repository.dart';
 import 'package:wooahan/domain/repository/schedule/schedule_repository.dart';
 import 'package:wooahan/domain/repository/search_term/search_term_repository.dart';
 
@@ -28,13 +36,17 @@ class AppDependency extends Bindings {
     Get.lazyPut<ScheduleRemoteProvider>(() => ScheduleRemoteProviderImpl());
     Get.lazyPut<ArticleRemoteProvider>(() => ArticleRemoteProviderImpl());
     Get.lazyPut<CommentRemoteProvider>(() => CommentRemoteProviderImpl());
+    Get.lazyPut<QuestionRemoteProvider>(() => QuestionRemoteProviderImpl());
+    Get.lazyPut<AnswerRemoteProvider>(() => AnswerRemoteProviderImpl());
 
     // Add your repository dependencies here
+    Get.lazyPut<SearchTermRepository>(() => SearchTermRepositoryImpl());
+
     Get.lazyPut<DrugRepository>(() => DrugRepositoryImpl());
     Get.lazyPut<ScheduleRepository>(() => ScheduleRepositoryImpl());
     Get.lazyPut<ArticleRepository>(() => ArticleRepositoryImpl());
     Get.lazyPut<CommentRepository>(() => CommentRepositoryImpl());
-
-    Get.lazyPut<SearchTermRepository>(() => SearchTermRepositoryImpl());
+    Get.lazyPut<QuestionRepository>(() => QuestionRepositoryImpl());
+    Get.lazyPut<AnswerRepository>(() => AnswerRepositoryImpl());
   }
 }
