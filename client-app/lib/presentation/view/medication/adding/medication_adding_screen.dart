@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
+import 'package:wooahan/presentation/view/medication/adding/fragment/loading_drug_bag_analysis_fragment.dart';
+import 'package:wooahan/presentation/view/medication/adding/fragment/selecting_drug_bag_picture_fragment.dart';
 import 'package:wooahan/presentation/view_model/medication/adding/medication_adding_view_model.dart';
 import 'package:wooahan/presentation/widget/common/appbar/text_back_app_bar.dart';
 
@@ -35,6 +37,13 @@ class MedicationAddingScreen extends BaseScreen<MedicationAddingViewModel> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return const Placeholder();
+    return PageView(
+      physics: const NeverScrollableScrollPhysics(),
+      controller: viewModel.pageController,
+      children: const [
+        SelectingDrugBagPictureFragment(),
+        LoadingDrugBagAnalysisFragment(),
+      ],
+    );
   }
 }

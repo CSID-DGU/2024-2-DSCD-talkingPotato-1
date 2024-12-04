@@ -2,71 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
-import 'package:wooahan/domain/entity/schedule/schedule_detail_state.dart';
+import 'package:wooahan/domain/entity/drug/drug_summary_state.dart';
 import 'package:wooahan/presentation/widget/common/image/network_image_view.dart';
 import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
-class ScheduleCardItemView extends StatelessWidget {
-  const ScheduleCardItemView({
+class DrugSummaryCardItemView extends StatelessWidget {
+  const DrugSummaryCardItemView({
     super.key,
     required this.state,
-    required this.onTapContext,
-    required this.onTapCheckbox,
   });
 
-  final ScheduleDetailState state;
-  final Function() onTapContext;
-  final Function() onTapCheckbox;
+  final DrugSummaryState state;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTapContext,
-      child: Stack(
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Row(
         children: [
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: ColorSystem.white,
-            ),
-            child: Row(
-              children: [
-                if (state.drugImageUrl == null)
-                  _buildEmptyImageView()
-                else
-                  _buildDefaultImageView(),
-                const SizedBox(width: 16),
-                _buildTextView(),
-                const SizedBox(width: 8),
-                _buildCheckBox(),
-              ],
-            ),
-          ),
-          IgnorePointer(
-            ignoring: true,
-            child: AnimatedContainer(
-              width: Get.width,
-              height: state.drugType == 'CUSTOM' || state.drugType == 'MEDICINE'
-                  ? 46 + 32
-                  : 95 + 32,
-              duration: const Duration(milliseconds: 200),
-              decoration: BoxDecoration(
-                color: state.isTaken
-                    ? ColorSystem.white.withOpacity(0.7)
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-          ),
+          if (state.imageUrl == null)
+            _buildEmptyImageView()
+          else
+            _buildDefaultImageView(),
+          const SizedBox(width: 16),
+          _buildTextView(),
+          const SizedBox(width: 8),
         ],
       ),
     );
   }
 
   Widget _buildEmptyImageView() {
-    if (state.drugType == 'CUSTOM' || state.drugType == 'MEDICINE') {
-      int idSum = state.drugId ?? 10 % 7;
+    if (state.type == 'CUSTOM' || state.type == 'MEDICINE') {
+      int idSum = state.id ?? 10 % 7;
 
       return Container(
         width: 95,
@@ -104,7 +72,7 @@ class ScheduleCardItemView extends StatelessWidget {
       );
     }
 
-    int idSum = state.drugId ?? 10 % 2;
+    int idSum = state.id ?? 10 % 2;
 
     return Container(
       width: 95,
@@ -123,13 +91,13 @@ class ScheduleCardItemView extends StatelessWidget {
   }
 
   Widget _buildDefaultImageView() {
-    if (state.drugType == 'CUSTOM') {
+    if (state.type == 'CUSTOM') {
       throw Exception('Custom drug type must not have drug image url');
     }
 
-    if (state.drugType == 'MEDICINE') {
+    if (state.type == 'MEDICINE') {
       return NetworkImageView(
-        imageUrl: state.drugImageUrl!,
+        imageUrl: state.imageUrl!,
         width: 95,
         height: 40,
         borderRadius: BorderRadius.circular(8),
@@ -138,7 +106,7 @@ class ScheduleCardItemView extends StatelessWidget {
     }
 
     return NetworkImageView(
-      imageUrl: state.drugImageUrl!,
+      imageUrl: state.imageUrl!,
       width: 95,
       height: 95,
       borderRadius: BorderRadius.circular(16),
@@ -149,36 +117,24 @@ class ScheduleCardItemView extends StatelessWidget {
   Widget _buildTextView() {
     return SizedBox(
       width: Get.width - 40 - 24 - 164,
-      height: state.drugType == 'VITAMIN' ? 95 : null,
+      height: state.type == 'VITAMIN' ? 95 : null,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            state.drugClassificationOrManufacturer ?? '미등록 약품',
+            state.classificationOrManufacturer ?? '미등록 약품',
             overflow: TextOverflow.ellipsis,
             style: FontSystem.H4,
           ),
           Text(
-            state.drugName,
+            state.name,
             overflow: TextOverflow.ellipsis,
             style: FontSystem.Sub2.copyWith(
               color: ColorSystem.neutral.shade500,
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCheckBox() {
-    return GestureDetector(
-      onTap: onTapCheckbox,
-      child: SvgImageView(
-        assetPath: state.isTaken
-            ? 'assets/icons/checkbox_active.svg'
-            : 'assets/icons/checkbox_inactive.svg',
-        width: 36,
       ),
     );
   }

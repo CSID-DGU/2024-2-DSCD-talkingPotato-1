@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:wooahan/data/provider/analysis/analysis_remote_provider.dart';
+import 'package:wooahan/data/provider/analysis/analysis_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/answer/answer_remote_provider.dart';
 import 'package:wooahan/data/provider/answer/answer_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/article/article_remote_provider.dart';
@@ -11,6 +13,7 @@ import 'package:wooahan/data/provider/question/question_remote_provider.dart';
 import 'package:wooahan/data/provider/question/question_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/schedule/schedule_remote_provider.dart';
 import 'package:wooahan/data/provider/schedule/schedule_remote_provider_impl.dart';
+import 'package:wooahan/data/repository/analysis/analysis_repository_impl.dart';
 import 'package:wooahan/data/repository/answer/answer_repository_impl.dart';
 import 'package:wooahan/data/repository/article/article_repository_impl.dart';
 import 'package:wooahan/data/repository/comment/comment_repository_impl.dart';
@@ -18,6 +21,7 @@ import 'package:wooahan/data/repository/drug/drug_repository_impl.dart';
 import 'package:wooahan/data/repository/question/question_repository_impl.dart';
 import 'package:wooahan/data/repository/schedule/schedule_repository_impl.dart';
 import 'package:wooahan/data/repository/search_term/search_term_repository_impl.dart';
+import 'package:wooahan/domain/repository/analysis/analysis_repository.dart';
 import 'package:wooahan/domain/repository/answer/answer_repository.dart';
 import 'package:wooahan/domain/repository/article/article_repository.dart';
 import 'package:wooahan/domain/repository/comment/comment_repository.dart';
@@ -32,6 +36,7 @@ class AppDependency extends Bindings {
     // Add your mediator dependencies here
 
     // Add your provider dependencies here
+    Get.lazyPut<AnalysisRemoteProvider>(() => AnalysisRemoteProviderImpl());
     Get.lazyPut<DrugRemoteProvider>(() => DrugRemoteProviderImpl());
     Get.lazyPut<ScheduleRemoteProvider>(() => ScheduleRemoteProviderImpl());
     Get.lazyPut<ArticleRemoteProvider>(() => ArticleRemoteProviderImpl());
@@ -42,6 +47,7 @@ class AppDependency extends Bindings {
     // Add your repository dependencies here
     Get.lazyPut<SearchTermRepository>(() => SearchTermRepositoryImpl());
 
+    Get.lazyPut<AnalysisRepository>(() => AnalysisRepositoryImpl());
     Get.lazyPut<DrugRepository>(() => DrugRepositoryImpl());
     Get.lazyPut<ScheduleRepository>(() => ScheduleRepositoryImpl());
     Get.lazyPut<ArticleRepository>(() => ArticleRepositoryImpl());
