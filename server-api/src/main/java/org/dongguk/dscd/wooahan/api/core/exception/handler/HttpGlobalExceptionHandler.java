@@ -8,6 +8,7 @@ import org.dongguk.dscd.wooahan.api.core.exception.error.ErrorCode;
 import org.dongguk.dscd.wooahan.api.core.exception.type.CommonException;
 import org.dongguk.dscd.wooahan.api.core.exception.type.HttpJsonWebTokenException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -99,6 +100,13 @@ public class HttpGlobalExceptionHandler {
     public ResponseDto<?> handleArgumentNotValidException(MissingServletRequestParameterException e) {
         log.error("ExceptionHandler catch MissingServletRequestParameterException : {}", e.getMessage());
         return ResponseDto.fail(e);
+    }
+
+    // 권한이 없을 때 발생하는 예외
+    @ExceptionHandler(value = {AccessDeniedException.class})
+    public ResponseDto<?> handleApiException(AccessDeniedException e) {
+        log.error("ExceptionHandler catch AccessDeniedException : {}", e.getMessage());
+        return ResponseDto.fail(new CommonException(ErrorCode.ACCESS_DENIED));
     }
 
     // 개발자가 직접 정의한 예외

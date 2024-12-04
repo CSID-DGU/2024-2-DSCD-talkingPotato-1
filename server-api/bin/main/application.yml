@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: Wooahan_API_Server
+  profiles:
+    active: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
