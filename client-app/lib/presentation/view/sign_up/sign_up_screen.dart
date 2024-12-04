@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view/sign_up/fragment/email_input_fragment.dart';
+import 'package:wooahan/presentation/view/sign_up/fragment/finish_sign_up_fragment.dart';
+import 'package:wooahan/presentation/view/sign_up/fragment/nickname_input_fragment.dart';
+import 'package:wooahan/presentation/view/sign_up/fragment/password_input_fragment.dart';
 import 'package:wooahan/presentation/view_model/sign_up/sign_up_view_model.dart';
 import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
@@ -17,16 +20,6 @@ class SignUpScreen extends BaseScreen<SignUpViewModel> {
       child: Obx(
         () {
           return AppBar(
-            // 프로그래스바
-            title: viewModel.isEnableInCompletedSignUp
-                ? null
-                : LinearProgressIndicator(
-                    value: 0.0,
-                    backgroundColor: ColorSystem.neutral.shade100,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      ColorSystem.primary.shade500,
-                    ),
-                  ),
             centerTitle: false,
             surfaceTintColor: ColorSystem.white,
             backgroundColor: ColorSystem.white,
@@ -61,13 +54,14 @@ class SignUpScreen extends BaseScreen<SignUpViewModel> {
   @override
   Widget buildBody(BuildContext context) {
     return PageView(
-        controller: viewModel.pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: const [
-          EmailInputFragment(),
-          // PasswordInputFragment(),
-          // NicknameInputFragment(),
-          // CompletedSignUpFragment(),
-        ]);
+      controller: viewModel.pageController,
+      physics: const NeverScrollableScrollPhysics(),
+      children: const [
+        EmailInputFragment(),
+        PasswordInputFragment(),
+        NicknameInputFragment(),
+        FinishSignUpFragment(),
+      ],
+    );
   }
 }

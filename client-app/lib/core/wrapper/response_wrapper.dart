@@ -26,7 +26,7 @@ class ResponseWrapper {
 
   factory ResponseWrapper.fromJson(Map<String, dynamic> json) {
     return ResponseWrapper(
-      success: json['status'],
+      success: json['success'],
       data: json['data'],
       message: json['error']?['message'],
     );

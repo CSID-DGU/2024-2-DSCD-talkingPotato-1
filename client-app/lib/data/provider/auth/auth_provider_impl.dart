@@ -35,6 +35,9 @@ class AuthProviderImpl extends BaseConnect implements AuthProvider {
         'nickname': nickname,
         'password': password,
       },
+      query: {
+        'role': 'USER',
+      },
       headers: {
         ...BaseConnect.notUseBearerToken,
         'Authorization': 'Bearer $temporaryToken',
