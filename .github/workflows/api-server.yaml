@@ -2,12 +2,7 @@ name: API Server CI/CD
 
 on:
   pull_request:
-    paths: 
-      - "server-api/**"
-    paths-ignore:
-      - "client-app/**"
-      - "client-web/**"
-      - "client-api/**"
+    path: "server-api/**"
     branches: [ "dev" ]
     types:
       - opened
