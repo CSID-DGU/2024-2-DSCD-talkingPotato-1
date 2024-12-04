@@ -12,7 +12,8 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
     @Query("""
         SELECT a.id AS id, a.content AS content, a.createdAt AS createdAt, e.nickname AS nickname, e.id AS creatorId
         FROM Answer a
-        JOIN a.creator e
-        WHERE a.question.id = :questionId""")
-    List<ReadAnswerListProjection> findAllByIdWithDetail(Long questionId);
+        LEFT JOIN a.creator e
+        WHERE a.question.id = :questionId
+    """)
+    List<ReadAnswerListProjection> findAllByQuestionIdWithDetail(Long questionId);
 }
