@@ -64,7 +64,7 @@ class LoginScreen extends BaseScreen<LoginViewModel> {
                         },
                         textInputType: TextInputType.emailAddress,
                         hasSuffixIcon: viewModel.emailStr.isNotEmpty,
-                        enable: true,
+                        enable: !viewModel.isLoadingByLogin,
                         onChangedCallBack: viewModel.updateEmail,
                         onClearCallBack: viewModel.updateEmail,
                         onSubmittedCallBack: () {
@@ -94,7 +94,7 @@ class LoginScreen extends BaseScreen<LoginViewModel> {
                         enableSuggestions: false,
                         autocorrect: false,
                         hasSuffixIcon: viewModel.passwordStr.isNotEmpty,
-                        enable: true,
+                        enable: !viewModel.isLoadingByLogin,
                         onChangedCallBack: viewModel.updatePassword,
                         onClearCallBack: viewModel.updatePassword,
                         onSubmittedCallBack: () {
@@ -141,7 +141,17 @@ class LoginScreen extends BaseScreen<LoginViewModel> {
                         width: Get.width,
                         height: 60,
                         content: '로그인',
-                        onPressed: viewModel.isEnableLoginButton ? () {} : null,
+                        onPressed: viewModel.isEnableLoginButton
+                            ? () {
+                                viewModel.login().then((value) {
+                                  if (value.success) {
+                                    Get.offAndToNamed(AppRoutes.ROOT);
+                                  } else {
+                                    Get.snackbar("로그인 실패", value.message!);
+                                  }
+                                });
+                              }
+                            : null,
                       ),
                     ),
                   ),

@@ -1,18 +1,26 @@
 import 'package:get/get.dart';
 import 'package:wooahan/app/utility/validator_util.dart';
+import 'package:wooahan/core/wrapper/result_wrapper.dart';
+import 'package:wooahan/core/wrapper/state_wrapper.dart';
+import 'package:wooahan/domain/condition/auth/login_by_default_condition.dart';
+import 'package:wooahan/domain/usecase/auth/login_by_default_use_case.dart';
+import 'package:wooahan/domain/usecase/user/update_device_token_in_user_use_case.dart';
 
 class LoginViewModel extends GetxController {
   /* ------------------------------------------------------ */
   /* DI Fields -------------------------------------------- */
   /* ------------------------------------------------------ */
+  late final LoginByDefaultUseCase _loginByDefaultUseCase;
+  late final UpdateDeviceTokenInUserUseCase _updateDeviceTokenInUserUsecase;
 
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
   /* ------------------------------------------------------ */
-  late RxString _emailStr;
-  late RxString _passwordStr;
+  late final RxString _emailStr;
+  late final RxString _passwordStr;
 
-  late RxBool _isEnableLoginButton;
+  late final RxBool _isLoadingByLogin;
+  late final RxBool _isEnableLoginButton;
 
   /* ------------------------------------------------------ */
   /* Public Fields ---------------------------------------- */
@@ -20,6 +28,7 @@ class LoginViewModel extends GetxController {
   String get emailStr => _emailStr.value;
   String get passwordStr => _passwordStr.value;
 
+  bool get isLoadingByLogin => _isLoadingByLogin.value;
   bool get isEnableLoginButton => _isEnableLoginButton.value;
 
   /* ------------------------------------------------------ */
@@ -29,9 +38,12 @@ class LoginViewModel extends GetxController {
   void onInit() {
     super.onInit();
 
+    _loginByDefaultUseCase = Get.find<LoginByDefaultUseCase>();
+
     _emailStr = ''.obs;
     _passwordStr = ''.obs;
 
+    _isLoadingByLogin = false.obs;
     _isEnableLoginButton = false.obs;
   }
 
@@ -50,8 +62,6 @@ class LoginViewModel extends GetxController {
 
     bool isValidPassword =
         _passwordStr.value.isNotEmpty && _passwordStr.value.length >= 8;
-
-    print('isValidEmail: $isValidEmail, isValidPassword: $isValidPassword');
 
     _isEnableLoginButton.value = isValidEmail && isValidPassword;
   }
@@ -72,10 +82,38 @@ class LoginViewModel extends GetxController {
     bool isValidPassword =
         _passwordStr.value.isNotEmpty && _passwordStr.value.length >= 8;
 
-    print('isValidEmail: $isValidEmail, isValidPassword: $isValidPassword');
-
     _isEnableLoginButton.value = isValidEmail && isValidPassword;
   }
 
-  loginByDefault() {}
+  Future<ResultWrapper> login() async {
+    _isLoadingByLogin.value = true;
+
+    StateWrapper<void> result = await _loginByDefaultUseCase.execute(
+      LoginByDefaultCondition(
+        email: _emailStr.value,
+        password: _passwordStr.value,
+      ),
+    );
+
+    if (result.success) {
+      await _updateDeviceToken();
+    }
+
+    _isLoadingByLogin.value = false;
+
+    return ResultWrapper(
+      success: result.success,
+      message: result.message,
+    );
+  }
+
+  Future<void> _updateDeviceToken() async {
+    // String? token = await FirebaseMessaging.instance.getToken();
+    //
+    // await _updateDeviceTokenInUserUsecase.execute(
+    //   UpdateUserDeviceTokenCondition(
+    //     deviceToken: token!,
+    //   ),
+    // );
+  }
 }
