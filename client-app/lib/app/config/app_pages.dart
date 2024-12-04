@@ -15,6 +15,7 @@ import 'package:wooahan/presentation/view/question/default/question_screen.dart'
 import 'package:wooahan/presentation/view/question/detail/question_detail_screen.dart';
 import 'package:wooahan/presentation/view/question/searching/question_searching_screen.dart';
 import 'package:wooahan/presentation/view/root/root_screen.dart';
+import 'package:wooahan/presentation/view/sign_up/sign_up_screen.dart';
 import 'package:wooahan/presentation/view/speech_to_text_converter/speech_to_text_converter_screen.dart';
 import 'package:wooahan/presentation/view/text_to_speech_converter/text_to_speech_converter_screen.dart';
 import 'package:wooahan/presentation/view_model/article/default/article_binding.dart';
@@ -33,6 +34,7 @@ import 'package:wooahan/presentation/view_model/question/default/question_bindin
 import 'package:wooahan/presentation/view_model/question/detail/question_detail_binding.dart';
 import 'package:wooahan/presentation/view_model/question/searching/question_searching_binding.dart';
 import 'package:wooahan/presentation/view_model/root/root_binding.dart';
+import 'package:wooahan/presentation/view_model/sign_up/sign_up_binding.dart';
 import 'package:wooahan/presentation/view_model/speech_to_text_converter/speech_to_text_converter_binding.dart';
 import 'package:wooahan/presentation/view_model/text_to_speech_converter/text_to_speech_converter_binding.dart';
 
@@ -42,6 +44,11 @@ abstract class AppPages {
       name: AppRoutes.LOGIN,
       page: () => const LoginScreen(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.SIGN_UP,
+      page: () => const SignUpScreen(),
+      binding: SignUpBinding(),
     ),
     GetPage(
       name: AppRoutes.ROOT,

@@ -107,7 +107,7 @@ class LoginScreen extends BaseScreen<LoginViewModel> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        Get.toNamed(AppRoutes.FORGOT_PASSWORD);
+                        Get.toNamed(AppRoutes.SIGN_UP);
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
