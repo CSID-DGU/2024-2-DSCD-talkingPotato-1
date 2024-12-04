@@ -5,7 +5,7 @@ import 'package:wooahan/app/config/app_routes.dart';
 import 'package:wooahan/app/env/common/environment_factory.dart';
 import 'package:wooahan/app/utility/log_util.dart';
 import 'package:wooahan/data/factory/storage_factory.dart';
-import 'package:wooahan/data/provider/common/system_provider.dart';
+import 'package:wooahan/data/provider/system/system_provider.dart';
 
 abstract class BaseConnect extends GetConnect {
   static final GetHttpClient _customHttpClient = GetHttpClient();

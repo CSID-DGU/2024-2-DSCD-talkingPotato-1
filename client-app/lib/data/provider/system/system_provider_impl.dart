@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:wooahan/data/provider/common/system_provider.dart';
+import 'package:wooahan/data/provider/system/system_provider.dart';
 
 class SystemProviderImpl implements SystemProvider {
   SystemProviderImpl({
