@@ -74,9 +74,9 @@ jobs:
         # if: github.event.pull_request.merged == true
         uses: docker/build-push-action@v4
         with:
-          context: ./server-api
-          file: ./Dockerfile
-          push: false
+          context: .
+          file: ./server-api/Dockerfile
+          push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DEV_DOCKERHUB_REPONAME }}
 
   # closed에 대한 server deploy
