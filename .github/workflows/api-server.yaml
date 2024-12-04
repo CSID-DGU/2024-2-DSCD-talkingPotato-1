@@ -38,23 +38,23 @@ jobs:
       ### application.yml 설정
       - name: Set YML
         run: |
-          echo "${{ secrets.APPLICATION_YML }}" | base64 --decode > ./src/main/resources/application-dev.yml
+          echo "${{ secrets.APPLICATION_YML }}" | base64 --decode > ./server-api/src/main/resources/application-dev.yml
 
       ### Firebase Key 설정
       # - name: Set Firebase Key
       #   run: |
-      #     mkdir -p ./src/main/resources/firebase
-      #     echo "${{ secrets.FIREBASE_ADMIN_KEY }}" | base64 --decode > ./src/main/resources/firebase/firebase-admin-key.json
+      #     mkdir -p ./server-api/src/main/resources/firebase
+      #     echo "${{ secrets.FIREBASE_ADMIN_KEY }}" | base64 --decode > ./server-api/src/main/resources/firebase/firebase-admin-key.json
 
       ### gradlew 실행 권한 부여
       - name: Grant execute Permission for gradlew
         run: |
-          chmod +x gradlew
+          chmod +x ./server-api/gradlew
 
       ### project build
       - name: Build with Gradle
         run: |
-          ./gradlew clean build -x test
+          ./server-api/gradlew clean build -x test
 
       ### Docker Image Build and Push
       - name: Login to Docker Hub
@@ -73,7 +73,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./dev.Dockerfile
+          file: ./server-api/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DEV_DOCKERHUB_REPONAME }}
 
