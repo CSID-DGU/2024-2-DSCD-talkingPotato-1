@@ -12,7 +12,6 @@ import org.dongguk.dscd.wooahan.api.article.domain.mysql.QComment;
 import org.dongguk.dscd.wooahan.api.article.dto.projection.ReadArticleListProjection;
 import org.dongguk.dscd.wooahan.api.expert.domain.mysql.QExpert;
 import org.dongguk.dscd.wooahan.api.tag.domain.mysql.QArticleTag;
-import org.dongguk.dscd.wooahan.api.tag.domain.mysql.QTag;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
@@ -33,7 +32,6 @@ public class ArticleRepositoryCustomImpl implements ArticleRepositoryCustom {
         QExpert expert = QExpert.expert;
         QComment comment = QComment.comment;
         QArticleTag articleTag = QArticleTag.articleTag;
-        QTag tag = QTag.tag;
 
         // 1. 페이징 적용 칼럼 ID 목록 조회
         List<Long> articleList = queryFactory
@@ -72,7 +70,6 @@ public class ArticleRepositoryCustomImpl implements ArticleRepositoryCustom {
                 .where(article.id.in(articleList))
                 .orderBy(article.createdAt.desc())
                 .fetch();
-
     }
 
     private BooleanExpression eqKeywordByFullTextSearch(String searchTerm) {

@@ -7,7 +7,6 @@ import org.dongguk.dscd.wooahan.api.article.repository.mysql.ArticleRepository;
 import org.dongguk.dscd.wooahan.api.article.usecase.ReadArticleListUseCase;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +18,6 @@ public class ReadArticleListService implements ReadArticleListUseCase {
     private final ArticleRepository articleRepository;
 
     @Override
-    @Transactional(readOnly = true)
     public ReadArticleListDto execute(
             String query,
             Pageable pageable
