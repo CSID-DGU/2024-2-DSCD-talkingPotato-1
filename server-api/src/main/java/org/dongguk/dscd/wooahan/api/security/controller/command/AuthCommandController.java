@@ -207,6 +207,7 @@ public class AuthCommandController {
      * @param request HttpServletRequest
      * @param role    ERole
      * @param requestDto SignUpByDefaultDto
+     *
      * @return Default JsonWebToken
      */
     @PostMapping("/sign-up")
