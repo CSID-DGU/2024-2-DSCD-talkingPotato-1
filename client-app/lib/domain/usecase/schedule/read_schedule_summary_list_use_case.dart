@@ -18,36 +18,6 @@ class ReadScheduleSummaryListUseCase extends BaseUseCase
 
   @override
   Future<StateWrapper<List<ScheduleSummaryState>>> execute() async {
-    return StateWrapper(
-      success: true,
-      data: [
-        ScheduleSummaryState(
-          timeline: 'breakfast',
-          takenAmount: 4,
-          totalAmount: 5,
-          isNow: false,
-        ),
-        ScheduleSummaryState(
-          timeline: 'lunch',
-          takenAmount: 4,
-          totalAmount: 5,
-          isNow: false,
-        ),
-        ScheduleSummaryState(
-          timeline: 'dinner',
-          takenAmount: 4,
-          totalAmount: 5,
-          isNow: false,
-        ),
-        ScheduleSummaryState(
-          timeline: 'daily',
-          takenAmount: 4,
-          totalAmount: 5,
-          isNow: true,
-        ),
-      ],
-    );
-
     return await _scheduleRepository.readScheduleSummaryList();
   }
 }

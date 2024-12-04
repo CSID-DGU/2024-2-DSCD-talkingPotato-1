@@ -28,42 +28,6 @@ class ReadScheduleDetailListUseCase extends BaseUseCase
   Future<StateWrapper<List<ScheduleDetailState>>> execute(
     ReadScheduleDetailListCondition condition,
   ) async {
-    await Future.delayed(const Duration(milliseconds: 300));
-    return StateWrapper(success: true, data: [
-      ScheduleDetailState(
-        isTaken: false,
-        drugType: 'CUSTOM',
-        drugName: '홍삼',
-      ),
-      ScheduleDetailState(
-        isTaken: true,
-        drugId: 9850,
-        drugType: 'MEDICINE',
-        drugName: '나르펜정400밀리그램',
-        drugClassificationOrManufacturer: '해열.진통.소염제',
-        drugImageUrl:
-            'https://kr.object.ncloudstorage.com/viewpam/drugs/images/e46bae94-be91-499f-8d12-102ebad52a54.jpg',
-      ),
-      ScheduleDetailState(
-        isTaken: true,
-        drugId: 9737,
-        drugType: 'MEDICINE',
-        drugName: '동화디트로판정',
-        drugClassificationOrManufacturer: '자율신경제',
-        drugImageUrl:
-            'https://kr.object.ncloudstorage.com/viewpam/drugs/images/f5a01421-e87d-48c2-a4a3-82f3494ff7ea.jpg',
-      ),
-      ScheduleDetailState(
-        isTaken: true,
-        drugId: 1,
-        drugType: 'VITAMIN',
-        drugName: '+프리맥',
-        drugClassificationOrManufacturer: '코스맥스바이오(주)',
-        drugImageUrl:
-            'https://kr.object.ncloudstorage.com/viewpam/drugs/images/a01d3156-1ea9-4003-a2be-3d6524cffa4e.jpg',
-      ),
-    ]);
-
     StateWrapper<List<dynamic>> beforeState =
         await _scheduleRepository.readScheduleDetailList(condition);
 

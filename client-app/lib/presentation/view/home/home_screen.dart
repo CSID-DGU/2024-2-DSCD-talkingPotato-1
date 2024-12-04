@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/config/app_routes.dart';
 import 'package:wooahan/app/config/color_system.dart';
-import 'package:wooahan/app/utility/log_util.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view/home/widget/convert_button/convert_button.dart';
 import 'package:wooahan/presentation/view/home/widget/user_information/user_information_view.dart';
@@ -50,7 +49,7 @@ class HomeScreen extends BaseScreen<HomeViewModel> {
             const Spacer(),
             GestureDetector(
               onTap: () {
-                LogUtil.info('Setting button tapped');
+                Get.toNamed(AppRoutes.SETTING);
               },
               child: Container(
                 padding: const EdgeInsets.all(4),

@@ -24,7 +24,7 @@ class UserRemoteProviderImpl extends BaseConnect implements UserRemoteProvider {
     Response response = await put(
       '/api/v1/users/notification-time',
       {
-        'taken_type': type,
+        'type': type,
         'time': time,
       },
       headers: BaseConnect.useBearerToken,

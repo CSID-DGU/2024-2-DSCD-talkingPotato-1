@@ -20,10 +20,6 @@ class UpdateNotificationTimeInUserUseCase extends BaseUseCase
   @override
   Future<StateWrapper<void>> execute(
       UpdateNotificationTimeInUserCondition condition) async {
-    return StateWrapper(
-      success: true,
-    );
-
     StateWrapper<void> state = await _userRepository.updateNotificationTime(
       condition,
     );

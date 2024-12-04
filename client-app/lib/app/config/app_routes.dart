@@ -13,6 +13,7 @@ abstract class AppRoutes {
 
   static const String ROOT = '/';
 
+  static const String SETTING = '/setting';
   static const String TEXT_TO_SPEECH_CONVERTER = '/text-to-speech-converter';
   static const String SPEECH_TO_TEXT_CONVERTER = '/speech-to-text-converter';
 

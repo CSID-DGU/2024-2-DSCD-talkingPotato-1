@@ -40,9 +40,11 @@ class LoginScreen extends BaseScreen<LoginViewModel> {
                 children: [
                   const Spacer(),
                   Center(
-                    child: SvgImageView(
-                      assetPath: 'assets/images/black_logo.svg',
-                      width: Get.width * 0.5,
+                    child: SizedBox(
+                      height: Get.height * 0.08,
+                      child: const SvgImageView(
+                        assetPath: 'assets/images/black_logo.svg',
+                      ),
                     ),
                   ),
                   const Spacer(),

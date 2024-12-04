@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/config/app_routes.dart';
 import 'package:wooahan/app/config/color_system.dart';
@@ -41,9 +42,9 @@ class FinishSignUpFragment extends BaseScreen<SignUpViewModel> {
                   ..._buildTitleViews(),
                   const Spacer(),
                   Center(
-                    child: Image.asset(
-                      "assets/images/completed-default.png",
-                      width: Get.width * 0.8,
+                    child: SvgPicture.asset(
+                      "assets/icons/complete.svg",
+                      width: 250,
                     ),
                   ),
                   const Spacer(),
