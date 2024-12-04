@@ -21,7 +21,7 @@ public record ResponseDto<T>(
         @JsonIgnore
         HttpStatus httpStatus,
 
-        @JsonProperty("status")
+        @JsonProperty("success")
         Boolean success,
 
         @JsonProperty("data")
