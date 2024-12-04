@@ -28,7 +28,7 @@ public record ReadArticleListDto (
             @JsonProperty("created_at")
             LocalDateTime createdAt,
             @JsonProperty("comment_cnt")
-            Integer commentCnt,
+            Long commentCnt,
             @JsonProperty("nickname")
             String nickname,
             @JsonProperty("creator_id")

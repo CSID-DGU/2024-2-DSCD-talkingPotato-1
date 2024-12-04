@@ -3,13 +3,14 @@ package org.dongguk.dscd.wooahan.api.article.dto.projection;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public interface ReadArticleListProjection {
-    Long getId();
-    String getTitle();
-    String getContent();
-    LocalDateTime getCreatedAt();
-    String getNickname();
-    UUID getCreatorId();
-    Integer getCommentCnt();
-    String getTags();
+public record ReadArticleListProjection (
+        Long id,
+        String title,
+        String preview,
+        LocalDateTime createdAt,
+        String nickname,
+        UUID creatorId,
+        Long commentCnt,
+        String tags
+) {
 }
