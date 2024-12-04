@@ -5,7 +5,6 @@ import org.dongguk.dscd.wooahan.api.article.dto.projection.ReadArticleListProjec
 import org.dongguk.dscd.wooahan.api.article.dto.response.ReadArticleListDto;
 import org.dongguk.dscd.wooahan.api.article.repository.mysql.ArticleRepository;
 import org.dongguk.dscd.wooahan.api.article.usecase.ReadArticleListUseCase;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -23,20 +22,19 @@ public class ReadArticleListService implements ReadArticleListUseCase {
             String query,
             Pageable pageable
     ) {
-        // TODO: query를 이용한 검색 기능 구현
-        Page<ReadArticleListProjection> articles =  articleRepository.findAllWithDetail(pageable);
+        List<ReadArticleListProjection> articles = articleRepository.findArticleList(query, pageable);
 
         return ReadArticleListDto.builder()
                 .articles(articles.stream()
                         .map(article -> ReadArticleListDto.ReadArticleDto.builder()
-                                .id(article.getId())
-                                .title(article.getTitle())
-                                .preview(article.getContent())
-                                .tags(getTagNames(article.getTags()))
-                                .createdAt(article.getCreatedAt())
-                                .commentCnt(article.getCommentCnt())
-                                .nickname(article.getNickname())
-                                .creatorId(article.getCreatorId())
+                                .id(article.id())
+                                .title(article.title())
+                                .preview(article.preview())
+                                .tags(getTagNames(article.tags()))
+                                .createdAt(article.createdAt())
+                                .commentCnt(article.commentCnt())
+                                .nickname(article.nickname())
+                                .creatorId(article.creatorId())
                                 .build())
                         .toList())
                 .build();

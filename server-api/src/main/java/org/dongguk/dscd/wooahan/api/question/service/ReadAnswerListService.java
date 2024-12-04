@@ -24,7 +24,7 @@ public class ReadAnswerListService implements ReadAnswerListUseCase {
         questionRepository.findById(questionId)
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_QUESTION));
 
-        List<ReadAnswerListProjection> answers = answerRepository.findAllByIdWithDetail(questionId);
+        List<ReadAnswerListProjection> answers = answerRepository.findAllByQuestionIdWithDetail(questionId);
 
         return ReadAnswerListDto.builder()
                 .answers(answers.stream()

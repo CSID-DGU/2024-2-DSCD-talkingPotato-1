@@ -26,7 +26,7 @@ public record ReadQuestionListDto (
             @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             LocalDateTime createdAt,
             @JsonProperty("answer_count")
-            Integer answerCount,
+            Long answerCount,
             @JsonProperty("nickname")
             String nickname,
             @JsonProperty("creator_id")
