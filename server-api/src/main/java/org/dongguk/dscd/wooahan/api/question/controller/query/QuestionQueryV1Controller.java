@@ -23,7 +23,7 @@ public class QuestionQueryV1Controller {
      */
     @GetMapping
     public ResponseDto<?> readQuestionList(
-            @RequestParam(required = false) String query,
+            @RequestParam(required = false, name = "q") String query,
             Pageable pageable
     ) {
         return ResponseDto.ok(readQuestionListUseCase.execute(query, pageable));

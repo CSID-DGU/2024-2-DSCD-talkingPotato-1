@@ -5,9 +5,10 @@ import org.dongguk.dscd.wooahan.api.question.dto.projection.ReadQuestionListProj
 import org.dongguk.dscd.wooahan.api.question.dto.response.ReadQuestionListDto;
 import org.dongguk.dscd.wooahan.api.question.repository.mysql.QuestionRepository;
 import org.dongguk.dscd.wooahan.api.question.usecase.ReadQuestionListUseCase;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,21 +21,23 @@ public class ReadQuestionListService implements ReadQuestionListUseCase {
             String query,
             Pageable pageable
     ) {
-        // TODO: query를 이용한 검색 기능 구현
-        Page<ReadQuestionListProjection> questions = questionRepository.findAllWithDetail(pageable);
+        List<ReadQuestionListProjection> questionList = questionRepository.findQuestionList(query, pageable);
 
         return ReadQuestionListDto.builder()
-                .questions(questions.stream()
-                        .map(question -> ReadQuestionListDto.ReadQuestionDto.builder()
-                                .id(question.getId())
-                                .preview(question.getPreview())
-                                .createdAt(question.getCreatedAt())
-                                .answerStatus(question.getAnswerStatus())
-                                .answerCount(question.getAnswerCount())
-                                .nickname(question.getNickname())
-                                .creatorId(question.getCreatorId())
-                                .build())
-                        .toList())
+                .questions(
+                        questionList.stream()
+                                .map(question -> ReadQuestionListDto.ReadQuestionDto.builder()
+                                        .id(question.id())
+                                        .preview(question.preview())
+                                        .createdAt(question.createdAt())
+                                        .answerStatus(question.answerStatus())
+                                        .answerCount(question.answerCount())
+                                        .creatorId(question.creatorId())
+                                        .nickname(question.nickname())
+                                        .build()
+                                )
+                                .toList()
+                )
                 .build();
     }
 }
