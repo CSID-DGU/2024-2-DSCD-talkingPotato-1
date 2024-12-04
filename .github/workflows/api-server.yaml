@@ -3,7 +3,7 @@ name: API Server CI/CD
 on:
   pull_request:
     path: "server-api/**"
-    branches: [ "develop" ]
+    branches: [ "dev" ]
     types:
       - opened
       - synchronize

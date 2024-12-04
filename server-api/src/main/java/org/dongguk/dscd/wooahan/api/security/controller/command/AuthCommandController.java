@@ -203,7 +203,6 @@ public class AuthCommandController {
 
     /**
      * 2-3. 회원가입
-     *
      * @param request HttpServletRequest
      * @param role    ERole
      * @param requestDto SignUpByDefaultDto
