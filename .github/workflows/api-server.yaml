@@ -77,7 +77,7 @@ jobs:
           context: .
           file: ./server-api/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DEV_DOCKERHUB_REPONAME }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPONAME }}
 
   # closed에 대한 server deploy
   CD:
@@ -99,4 +99,4 @@ jobs:
             docker stop wooahan-was
             docker rm wooahan-was
             docker image rm ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPONAME }}
-            docker run -d --name wooahan-was -e TZ=Asia/Seoul --net wooahan --ip 172.20.0.5 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPONAME }}
+            docker run -d --name wooahan-was -e TZ=Asia/Seoul -p 8080:8080 --net wooahan --ip 172.20.0.5 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPONAME }}

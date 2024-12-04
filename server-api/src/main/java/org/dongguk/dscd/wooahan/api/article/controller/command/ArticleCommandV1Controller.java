@@ -30,7 +30,7 @@ public class ArticleCommandV1Controller {
      * @param requestDto 요청 DTO
      * @return 응답 DTO
      */
-    @PreAuthorize("hasAnyRole('EXPERT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'EXPERT', 'ADMIN')")
     @PostMapping
     public ResponseDto<?> createArticle(
             @AccountID UUID accountId,
@@ -49,7 +49,7 @@ public class ArticleCommandV1Controller {
      * @param requestDto 요청 DTO
      * @return 응답 DTO
      */
-    @PreAuthorize("hasAnyRole('EXPERT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'EXPERT', 'ADMIN')")
     @PutMapping("/{articleId}")
     public ResponseDto<?> updateArticle(
             @AccountID UUID accountId,
@@ -68,7 +68,7 @@ public class ArticleCommandV1Controller {
      * @param articleId 칼럼 ID
      * @return 응답 DTO
      */
-    @PreAuthorize("hasAnyRole('EXPERT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'EXPERT', 'ADMIN')")
     @DeleteMapping("/{articleId}")
     public ResponseDto<?> deleteArticle(
             @AccountID UUID accountId,
