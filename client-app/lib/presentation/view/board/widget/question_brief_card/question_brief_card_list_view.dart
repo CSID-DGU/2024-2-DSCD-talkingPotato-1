@@ -56,7 +56,8 @@ class QuestionBriefCardListView extends BaseWidget<BoardViewModel> {
               state: viewModel.questionBriefList[index],
               onTap: () {
                 Get.toNamed(
-                    "${AppRoutes.QUESTION}/detail/${viewModel.questionBriefList[index].id}");
+                  "${AppRoutes.QUESTION}/detail/${viewModel.questionBriefList[index].id}",
+                );
               },
             );
           },

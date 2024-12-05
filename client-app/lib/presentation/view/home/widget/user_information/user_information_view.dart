@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wooahan/app/config/app_routes.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/core/screen/base_widget.dart';
-import 'package:wooahan/domain/entity/question/question_brief_state.dart';
+import 'package:wooahan/presentation/view/home/widget/user_information/component/question_mini_default_item_view.dart';
 import 'package:wooahan/presentation/view_model/home/home_view_model.dart';
 import 'package:wooahan/presentation/widget/common/line/infinity_horizon_line.dart';
 
@@ -75,7 +76,7 @@ class UserInformationView extends BaseWidget<HomeViewModel> {
 
   Widget _buildMyQuestionsLayer() {
     return Positioned(
-      top: 74 + 20,
+      top: 74 + 32,
       left: 0,
       right: 0,
       child: Container(
@@ -99,65 +100,34 @@ class UserInformationView extends BaseWidget<HomeViewModel> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: viewModel.questionBriefList.length,
                 itemBuilder: (context, index) {
-                  QuestionBriefState state = viewModel.questionBriefList[index];
+                  if (viewModel.questionBriefList[index].id == 0) {
+                    Widget? child;
 
-                  if (state.id == 0) {
-                    return const SizedBox(
+                    if (index == 0 ||
+                        (viewModel.questionBriefList[index - 1].id != 0)) {
+                      child = Text(
+                        "더 이상 작성한 질문이 없습니다.",
+                        style: FontSystem.H6.copyWith(
+                          color: ColorSystem.neutral.shade400,
+                        ),
+                      );
+                    }
+
+                    return SizedBox(
                       height: 60,
+                      child: Center(
+                        child: child,
+                      ),
                     );
                   }
 
-                  String badgeText = '';
-                  Color? backgroundColor;
-                  Color? textColor;
-
-                  switch (state.answerStatus) {
-                    case 'NONE':
-                      backgroundColor = ColorSystem.neutral.shade200;
-                      textColor = ColorSystem.neutral;
-                      badgeText = '답변 대기중';
-                      break;
-                    case 'EXPERT':
-                      backgroundColor = ColorSystem.primary;
-                      textColor = ColorSystem.white;
-                      badgeText = '전문가 첫 답변';
-                      break;
-                    case 'AI':
-                      backgroundColor = ColorSystem.blue;
-                      textColor = ColorSystem.white;
-                      badgeText = 'AI 첫 답변';
-                      break;
-                  }
-
-                  return SizedBox(
-                    height: 60,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: Get.width - 40 - 40 - 120,
-                          child: Text(
-                            viewModel.questionBriefList[index].preview,
-                            style: FontSystem.Sub2,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const Spacer(),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          decoration: BoxDecoration(
-                            color: backgroundColor,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            badgeText,
-                            style: FontSystem.Sub3.copyWith(
-                              color: textColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  return QuestionMiniDefaultItemView(
+                    state: viewModel.questionBriefList[index],
+                    onTap: () {
+                      Get.toNamed(
+                        "${AppRoutes.QUESTION}/detail/${viewModel.questionBriefList[index].id}",
+                      );
+                    },
                   );
                 },
                 separatorBuilder: (context, index) => InfinityHorizonLine(

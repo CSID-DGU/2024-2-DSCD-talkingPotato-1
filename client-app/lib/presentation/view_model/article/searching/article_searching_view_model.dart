@@ -103,7 +103,7 @@ class ArticleSearchingViewModel extends GetxController {
         await _readArticleSummaryListUseCase.execute(
       ReadArticleSummaryListCondition(
         searchTerm: _searchTerm.value,
-        page: 1,
+        page: 0,
         size: 100,
       ),
     );
