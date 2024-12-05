@@ -13,6 +13,7 @@ class AnswerRemoteProviderImpl extends BaseConnect
   }) async {
     Response response = await get(
       '/api/v1/questions/$questionId/answers',
+      headers: BaseConnect.useBearerToken,
     );
 
     return ResponseWrapper.fromJson(response.body);

@@ -57,4 +57,16 @@ class QuestionRemoteProviderImpl extends BaseConnect
 
     return ResponseWrapper.fromJson(response.body);
   }
+
+  @override
+  Future<ResponseWrapper> deleteQuestion({
+    required int questionId,
+  }) async {
+    await delete(
+      '/api/v1/questions/$questionId',
+      headers: BaseConnect.useBearerToken,
+    );
+
+    return ResponseWrapper.noContent();
+  }
 }

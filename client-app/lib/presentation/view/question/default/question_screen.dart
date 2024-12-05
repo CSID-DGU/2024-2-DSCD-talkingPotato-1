@@ -45,12 +45,15 @@ class QuestionScreen extends GetView<QuestionViewModel> {
         ],
         onBackPress: Get.back,
       ),
-      body: const SafeArea(
+      body: SafeArea(
         top: false,
         bottom: true,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: QuestionSummaryCardListView(),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: RefreshIndicator(
+            onRefresh: viewModel.onRefresh,
+            child: const QuestionSummaryCardListView(),
+          ),
         ),
       ),
     );

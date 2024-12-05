@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
+import 'package:wooahan/core/mediator/base_mediator.dart';
 import 'package:wooahan/core/wrapper/state_wrapper.dart';
 import 'package:wooahan/domain/condition/answer/read_question_answer_list_condition.dart';
+import 'package:wooahan/domain/condition/question/delete_question_condition.dart';
 import 'package:wooahan/domain/condition/question/read_question_detail_condition.dart';
 import 'package:wooahan/domain/entity/answer/answer_state.dart';
 import 'package:wooahan/domain/entity/question/question_detail_state.dart';
 import 'package:wooahan/domain/usecase/answer/read_question_answer_list_use_case.dart';
+import 'package:wooahan/domain/usecase/question/delete_question_use_case.dart';
 import 'package:wooahan/domain/usecase/question/read_question_detail_use_case.dart';
 
 class QuestionDetailViewModel extends GetxController {
@@ -13,6 +16,7 @@ class QuestionDetailViewModel extends GetxController {
   /* ------------------------------------------------------ */
   late final int questionId;
 
+  late final DeleteQuestionUseCase _deleteQuestionUseCase;
   late final ReadQuestionDetailUseCase _readQuestionDetailUseCase;
   late final ReadQuestionAnswerListUseCase _readQuestionAnswerListUseCase;
 
@@ -40,6 +44,7 @@ class QuestionDetailViewModel extends GetxController {
 
     questionId = int.parse(Get.parameters['id']!);
 
+    _deleteQuestionUseCase = Get.find<DeleteQuestionUseCase>();
     _readQuestionDetailUseCase = Get.find<ReadQuestionDetailUseCase>();
     _readQuestionAnswerListUseCase = Get.find<ReadQuestionAnswerListUseCase>();
 
@@ -90,6 +95,16 @@ class QuestionDetailViewModel extends GetxController {
       return;
     }
 
-    _answerList.addAll(state.data!);
+    _answerList.assignAll(state.data!);
+  }
+
+  Future<bool> deleteQuestion() async {
+    StateWrapper<void> state = await _deleteQuestionUseCase.execute(
+      DeleteQuestionCondition(questionId: questionId),
+    );
+
+    await Get.find<BaseMediator>().publishDeleteQuestionEvent(questionId);
+
+    return state.success;
   }
 }

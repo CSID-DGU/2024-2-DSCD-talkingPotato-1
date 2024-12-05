@@ -33,8 +33,9 @@ class AnswerRepositoryImpl extends GetxService implements AnswerRepository {
       );
     }
 
-    List<AnswerState> answerStateList =
-        response.data!['answers'].map((e) => AnswerState.fromJson(e)).toList();
+    List<AnswerState> answerStateList = response.data!['answers']
+        .map<AnswerState>((e) => AnswerState.fromJson(e))
+        .toList();
 
     return StateWrapper(
       success: true,

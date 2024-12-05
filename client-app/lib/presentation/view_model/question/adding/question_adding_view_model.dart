@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
+import 'package:wooahan/core/mediator/base_mediator.dart';
 import 'package:wooahan/core/wrapper/state_wrapper.dart';
-import 'package:wooahan/domain/condition/create_question_condition.dart';
+import 'package:wooahan/domain/condition/question/create_question_condition.dart';
 import 'package:wooahan/domain/usecase/question/create_question_use_case.dart';
 
 class QuestionAddingViewModel extends GetxController {
@@ -47,6 +48,8 @@ class QuestionAddingViewModel extends GetxController {
         isMadeByStt: false,
       ),
     );
+
+    await Get.find<BaseMediator>().publishCreateQuestionEvent();
 
     _isLoading.value = false;
 

@@ -39,21 +39,38 @@ class BoardScreen extends BaseScreen<BoardViewModel> {
   Widget buildBody(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 32),
-            _buildArticleHeaderView(),
-            const SizedBox(height: 16),
-            const ArticleBriefCardListView(),
-            const SizedBox(height: 32),
-            _buildQuestionHeaderView(),
-            const SizedBox(height: 16),
-            const QuestionBriefCardListView(),
-            const SizedBox(height: 32),
-          ],
+      child: RefreshIndicator(
+        onRefresh: viewModel.onRefresh,
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                SliverFillRemaining(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 32),
+                          _buildArticleHeaderView(),
+                          const SizedBox(height: 16),
+                          const ArticleBriefCardListView(),
+                          const SizedBox(height: 32),
+                          _buildQuestionHeaderView(),
+                          const SizedBox(height: 16),
+                          const QuestionBriefCardListView(),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            );
+          },
         ),
       ),
     );

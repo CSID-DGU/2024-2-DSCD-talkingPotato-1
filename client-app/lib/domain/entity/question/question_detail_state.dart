@@ -8,6 +8,10 @@ class QuestionDetailState {
   final String creator;
   final String creatorId;
 
+  final String? myId;
+
+  bool get isMine => creatorId == myId;
+
   QuestionDetailState({
     required this.id,
     required this.content,
@@ -15,6 +19,7 @@ class QuestionDetailState {
     required this.createdAt,
     required this.creator,
     required this.creatorId,
+    this.myId,
   });
 
   QuestionDetailState copyWith({
@@ -25,6 +30,7 @@ class QuestionDetailState {
     String? createdAt,
     String? creator,
     String? creatorId,
+    String? myId,
   }) {
     return QuestionDetailState(
       id: id ?? this.id,
@@ -33,6 +39,7 @@ class QuestionDetailState {
       createdAt: createdAt ?? this.createdAt,
       creator: creator ?? this.creator,
       creatorId: creatorId ?? this.creatorId,
+      myId: myId ?? this.myId,
     );
   }
 

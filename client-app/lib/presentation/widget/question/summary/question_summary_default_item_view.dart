@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
+import 'package:wooahan/app/utility/date_time_util.dart';
 import 'package:wooahan/domain/entity/question/question_summary_state.dart';
 
 class QuestionSummaryDefaultItemView extends StatelessWidget {
@@ -34,7 +35,7 @@ class QuestionSummaryDefaultItemView extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '${state.createdAt} | ${state.creator} | ${state.answerCnt}개의 답변',
+                  '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator} | ${state.answerCnt}개의 답변',
                   style: FontSystem.Sub3.copyWith(
                     color: ColorSystem.neutral,
                   ),

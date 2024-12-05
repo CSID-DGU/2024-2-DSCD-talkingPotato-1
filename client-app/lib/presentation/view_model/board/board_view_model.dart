@@ -58,6 +58,13 @@ class BoardViewModel extends GetxController {
     _isLoading.value = false;
   }
 
+  Future<void> onRefresh() async {
+    await Future.wait([
+      _fetchArticleBriefList(),
+      _fetchQuestionOverviewList(),
+    ]);
+  }
+
   Future<void> _fetchArticleBriefList() async {
     StateWrapper<List<ArticleBriefState>> state =
         await _readArticleBriefListUseCase.execute(

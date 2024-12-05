@@ -53,6 +53,16 @@ class QuestionViewModel extends GetxController {
     _isInitLoading.value = false;
   }
 
+  Future<void> onRefresh() async {
+    _isInitLoading.value = true;
+
+    await Future.wait([
+      _fetchQuestionSummaryList(),
+    ]);
+
+    _isInitLoading.value = false;
+  }
+
   Future<void> _fetchQuestionSummaryList() async {
     StateWrapper<List<QuestionSummaryState>> state =
         await _readQuestionSummaryListUseCase.execute(
@@ -69,6 +79,10 @@ class QuestionViewModel extends GetxController {
       return;
     }
 
-    _questionSummaryList.addAll(state.data!);
+    _questionSummaryList.assignAll(state.data!);
+  }
+
+  void consumeDeleteQuestionEvent(int questionId) {
+    _questionSummaryList.removeWhere((element) => element.id == questionId);
   }
 }

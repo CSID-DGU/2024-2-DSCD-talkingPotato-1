@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:wooahan/core/mediator/base_mediator.dart';
 import 'package:wooahan/data/provider/analysis/analysis_remote_provider.dart';
 import 'package:wooahan/data/provider/analysis/analysis_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/answer/answer_remote_provider.dart';
@@ -42,6 +43,7 @@ class AppDependency extends Bindings {
   @override
   void dependencies() {
     // Add your mediator dependencies here
+    Get.lazyPut<BaseMediator>(() => BaseMediator());
 
     // Add your provider dependencies here
     Get.lazyPut<DrugRemoteProvider>(() => DrugRemoteProviderImpl());

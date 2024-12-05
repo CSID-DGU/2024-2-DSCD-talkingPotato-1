@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
+import 'package:wooahan/app/utility/date_time_util.dart';
 import 'package:wooahan/core/screen/base_widget.dart';
 import 'package:wooahan/presentation/view_model/question/detail/question_detail_view_model.dart';
 import 'package:wooahan/presentation/widget/common/line/infinity_horizon_line.dart';
@@ -33,7 +34,7 @@ class QuestionDetailView extends BaseWidget<QuestionDetailViewModel> {
           children: [
             Obx(
               () => Text(
-                '${viewModel.questionDetail.createdAt} | ${viewModel.questionDetail.creator} | ${viewModel.questionDetail.answerCnt}개의 답변',
+                '${DateTimeUtil.calRemainDateTime(viewModel.questionDetail.createdAt)} | ${viewModel.questionDetail.creator} | ${viewModel.questionDetail.answerCnt}개의 답변',
                 style: FontSystem.H6.copyWith(
                   color: ColorSystem.neutral,
                 ),

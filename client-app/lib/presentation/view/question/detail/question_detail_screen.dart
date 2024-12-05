@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/core/screen/base_screen.dart';
 import 'package:wooahan/presentation/view/question/detail/widget/answer_card/answer_card_list_view.dart';
 import 'package:wooahan/presentation/view/question/detail/widget/question_detail/question_detail_view.dart';
@@ -14,6 +15,30 @@ class QuestionDetailScreen extends BaseScreen<QuestionDetailViewModel> {
     return TextBackAppBar(
       preferredSize: const Size.fromHeight(64),
       title: '질문 상세',
+      actions: [
+        Obx(() {
+          if (viewModel.isInitLoading || !viewModel.questionDetail.isMine) {
+            return const SizedBox();
+          }
+
+          return IconButton(
+            onPressed: () {
+              viewModel.deleteQuestion().then((value) {
+                if (value) {
+                  Get.back();
+                } else {
+                  Get.snackbar('질문 삭제 실패', '삭제에 실패했습니다.');
+                }
+              });
+            },
+            icon: Icon(
+              Icons.delete,
+              color: ColorSystem.red.shade600,
+            ),
+          );
+        }),
+        const SizedBox(width: 8),
+      ],
       onBackPress: Get.back,
     );
   }

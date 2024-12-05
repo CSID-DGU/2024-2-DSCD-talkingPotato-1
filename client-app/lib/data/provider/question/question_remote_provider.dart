@@ -15,4 +15,8 @@ abstract class QuestionRemoteProvider {
     required String content,
     required bool isMadeByStt,
   });
+
+  Future<ResponseWrapper> deleteQuestion({
+    required int questionId,
+  });
 }
