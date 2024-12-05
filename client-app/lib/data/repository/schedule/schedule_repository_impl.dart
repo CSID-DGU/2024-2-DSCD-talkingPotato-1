@@ -58,8 +58,8 @@ class ScheduleRepositoryImpl extends GetxService implements ScheduleRepository {
     for (String element in timeline) {
       scheduleSummaryList.add(ScheduleSummaryState(
         timeline: element,
-        takenAmount: response.data![element]['totalDrugCount'],
-        totalAmount: response.data![element]['takenDrugCount'],
+        takenAmount: response.data![element]['takenDrugCount'],
+        totalAmount: response.data![element]['totalDrugCount'],
         isNow: 'daily' == element,
       ));
     }

@@ -12,6 +12,8 @@ import 'package:wooahan/data/provider/comment/comment_remote_provider.dart';
 import 'package:wooahan/data/provider/comment/comment_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/drug/drug_remote_provider.dart';
 import 'package:wooahan/data/provider/drug/drug_remote_provider_impl.dart';
+import 'package:wooahan/data/provider/medication/medication_remote_provider.dart';
+import 'package:wooahan/data/provider/medication/medication_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/question/question_remote_provider.dart';
 import 'package:wooahan/data/provider/question/question_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/schedule/schedule_remote_provider.dart';
@@ -24,6 +26,7 @@ import 'package:wooahan/data/repository/article/article_repository_impl.dart';
 import 'package:wooahan/data/repository/auth/auth_repository_impl.dart';
 import 'package:wooahan/data/repository/comment/comment_repository_impl.dart';
 import 'package:wooahan/data/repository/drug/drug_repository_impl.dart';
+import 'package:wooahan/data/repository/medication/medication_repository_impl.dart';
 import 'package:wooahan/data/repository/question/question_repository_impl.dart';
 import 'package:wooahan/data/repository/schedule/schedule_repository_impl.dart';
 import 'package:wooahan/data/repository/search_term/search_term_repository_impl.dart';
@@ -34,6 +37,7 @@ import 'package:wooahan/domain/repository/article/article_repository.dart';
 import 'package:wooahan/domain/repository/auth/auth_repository.dart';
 import 'package:wooahan/domain/repository/comment/comment_repository.dart';
 import 'package:wooahan/domain/repository/drug/drug_repository.dart';
+import 'package:wooahan/domain/repository/medication/medication_repository.dart';
 import 'package:wooahan/domain/repository/question/question_repository.dart';
 import 'package:wooahan/domain/repository/schedule/schedule_repository.dart';
 import 'package:wooahan/domain/repository/search_term/search_term_repository.dart';
@@ -56,19 +60,21 @@ class AppDependency extends Bindings {
     Get.lazyPut<CommentRemoteProvider>(() => CommentRemoteProviderImpl());
     Get.lazyPut<QuestionRemoteProvider>(() => QuestionRemoteProviderImpl());
     Get.lazyPut<AnswerRemoteProvider>(() => AnswerRemoteProviderImpl());
+    Get.lazyPut<MedicationRemoteProvider>(() => MedicationRemoteProviderImpl());
 
     // Add your repository dependencies here
     Get.lazyPut<SearchTermRepository>(() => SearchTermRepositoryImpl());
 
     Get.lazyPut<DrugRepository>(() => DrugRepositoryImpl());
-    Get.lazyPut<AnswerRepository>(() => AnswerRepositoryImpl());
+    Get.lazyPut<AnalysisRepository>(() => AnalysisRepositoryImpl());
 
     Get.lazyPut<AuthRepository>(() => AuthRepositoryImpl());
     Get.lazyPut<UserRepository>(() => UserRepositoryImpl());
-    Get.lazyPut<AnalysisRepository>(() => AnalysisRepositoryImpl());
     Get.lazyPut<ScheduleRepository>(() => ScheduleRepositoryImpl());
     Get.lazyPut<ArticleRepository>(() => ArticleRepositoryImpl());
     Get.lazyPut<CommentRepository>(() => CommentRepositoryImpl());
     Get.lazyPut<QuestionRepository>(() => QuestionRepositoryImpl());
+    Get.lazyPut<AnswerRepository>(() => AnswerRepositoryImpl());
+    Get.lazyPut<MedicationRepository>(() => MedicationRepositoryImpl());
   }
 }

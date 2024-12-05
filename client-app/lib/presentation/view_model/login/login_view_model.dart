@@ -3,6 +3,7 @@ import 'package:wooahan/app/utility/validator_util.dart';
 import 'package:wooahan/core/wrapper/result_wrapper.dart';
 import 'package:wooahan/core/wrapper/state_wrapper.dart';
 import 'package:wooahan/domain/condition/auth/login_by_default_condition.dart';
+import 'package:wooahan/domain/condition/user/update_device_token_in_user_condition.dart';
 import 'package:wooahan/domain/usecase/auth/login_by_default_use_case.dart';
 import 'package:wooahan/domain/usecase/user/update_device_token_in_user_use_case.dart';
 
@@ -39,6 +40,8 @@ class LoginViewModel extends GetxController {
     super.onInit();
 
     _loginByDefaultUseCase = Get.find<LoginByDefaultUseCase>();
+    _updateDeviceTokenInUserUsecase =
+        Get.find<UpdateDeviceTokenInUserUseCase>();
 
     _emailStr = ''.obs;
     _passwordStr = ''.obs;
@@ -108,12 +111,12 @@ class LoginViewModel extends GetxController {
   }
 
   Future<void> _updateDeviceToken() async {
-    // String? token = await FirebaseMessaging.instance.getToken();
-    //
-    // await _updateDeviceTokenInUserUsecase.execute(
-    //   UpdateUserDeviceTokenCondition(
-    //     deviceToken: token!,
-    //   ),
-    // );
+    String? token = "testtest";
+
+    await _updateDeviceTokenInUserUsecase.execute(
+      UpdateDeviceTokenInUserCondition(
+        deviceToken: token,
+      ),
+    );
   }
 }

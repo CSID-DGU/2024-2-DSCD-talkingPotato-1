@@ -55,16 +55,27 @@ class MedicationViewModel extends GetxController {
 
   @override
   void onReady() async {
+    super.onReady();
+
     _isLoading.value = true;
 
-    Future.wait([
+    await Future.wait([
       _fetchScheduleSummaryList(),
       _fetchScheduleList(_selectedTypeStr),
     ]);
 
     _isLoading.value = false;
+  }
 
-    super.onReady();
+  Future<void> onRefresh() async {
+    _isLoading.value = true;
+
+    await Future.wait([
+      _fetchScheduleSummaryList(),
+      _fetchScheduleList(_selectedTypeStr),
+    ]);
+
+    _isLoading.value = false;
   }
 
   Future<void> updateSelectedType(String typeStr) async {

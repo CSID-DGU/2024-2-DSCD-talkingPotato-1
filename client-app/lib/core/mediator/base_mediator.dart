@@ -4,9 +4,16 @@ import 'package:wooahan/presentation/view_model/article/detail/article_detail_vi
 import 'package:wooahan/presentation/view_model/article/searching/article_searching_view_model.dart';
 import 'package:wooahan/presentation/view_model/board/board_view_model.dart';
 import 'package:wooahan/presentation/view_model/home/home_view_model.dart';
+import 'package:wooahan/presentation/view_model/medication/default/medication_view_model.dart';
 import 'package:wooahan/presentation/view_model/question/default/question_view_model.dart';
 
 class BaseMediator extends GetxService {
+  Future<void> publishUpdateMedicationEvent() async {
+    try {
+      await Get.find<MedicationViewModel>().onRefresh();
+    } catch (_) {}
+  }
+
   Future<void> publishCreateArticleCommentEvent(int articleId) async {
     try {
       await Get.find<ArticleViewModel>()

@@ -34,8 +34,8 @@ class ScheduleSummaryState {
   ) {
     return ScheduleSummaryState(
       timeline: timeline,
-      takenAmount: json["totalDrugCount"],
-      totalAmount: json["takenDrugCount"],
+      takenAmount: json["takenDrugCount"],
+      totalAmount: json["totalDrugCount"],
       isNow: false,
     );
   }

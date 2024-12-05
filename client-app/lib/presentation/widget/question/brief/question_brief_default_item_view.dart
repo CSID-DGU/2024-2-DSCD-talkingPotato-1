@@ -61,12 +61,12 @@ class QuestionBriefDefaultItemView extends StatelessWidget {
         textColor = ColorSystem.neutral;
         badgeText = '답변 대기중';
         break;
-      case 'AI':
+      case 'EXPERT':
         backgroundColor = ColorSystem.primary;
         textColor = ColorSystem.white;
         badgeText = '전문가 첫 답변';
         break;
-      case 'EXPERT':
+      case 'AI':
         backgroundColor = ColorSystem.blue;
         textColor = ColorSystem.white;
         badgeText = 'AI 첫 답변';

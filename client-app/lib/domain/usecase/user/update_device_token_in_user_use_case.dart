@@ -27,10 +27,6 @@ class UpdateDeviceTokenInUserUseCase extends BaseUseCase
       );
     }
 
-    return StateWrapper(
-      success: true,
-    );
-
     StateWrapper<void> state =
         await _userRepository.updateUserDeviceToken(condition);
 

@@ -52,6 +52,9 @@ dependencies:
   # Percent Indicator
   percent_indicator: ^4.2.3
 
+  # Smooth Page Indicator
+  smooth_page_indicator: ^1.2.0+3
+
 dev_dependencies:
   # Default
   flutter_test:

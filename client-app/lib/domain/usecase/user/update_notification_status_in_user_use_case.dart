@@ -21,10 +21,6 @@ class UpdateNotificationStatusInUserUseCase extends BaseUseCase
   Future<StateWrapper<void>> execute(
     UpdateNotificationStatusInUserCondition condition,
   ) async {
-    return StateWrapper(
-      success: true,
-    );
-
     StateWrapper<void> state = await _userRepository.updateNotificationStatus(
       condition,
     );
