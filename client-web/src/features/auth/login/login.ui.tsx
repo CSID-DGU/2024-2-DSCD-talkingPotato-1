@@ -41,6 +41,7 @@ const LoginForm = (): ReactElement => {
   });
   const [isValid, setIsValid] = useState(false);
 
+  const navigate = useNavigate();
   const { setAid } = useAccountStore();
   const cookies = new Cookies();
 
@@ -54,7 +55,8 @@ const LoginForm = (): ReactElement => {
 
   const { mutate: login } = useLoginMutation({
     onSuccess: () => {
-      setAid(cookies.get("aid"));
+      setAid(cookies.get("account_id"));
+      navigate(CONSTANTS.ROUTER.ARTICLE);
     },
   });
 

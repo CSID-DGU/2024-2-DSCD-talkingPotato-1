@@ -87,7 +87,7 @@ export class AuthService {
    */
   static register(data: RegisterDto, temporaryToken: string) {
     return httpClient.post(
-      `/auth/sign-up`,
+      `/auth/sign-up?role=EXPERT`,
       {
         nickname: data.nickname,
         password: data.password,

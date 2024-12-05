@@ -3,10 +3,22 @@ import LogoutIcon from "@shared/assets/icons/Logout.svg?react";
 import { useLogoutMutation } from "./logout.mutation";
 import { useNavigate } from "react-router-dom";
 import { CONSTANTS } from "@app/constants/constants";
+import useAccountStore from "@shared/store/account";
+import { Cookies } from "react-cookie";
 
 const Logout = (): ReactElement => {
   const navigate = useNavigate();
-  const { mutate: logout } = useLogoutMutation();
+  const { clearAid } = useAccountStore();
+  const cookies = new Cookies();
+  const { mutate: logout } = useLogoutMutation({
+    onSuccess: () => {
+      clearAid();
+      cookies.remove("access_token");
+      cookies.remove("account_id");
+      cookies.remove("refresh_token");
+      navigate(CONSTANTS.ROUTER.LOGIN);
+    },
+  });
 
   const handleLogout = () => {
     logout();
