@@ -1,1 +1,1 @@
-export {default as ArticleReading} from "./article-reading.ui";
+export { default as ArticleReadingPage } from "./article-reading.ui";

@@ -1,67 +1,93 @@
-import {AxiosContracts, instance} from "@shared/lib/axios";
-import {LoginDto, RegisterDto} from "./auth.types.ts";
-import {LoginDtoSchema} from "./auth.contracts.ts";
+import { AxiosContracts, httpClient } from "@shared/lib/axios";
+import {
+  LoginDto,
+  RegisterDto,
+  ValidateAuthenticationCodeDto,
+} from "./auth.types.ts";
+import { LoginDtoSchema } from "./auth.contracts";
 
 export class AuthService {
+  /**
+   * Login
+   * @param LoginDto
+   */
+  static loginMutation(data: { loginDto: LoginDto }) {
+    const loginDto = AxiosContracts.requestContract(
+      LoginDtoSchema,
+      data.loginDto
+    );
 
-    static loginMutation(data: { loginDto: LoginDto }) {
+    const formData = new FormData();
 
-        const loginDto = AxiosContracts.requestContract(
-            LoginDtoSchema,
-            data.loginDto
-        )
+    formData.append("serial_id", loginDto.serialId);
+    formData.append("password", loginDto.password);
 
-        const formData = new FormData();
+    return httpClient.post(`/auth/login`, formData);
+  }
 
-        formData.append('serial_id', loginDto.serialId);
-        formData.append('password', loginDto.password);
+  /**
+   * Logout
+   */
+  static logoutMutation() {
+    return httpClient.post(`/auth/logout`);
+  }
 
-        return instance
-            .post(`/auth/login`, formData)
-            .then(AxiosContracts.responseContract(LoginDtoSchema))
-            ;
-    }
+  /**
+   * Withdrawal
+   */
+  static withdrawalMutation() {
+    return httpClient.delete(`/auth/withdrawal`);
+  }
 
-    static logoutMutation() {
-        return instance.post(`/auth/logout`);
-    }
+  /**
+   * Reissue Password
+   */
+  static reissuePasswordMutation() {
+    return httpClient.post(`/auth/reissue/password`);
+  }
 
-    static withdrawalMutation() {
-        return instance.delete(`/auth/withdrawal`);
-    }
+  /**
+   * Reissue JWT Token
+   */
+  static reissueJwtTokenMutation() {
+    return httpClient.post(`/auth/reissue/token`);
+  }
 
-    static reissuePasswordMutation() {
-        return instance.post(`/auth/reissue/password`);
-    }
+  /**
+   * Validate Email
+   * @param email
+   */
+  static validateEmailMutation(data: { email: string }) {
+    return httpClient.post(`/auth/validations/email`, {
+      email: data.email,
+    });
+  }
 
-    static reissueJwtTokenMutation() {
-        return instance.post(`/auth/reissue/token`);
-    }
+  /**
+   * Validate Authentication Code
+   * @param email
+   * @param authenticationCode
+   */
+  static validateAuthenticationCodeMutation(
+    data: ValidateAuthenticationCodeDto
+  ) {
+    return httpClient.post(`/auth/validations/authentication-code`, {
+      email: data.email,
+      code: data.code,
+    });
+  }
 
-    static validateEmailMutation(data: { email: string }) {
-        return instance.post(`/auth/validations/email`, {
-            email: data.email
-        });
-    }
-
-    static validateAuthenticationCodeMutation(data: {
-        email: string,
-        authenticationCode: string
-    }) {
-        return instance.post(`/auth/validations/authentication-code`, {
-            email: data.email,
-            authentication_code: data.authenticationCode
-        });
-    }
-
-    static register(data: RegisterDto) {
-
-        return instance.post(`/auth/sign-up`, {
-            nickname: data.nickname,
-            password: data.password,
-            career: data.career
-        });
-    }
+  /**
+   * Register
+   * @param RegisterDto
+   */
+  static register(data: RegisterDto) {
+    return httpClient.post(`/auth/sign-up`, {
+      nickname: data.nickname,
+      password: data.password,
+      career: data.career,
+    });
+  }
 }
 
 export default AuthService;

@@ -1,1 +1,0 @@
-export {default as ItemBadge} from "./item-badge.ui";

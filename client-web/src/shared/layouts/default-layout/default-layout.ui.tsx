@@ -1,17 +1,15 @@
-import React from 'react';
-
-import * as Styled from "./default-layout.style.ts";
+import React from "react";
 
 interface props {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const DefaultLayout = (props: props) => {
-    return (
-        <Styled.Container>
-            {props.children}
-        </Styled.Container>
-    )
-}
+  return (
+    <div className="flex flex-col w-full h-full items-center justify-center">
+      {props.children}
+    </div>
+  );
+};
 
 export default DefaultLayout;

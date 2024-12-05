@@ -1,1 +1,0 @@
-export {default as Head6} from "./head6.ui";

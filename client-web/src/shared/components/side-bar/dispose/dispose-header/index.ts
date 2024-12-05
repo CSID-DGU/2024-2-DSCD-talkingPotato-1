@@ -1,1 +1,0 @@
-export {default as DisposeHeader} from "./dispose-header.ui";

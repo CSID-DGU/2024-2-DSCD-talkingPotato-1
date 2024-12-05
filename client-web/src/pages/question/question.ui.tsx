@@ -1,29 +1,13 @@
-import {ReactElement, useEffect, useState} from "react";
-import * as Styled from "./question.style.ts";
-import {RootLayout} from "@shared/layouts";
-import {QuestionList} from "@features/question/question-list";
-import {QuestionListLib} from "@features/question/question-list/question-list.lib.ts";
-import QuestionListMock from "@features/question/question-list/question-list.mock.ts";
-import {QuestionTopBar} from "@features/question";
+import { ReactElement } from "react";
+import { RootLayout } from "@shared/layouts/root-layout";
+import { ReadQuestionList } from "@features/question/read-question-list";
 
-const Question = (): ReactElement => {
+const QuestionPage = (): ReactElement => {
+  return (
+    <RootLayout>
+      <ReadQuestionList />
+    </RootLayout>
+  );
+};
 
-    const [questions, setQuestions] = useState<QuestionListLib[]>([]);
-
-    useEffect(() => {
-        setQuestions(QuestionListMock);
-    }, []);
-
-    return (
-        <RootLayout>
-            <Styled.PageContainer>
-                <QuestionTopBar/>
-                <Styled.ScrollableContainer>
-                    <QuestionList questions={questions}/>
-                </Styled.ScrollableContainer>
-            </Styled.PageContainer>
-        </RootLayout>
-    )
-}
-
-export default Question;
+export default QuestionPage;

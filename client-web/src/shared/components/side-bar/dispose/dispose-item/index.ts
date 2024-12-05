@@ -1,1 +1,0 @@
-export {default as DisposeItem} from "./dispose-item.ui";

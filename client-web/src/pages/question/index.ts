@@ -1,1 +1,1 @@
-export {default as Question} from "./question.ui";
+export { default as QuestionPage } from "./question.ui";

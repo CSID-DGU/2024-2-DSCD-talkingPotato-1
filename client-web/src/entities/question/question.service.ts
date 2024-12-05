@@ -4,17 +4,27 @@ import {
   ReadQuestionListDto,
   ReadQuestionListDtoSchema,
 } from "./question.contracts.ts";
-import { AxiosContracts, AxiosResponseType, instance } from "@shared/lib/axios";
+import {
+  AxiosContracts,
+  AxiosResponseType,
+  httpClient,
+} from "@shared/lib/axios";
 
 export class QuestionService {
-  static readQuestionListQuery() {
-    return instance
-      .get<AxiosResponseType<ReadQuestionListDto>>(`/api/v1/questions`)
+  static readQuestionListQuery(searchTerm?: string) {
+    let baseUrl = `/api/v1/questions?page=0&size=1000`;
+
+    if (searchTerm && searchTerm.length > 1) {
+      baseUrl += `&searchTerm=${searchTerm}`;
+    }
+
+    return httpClient
+      .get<AxiosResponseType<ReadQuestionListDto>>(baseUrl)
       .then(AxiosContracts.responseContract(ReadQuestionListDtoSchema));
   }
 
   static readQuestionQuery(questionId: number) {
-    return instance
+    return httpClient
       .get<
         AxiosResponseType<ReadQuestionDetailDto>
       >(`/api/v1/questions/${questionId}`)

@@ -1,1 +1,0 @@
-export type AnswerStatus = 'pending' | 'answered_by_llm' | 'answered_by_expert';

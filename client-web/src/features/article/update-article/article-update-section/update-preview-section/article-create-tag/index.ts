@@ -1,1 +1,0 @@
-export {default as ArticleCreateTag} from "./article-create-tag.ui.tsx";

@@ -1,1 +1,0 @@
-export {default as CreateTagInput} from "./create-tag-input.ui.tsx";

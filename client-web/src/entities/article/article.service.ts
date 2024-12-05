@@ -1,4 +1,8 @@
-import { AxiosContracts, AxiosResponseType, instance } from "@shared/lib/axios";
+import {
+  AxiosContracts,
+  AxiosResponseType,
+  httpClient,
+} from "@shared/lib/axios";
 import {
   CreateArticle,
   ReadArticle,
@@ -10,29 +14,35 @@ import {
 } from "./article.contracts.ts";
 
 export class ArticleService {
-  static readArticleListQuery() {
-    return instance
-      .get<AxiosResponseType<ReadArticleList>>(`/api/v1/articles`)
+  static readArticleListQuery(searchTerm?: string) {
+    let baseUrl = `/api/v1/articles?page=0&size=1000`;
+
+    if (searchTerm && searchTerm.length > 1) {
+      baseUrl += `&searchTerm=${searchTerm}`;
+    }
+
+    return httpClient
+      .get<AxiosResponseType<ReadArticleList>>(baseUrl)
       .then(AxiosContracts.responseContract(ReadArticleListDtoSchema));
   }
 
   static readArticleQuery(id: number) {
-    return instance
+    return httpClient
       .get<AxiosResponseType<ReadArticle>>(`/api/v1/articles/${id}`)
       .then(AxiosContracts.responseContract(ReadArticleDetailDtoSchema));
   }
 
   static createArticleMutation(article: CreateArticle) {
-    return instance.post<AxiosResponseType<null>>(`/api/v1/articles`, {
+    return httpClient.post<AxiosResponseType<null>>(`/api/v1/articles`, {
       title: article.title,
       content: article.content,
       tags: article.tags,
     });
   }
 
-  static updateArticleMutation(columnId: number, article: CreateArticle) {
-    return instance.put<AxiosResponseType<null>>(
-      `/api/v1/articles/${columnId}`,
+  static updateArticleMutation(articleId: number, article: CreateArticle) {
+    return httpClient.put<AxiosResponseType<null>>(
+      `/api/v1/articles/${articleId}`,
       {
         title: article.title,
         content: article.content,
@@ -41,9 +51,9 @@ export class ArticleService {
     );
   }
 
-  static deleteArticleMutation(columnId: number) {
-    return instance.delete<AxiosResponseType<null>>(
-      `/api/v1/articles/${columnId}`
+  static deleteArticleMutation(articleId: number) {
+    return httpClient.delete<AxiosResponseType<null>>(
+      `/api/v1/articles/${articleId}`
     );
   }
 }

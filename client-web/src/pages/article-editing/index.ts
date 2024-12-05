@@ -1,1 +1,1 @@
-export {default as ArticleEditing} from "./article-editing.ui";
+export { default as ArticleEditingPage } from "./article-editing.ui";
