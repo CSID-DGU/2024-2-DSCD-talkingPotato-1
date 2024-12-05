@@ -60,7 +60,7 @@ class QuestionRemoteProviderImpl extends BaseConnect
       '/api/v1/questions',
       {
         'content': content,
-        'isMadeByStt': isMadeByStt,
+        'is_made_by_stt': isMadeByStt,
       },
       headers: BaseConnect.useBearerToken,
     );

@@ -92,10 +92,6 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
       focusNode: widget.focusNode,
       keyboardType: widget.textInputType,
       textInputAction: widget.textInputAction,
-      onFieldSubmitted: (_) {
-        widget.onSubmittedCallBack();
-        widget.focusNode?.unfocus();
-      },
       controller: controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
@@ -108,7 +104,17 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
       style: widget.textStyle,
       enabled: enable,
       maxLength: widget.maxLength,
-      onChanged: widget.onChangedCallBack,
+      onChanged: (value) {
+        setState(() {
+          controller.text = value;
+        });
+
+        widget.onChangedCallBack(value);
+      },
+      onFieldSubmitted: (_) {
+        widget.onSubmittedCallBack();
+        widget.focusNode?.unfocus();
+      },
       decoration: InputDecoration(
         filled: widget.fillColor != null,
         fillColor: widget.fillColor,
@@ -173,7 +179,9 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
                 padding: const EdgeInsets.fromLTRB(12, 10, 10, 10),
                 child: GestureDetector(
                   onTap: () {
-                    controller.clear();
+                    setState(() {
+                      controller.clear();
+                    });
                     widget.onClearCallBack('');
                   },
                   behavior: HitTestBehavior.translucent,

@@ -136,4 +136,32 @@ class ArticleSearchingViewModel extends GetxController {
       ),
     );
   }
+
+  Future<void> consumeCreateArticleCommentEvent(int articleId) async {
+    if (_mode.value != 'searched') {
+      return;
+    }
+
+    _articleSummaryList.value = _articleSummaryList
+        .map((articleSummary) => articleSummary.id == articleId
+            ? articleSummary.copyWith(
+                commentCnt: articleSummary.commentCnt + 1,
+              )
+            : articleSummary)
+        .toList();
+  }
+
+  Future<void> consumeDeleteArticleCommentEvent(int articleId) async {
+    if (_mode.value != 'searched') {
+      return;
+    }
+
+    _articleSummaryList.value = _articleSummaryList
+        .map((articleSummary) => articleSummary.id == articleId
+            ? articleSummary.copyWith(
+                commentCnt: articleSummary.commentCnt - 1,
+              )
+            : articleSummary)
+        .toList();
+  }
 }

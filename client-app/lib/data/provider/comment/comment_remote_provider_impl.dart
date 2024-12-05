@@ -18,4 +18,34 @@ class CommentRemoteProviderImpl extends BaseConnect
 
     return ResponseWrapper.fromJson(response.body);
   }
+
+  @override
+  Future<ResponseWrapper> postArticleComment({
+    required int articleId,
+    required String content,
+    required bool isMadeByStt,
+  }) async {
+    Response response = await post(
+      '/api/v1/articles/$articleId/comments',
+      headers: BaseConnect.useBearerToken,
+      {
+        'content': content,
+        'is_made_by_stt': isMadeByStt,
+      },
+    );
+
+    return ResponseWrapper.fromJson(response.body);
+  }
+
+  @override
+  Future<ResponseWrapper> deleteArticleComment({
+    required int commentId,
+  }) async {
+    Response response = await delete(
+      '/api/v1/comments/$commentId',
+      headers: BaseConnect.useBearerToken,
+    );
+
+    return ResponseWrapper.fromJson(response.body);
+  }
 }

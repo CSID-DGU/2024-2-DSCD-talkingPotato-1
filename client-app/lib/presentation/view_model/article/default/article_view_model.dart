@@ -75,4 +75,24 @@ class ArticleViewModel extends GetxController {
 
     _articleSummaryList.assignAll(state.data!);
   }
+
+  Future<void> consumeCreateArticleCommentEvent(int articleId) async {
+    _articleSummaryList.value = _articleSummaryList
+        .map((articleSummary) => articleSummary.id == articleId
+            ? articleSummary.copyWith(
+                commentCnt: articleSummary.commentCnt + 1,
+              )
+            : articleSummary)
+        .toList();
+  }
+
+  Future<void> consumeDeleteArticleCommentEvent(int articleId) async {
+    _articleSummaryList.value = _articleSummaryList
+        .map((articleSummary) => articleSummary.id == articleId
+            ? articleSummary.copyWith(
+                commentCnt: articleSummary.commentCnt - 1,
+              )
+            : articleSummary)
+        .toList();
+  }
 }

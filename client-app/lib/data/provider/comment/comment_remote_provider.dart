@@ -6,4 +6,14 @@ abstract class CommentRemoteProvider {
     required int page,
     required int size,
   });
+
+  Future<ResponseWrapper> postArticleComment({
+    required int articleId,
+    required String content,
+    required bool isMadeByStt,
+  });
+
+  Future<ResponseWrapper> deleteArticleComment({
+    required int commentId,
+  });
 }

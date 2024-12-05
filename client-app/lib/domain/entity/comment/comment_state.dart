@@ -6,12 +6,18 @@ class CommentState {
   final String creator;
   final String creatorId;
 
+  final String? currentAccountId;
+
+  bool get isMine =>
+      currentAccountId == null ? false : currentAccountId == creatorId;
+
   CommentState({
     required this.id,
     required this.content,
     required this.createdAt,
     required this.creator,
     required this.creatorId,
+    this.currentAccountId,
   });
 
   CommentState copyWith({
@@ -20,6 +26,7 @@ class CommentState {
     String? createdAt,
     String? creator,
     String? creatorId,
+    String? currentAccountId,
   }) {
     return CommentState(
       id: id ?? this.id,
@@ -27,6 +34,7 @@ class CommentState {
       createdAt: createdAt ?? this.createdAt,
       creator: creator ?? this.creator,
       creatorId: creatorId ?? this.creatorId,
+      currentAccountId: currentAccountId ?? this.currentAccountId,
     );
   }
 

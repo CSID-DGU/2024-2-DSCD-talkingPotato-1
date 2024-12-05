@@ -65,7 +65,6 @@ class ArticleDetailScreen extends GetView<ArticleDetailViewModel> {
           Get.toNamed(
             AppRoutes.COMMENT + AppRoutes.ADDING_PATH,
             arguments: {
-              'type': 'article',
               'id': viewModel.articleDetail.id,
             },
           );

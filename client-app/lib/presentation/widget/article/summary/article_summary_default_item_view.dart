@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
+import 'package:wooahan/app/utility/date_time_util.dart';
 import 'package:wooahan/domain/entity/article/article_summary_state.dart';
 
 class ArticleSummaryDefaultItemView extends StatelessWidget {
@@ -51,7 +52,7 @@ class ArticleSummaryDefaultItemView extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              '${state.createdAt} | ${state.creator} | ${state.commentCnt}개의 댓글 ',
+              '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.commentCnt}개의 댓글 ',
               style: FontSystem.Sub3.copyWith(
                 color: ColorSystem.neutral,
               ),
