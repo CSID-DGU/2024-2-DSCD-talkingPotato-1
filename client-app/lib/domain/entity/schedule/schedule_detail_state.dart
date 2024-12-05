@@ -1,7 +1,7 @@
 class ScheduleDetailState {
   final bool isTaken;
 
-  final int? drugId;
+  final int drugId;
   final String drugType;
   final String drugName;
   final String? drugClassificationOrManufacturer;
@@ -9,7 +9,7 @@ class ScheduleDetailState {
 
   ScheduleDetailState({
     required this.isTaken,
-    this.drugId,
+    required this.drugId,
     required this.drugType,
     required this.drugName,
     this.drugClassificationOrManufacturer,

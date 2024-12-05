@@ -29,4 +29,42 @@ class ScheduleRemoteProviderImpl extends BaseConnect
 
     return ResponseWrapper.fromJson(response.body);
   }
+
+  @override
+  Future<ResponseWrapper> postSchedule({
+    required int drugId,
+    required String time,
+    required String date,
+  }) async {
+    Response response = await post(
+      '/api/v1/schedules',
+      {
+        'drug_id': drugId,
+        'time': time,
+        'date': date,
+      },
+      headers: BaseConnect.useBearerToken,
+    );
+
+    return ResponseWrapper.fromJson(response.body);
+  }
+
+  @override
+  Future<ResponseWrapper> deleteSchedule({
+    required String drugId,
+    required String time,
+    required String date,
+  }) async {
+    Response response = await delete(
+      '/api/v1/schedules',
+      query: {
+        'id': drugId,
+        'time': time,
+        'date': date,
+      },
+      headers: BaseConnect.useBearerToken,
+    );
+
+    return ResponseWrapper.noContent();
+  }
 }
