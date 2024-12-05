@@ -1,1 +1,1 @@
-export {default as Waiting} from "./waiting.ui";
+export { default as WaitingPage } from "./waiting.ui";

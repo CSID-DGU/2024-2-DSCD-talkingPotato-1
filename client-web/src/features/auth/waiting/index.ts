@@ -1,1 +1,1 @@
-export * from "./waiting-top-bar";
+export { default as Waiting } from "./waiting.ui";

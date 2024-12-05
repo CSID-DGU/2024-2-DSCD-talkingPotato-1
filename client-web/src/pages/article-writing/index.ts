@@ -1,1 +1,1 @@
-export {default as ArticleWriting} from "./article-writing.ui";
+export { default as ArticleWritingPage } from "./article-writing.ui";

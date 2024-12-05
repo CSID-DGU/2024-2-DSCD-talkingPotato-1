@@ -1,1 +1,0 @@
-export {default as ArticleDetailTag} from "./article-detail-tag.ui.tsx";

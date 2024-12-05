@@ -1,29 +1,16 @@
-import {ReactElement, useEffect, useState} from "react";
-import * as Styled from "./question-reading.style.ts";
-import {DefaultLayout} from "@shared/layouts";
-import {QuestionDetail, QuestionDetailTopBar} from "@features/question";
-import {QuestionDetailInterface} from "@features/question/question-detail/question-detail.lib.ts";
-import QuestionDetailMock from "@features/question/question-detail/question-detail.mock.ts";
+import { ReactElement } from "react";
+import { DefaultLayout } from "@shared/layouts/default-layout";
+import { ReadQuestion } from "@features/question";
+import { useParams } from "react-router-dom";
 
-const QuestionReading = ():
-    ReactElement => {
+const QuestionReadingPage = (): ReactElement => {
+  const questionId = useParams().id;
 
-    const [question, setQuestion] = useState<QuestionDetailInterface>();
+  return (
+    <DefaultLayout>
+      <ReadQuestion questionId={parseInt(questionId!)} />
+    </DefaultLayout>
+  );
+};
 
-    useEffect(() => {
-        setQuestion(QuestionDetailMock);
-    }, []);
-
-    return (
-        <DefaultLayout>
-            <QuestionDetailTopBar/>
-            <Styled.Container>
-                {
-                    question && <QuestionDetail question={question}/>
-                }
-            </Styled.Container>
-        </DefaultLayout>
-    )
-}
-
-export default QuestionReading;
+export default QuestionReadingPage;

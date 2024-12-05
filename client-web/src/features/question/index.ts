@@ -1,2 +1,2 @@
-export * from "./question-list";
-export * from "./question-detail";
+export * from "./read-question-list";
+export * from "./read-question";

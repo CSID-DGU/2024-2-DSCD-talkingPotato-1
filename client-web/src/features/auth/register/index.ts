@@ -1,2 +1,1 @@
-export * from "./register-top-bar"
-export * from "./register-form"
+export { default as Register } from "./register.ui";

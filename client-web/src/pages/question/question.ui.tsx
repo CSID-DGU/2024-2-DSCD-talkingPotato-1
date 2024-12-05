@@ -1,29 +1,28 @@
-import {ReactElement, useEffect, useState} from "react";
-import * as Styled from "./question.style.ts";
-import {RootLayout} from "@shared/layouts";
-import {QuestionList} from "@features/question/question-list";
-import {QuestionListLib} from "@features/question/question-list/question-list.lib.ts";
-import QuestionListMock from "@features/question/question-list/question-list.mock.ts";
-import {QuestionTopBar} from "@features/question";
+import { ReactElement, useState } from "react";
+import { RootLayout } from "@shared/layouts/root-layout";
+import { ReadQuestionList } from "@features/question/read-question-list";
+import { useQuery } from "@tanstack/react-query";
+import { QuestionQueries } from "@entities/question";
+import SearchQuestion from "@features/question/search-question/search-question.ui";
 
-const Question = (): ReactElement => {
+const QuestionPage = (): ReactElement => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
-    const [questions, setQuestions] = useState<QuestionListLib[]>([]);
+  const { data: questionList, isLoading: questionListLoading } = useQuery(
+    QuestionQueries.readQuestionListQuery(searchTerm)
+  );
 
-    useEffect(() => {
-        setQuestions(QuestionListMock);
-    }, []);
+  return (
+    <RootLayout>
+      <SearchQuestion setSearchTerm={setSearchTerm} />
+      <div className="flex flex-col flex-1 overflow-y-auto p-5 gap-2">
+        <ReadQuestionList
+          questionList={questionList!}
+          questionListLoading={questionListLoading}
+        />
+      </div>
+    </RootLayout>
+  );
+};
 
-    return (
-        <RootLayout>
-            <Styled.PageContainer>
-                <QuestionTopBar/>
-                <Styled.ScrollableContainer>
-                    <QuestionList questions={questions}/>
-                </Styled.ScrollableContainer>
-            </Styled.PageContainer>
-        </RootLayout>
-    )
-}
-
-export default Question;
+export default QuestionPage;

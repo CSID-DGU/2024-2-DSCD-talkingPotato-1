@@ -1,1 +1,1 @@
-export {default as QuestionDetail} from "./question-reading.ui.tsx";
+export { default as QuestionReadingPage } from "./question-reading.ui.tsx";

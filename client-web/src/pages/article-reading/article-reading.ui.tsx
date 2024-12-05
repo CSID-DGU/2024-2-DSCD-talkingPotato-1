@@ -1,31 +1,16 @@
-import * as Styled from "./article-reading.style.ts";
-import {ReactElement, useEffect, useState} from "react";
-import {ArticleDetailInterface} from "@features/article/article-detail/article-detail.lib.ts";
-import {ArticleDetail, ArticleDetailMock, ArticleReadingTopBar} from "@features/article";
-import {DefaultLayout} from "@shared/layouts";
+import { ReactElement } from "react";
+import { DefaultLayout } from "@shared/layouts/default-layout";
+import { useParams } from "react-router-dom";
+import { ReadArticle } from "@features/article/read-article";
 
-const ArticleReading = (): ReactElement => {
+const ArticleReadingPage = (): ReactElement => {
+  const articleId = parseInt(useParams().id!);
 
-    const [article, setArticle] = useState<ArticleDetailInterface>();
+  return (
+    <DefaultLayout>
+      <ReadArticle articleId={articleId} />
+    </DefaultLayout>
+  );
+};
 
-    useEffect(() => {
-        setArticle(ArticleDetailMock);
-    }, []);
-
-    return (
-        <DefaultLayout>
-            <Styled.PageContainer>
-                <ArticleReadingTopBar/>
-                {
-                    article && (
-                        <Styled.ScrollableContainer>
-                            <ArticleDetail article={article}/>
-                        </Styled.ScrollableContainer>
-                    )
-                }
-            </Styled.PageContainer>
-        </DefaultLayout>
-    )
-}
-
-export default ArticleReading;
+export default ArticleReadingPage;

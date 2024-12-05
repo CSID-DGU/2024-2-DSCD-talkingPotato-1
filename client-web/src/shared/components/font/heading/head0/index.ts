@@ -1,1 +1,0 @@
-export {default as Head0} from "./head0.ui.tsx";
