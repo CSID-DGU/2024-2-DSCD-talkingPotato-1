@@ -3,7 +3,10 @@ import { Cookies } from "react-cookie";
 import AxiosConvertor from "@shared/lib/axios/axios.convertor.ts";
 
 const cookies = new Cookies();
-const accessToken = cookies.get("access_token");
+//const accessToken = cookies.get("access_token");
+
+const accessToken =
+  "eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhaWQiOiJiYWJkZDhjMy01MWJhLTQxODAtOGNkMy1kNmJlZGVlN2I0MGMiLCJyb2wiOiJFWFBFUlQiLCJpYXQiOjE3MzM0MTE3NTcsImV4cCI6MTczNDYyMTM1N30.mCrBjmG3F0jLOV4EXvqRCFS-TmT8fBlEA4Y-LUhogqhZ3arzCy63BSWfHAuVoCkUbsWpyF7Gnzyw-zrglTAu5g";
 
 export const httpClient = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,

@@ -52,7 +52,7 @@ export const MarkdownEditor = (props: props): ReactElement => {
 
   return (
     <div
-      className="flex flex-col w-full h-full"
+      className="flex flex-col w-full h-full flex-1"
       onDrop={handleDrop}
       onDragOver={handleDragOver}
     >
@@ -63,6 +63,7 @@ export const MarkdownEditor = (props: props): ReactElement => {
           borderRadius: "12px",
           padding: "20px",
           height: "100%",
+          minHeight: "500px",
           flex: 1,
         }}
         hideToolbar={true}

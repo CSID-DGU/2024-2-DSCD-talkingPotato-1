@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import DisposeChevronIcon from "@shared/assets/icons/DisposeChevron.svg?react";
 import ArticleIcon from "@shared/assets/icons/article.svg?react";
 import QuestionIcon from "@shared/assets/icons/question.svg?react";
+import { Logout } from "@features/auth/logout";
 
 const Expand = (): ReactElement => {
   const { toggleExpand, updatePage } = useSideBarStore();
@@ -20,9 +21,9 @@ const Expand = (): ReactElement => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-row justify-between items-center mb-15">
+      <div className="flex flex-row justify-end items-center mb-32 w-full">
         <DisposeChevronIcon
-          className="w-6 h-6 flex-end cursor-pointer"
+          className="w-6 h-6 cursor-pointer"
           onClick={toggleExpand}
         />
       </div>
@@ -30,17 +31,15 @@ const Expand = (): ReactElement => {
         Icon={ArticleIcon}
         type="article"
         onClick={() => handlePageUpdate("article")}
-        width="34.222223px"
-        height="28px"
-        className="mb-2"
+        className="w-8 h-8 mr-4"
       />
       <ExpandItem
         Icon={QuestionIcon}
         type="question"
         onClick={() => handlePageUpdate("question")}
-        width="28.85px"
-        height="28px"
+        className="w-8 h-8 mr-4"
       />
+      <Logout />
     </div>
   );
 };
@@ -49,25 +48,23 @@ interface IExpandItemProps {
   Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   type: SideBarPage;
   onClick: () => void;
-  width: string;
-  height: string;
   className?: string;
 }
 
 const ExpandItem = (props: IExpandItemProps): ReactElement => {
-  const { Icon, type, onClick, width, height, className } = props;
+  const { Icon, type, onClick, className } = props;
   const { currentPage } = useSideBarStore();
 
   const text = props.type == "article" ? "칼럼" : "질문";
 
   return (
     <div
-      className={`flex w-[218px] justify-start p-4 rounded-2xl cursor-pointer ${currentPage === type ? "bg-white" : "bg-transparent"}`}
+      className={`flex w-[218px] justify-start p-4 rounded-2xl cursor-pointer ${currentPage === type ? "bg-white" : "bg-transparent"} `}
+      onClick={onClick}
     >
       <div className="flex flex-row items-center">
         <Icon
-          className={`w-[${width}] h-[${height}] ${currentPage === type ? "text-primary-500" : "text-white"} ${className}`}
-          onClick={onClick}
+          className={`${currentPage === type ? "text-primary-500" : "text-white"} ${className}`}
         />
         <h4
           className={`text-h4 ${currentPage == type ? "text-primary-500" : "text-white"}`}

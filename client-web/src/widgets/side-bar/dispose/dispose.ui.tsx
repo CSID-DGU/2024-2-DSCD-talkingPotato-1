@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getPageRoute } from "@app/utils";
 import { useSideBarStore } from "@shared/store";
 import { SideBarPage } from "@shared/types";
+import { Logout } from "@features/auth/logout";
 
 // Icons
 import ExpandChevronIcon from "@shared/assets/icons/ExpandChevron.svg?react";
@@ -42,6 +43,7 @@ const Dispose = (): ReactElement => {
         width="28.85px"
         height="28px"
       />
+      <Logout />
     </div>
   );
 };
@@ -66,8 +68,8 @@ const DisposeItem = (props: IDisposeItemProps): ReactElement => {
 
   return (
     <div
-      className={`flex justify-center w-[60px] py-4 rounded-2xl ${
-        currentPage === type ? "bg-white" : "bg-transparent"
+      className={`flex justify-center w-[60px] py-4 rounded-2xl cursor-pointer ${
+        currentPage === type ? "bg-white " : "bg-transparent"
       } ${className}`}
     >
       <Icon

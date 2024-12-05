@@ -1,8 +1,8 @@
-import { ReactElement, startTransition, useState } from "react";
+import { ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { RootLayout } from "@shared/layouts/root-layout";
 import { CONSTANTS } from "@app/constants/constants.ts";
+import { useQuery } from "@tanstack/react-query";
 import ArticleQueries from "@entities/article/article.queries.ts";
 import { SearchArticle } from "@features/article/search-article";
 import { ArticleList } from "@features/article/read-article-list";
@@ -13,14 +13,12 @@ import WritingIcon from "@shared/assets/icons/Writing.svg?react";
 const ArticlePage = (): ReactElement => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { data: articleList } = useSuspenseQuery(
+  const { data: articleList, isLoading: articleListLoading } = useQuery(
     ArticleQueries.readArticleListQuery(searchTerm)
   );
 
   const handleSetSearchTerm = (searchTerm: string) => {
-    startTransition(() => {
-      setSearchTerm(searchTerm);
-    });
+    setSearchTerm(searchTerm);
   };
 
   return (
@@ -28,7 +26,10 @@ const ArticlePage = (): ReactElement => {
       <div className="flex flex-col w-full h-full">
         <SearchArticle setSearchTerm={handleSetSearchTerm} />
         <div className="flex-1 overflow-y-auto flex flex-col p-5 gap-2.5">
-          <ArticleList articleList={articleList} />
+          <ArticleList
+            articleList={articleList!}
+            articleListLoading={articleListLoading}
+          />
           <CreateButton />
         </div>
       </div>
@@ -47,10 +48,10 @@ const CreateButton = (): ReactElement => {
 
   return (
     <button
-      className="fixed right-10 bottom-10 items-center py-4 px-5 bg-primary-500 rounded-xl cursor-pointer gap-2"
+      className="fixed flex flex-row right-10 bottom-10 items-center py-5 px-5 bg-primary-500 rounded-full cursor-pointer gap-2 hover:bg-primary-400"
       onClick={handleArticleWrite}
     >
-      <h1 className="text-h3 text-white">칼럼 작성하기</h1>
+      <h1 className="text-h1 text-white">칼럼 작성하기</h1>
       <WritingIcon className="w-6 h-6 text-white" />
     </button>
   );

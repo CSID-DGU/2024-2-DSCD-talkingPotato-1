@@ -20,7 +20,7 @@ export class CommentService {
     return httpClient.post<AxiosResponseType<ReadCommentDto>>(
       `/api/v1/articles/${articleId}/comments`,
       {
-        comment: comment.content,
+        content: comment.content,
       }
     );
   }

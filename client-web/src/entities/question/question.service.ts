@@ -15,7 +15,7 @@ export class QuestionService {
     let baseUrl = `/api/v1/questions?page=0&size=1000`;
 
     if (searchTerm && searchTerm.length > 1) {
-      baseUrl += `&searchTerm=${searchTerm}`;
+      baseUrl += `&q=${searchTerm}`;
     }
 
     return httpClient

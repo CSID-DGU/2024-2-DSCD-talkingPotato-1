@@ -23,7 +23,7 @@ export default function SideBar(): React.ReactElement {
             ${
               isExpanded
                 ? "w-[250px] flex-[0_0_250px] p-4 px-[19.2px] justify-start"
-                : "w-24 flex-[0_0_96px] p-4 justify-center"
+                : "w-24 flex-[0_0_96px] p-4 justify-start"
             }
         `}
     >

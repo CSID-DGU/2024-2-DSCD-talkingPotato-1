@@ -73,7 +73,7 @@ export class AuthService {
   ) {
     return httpClient.post(`/auth/validations/authentication-code`, {
       email: data.email,
-      code: data.code,
+      authentication_code: data.code,
     });
   }
 
@@ -81,12 +81,20 @@ export class AuthService {
    * Register
    * @param RegisterDto
    */
-  static register(data: RegisterDto) {
-    return httpClient.post(`/auth/sign-up`, {
-      nickname: data.nickname,
-      password: data.password,
-      career: data.career,
-    });
+  static register(data: RegisterDto, temporaryToken: string) {
+    return httpClient.post(
+      `/auth/sign-up`,
+      {
+        nickname: data.nickname,
+        password: data.password,
+        career: data.career,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${temporaryToken}`,
+        },
+      }
+    );
   }
 }
 

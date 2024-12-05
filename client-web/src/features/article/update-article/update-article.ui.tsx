@@ -139,28 +139,27 @@ const TopBar = (props: ITopBarProps): ReactElement => {
   };
 
   return (
-    <div className="flex flex-row w-full justify-between items-center px-5 h-16 border-b border-neutral-700">
-      <h1 className="text-h0 text-black text-start">칼럼 수정하기</h1>
-      <div className="flex flex-row gap-2 flex-end">
+    <div className="flex flex-row w-full justify-end items-center border-b border-neutral-700">
+      <div className="flex flex-row gap-3 pt-2 pr-2">
         <button
-          className="w-24 h-10 bg-red-600 rounded-lg hover:bg-red-700"
+          className="px-8 py-4 rounded-2xl bg-red-600 hover:bg-red-500"
           onClick={handleCancelButton}
         >
-          <p className="text-sub1 text-white text-center">취소</p>
+          <h4 className="text-h4 text-white">취소하기</h4>
         </button>
         <button
-          className="w-24 h-10 bg-secondary-900 rounded-lg hover:bg-secondary-800"
+          className="px-8 py-4 rounded-2xl bg-secondary-500 hover:bg-secondary-400"
           onClick={handleUpdateArticle}
         >
-          <p className="text-sub1 text-white text-center">등록</p>
+          <h4 className="text-h4 text-white">수정하기</h4>
         </button>
       </div>
       {isConfirmOpen && (
         <Confirm
           title={confirmTitle}
           content={confirmMessage}
-          onCancel={() => setIsConfirmOpen(false)}
           onConfirm={onConfirm}
+          onCancel={() => setIsConfirmOpen(false)}
         />
       )}
     </div>
@@ -304,7 +303,7 @@ interface ITagProps {
 const Tag = (props: ITagProps): ReactElement => {
   return (
     <div
-      className={`flex flex-col items-center justify-center px-5 h-6 bg-secondary-900 rounded-lg ${props.isFirst ? "ml-0" : "ml-3"}`}
+      className={`flex flex-col items-center justify-center px-5 h-6 bg-secondary-900 rounded-full ${props.isFirst ? "ml-0" : "ml-3"}`}
     >
       <p className="text-sub2 text-center text-primary-500">{props.tag}</p>
     </div>

@@ -9,13 +9,14 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArticleQueries } from "@entities/article";
 import { DateTimeUtil } from "@app/utils";
 import { MarkdownViewer } from "@widgets/markdown/markdown-viewer";
-import { CreateComment } from "@features/comment/create-comment";
 import { ReadCommentList } from "@features/comment/read-comment";
-import { LoadingIndicator } from "@widgets/loading-indicator";
 
 // Icons
 import BackIcon from "@shared/assets/icons/back.svg?react";
 import WritingIcon from "@shared/assets/icons/Writing.svg?react";
+import useAccountStore from "@shared/store/account";
+import { ReadArticleDetail } from "@entities/article/article.types";
+import { LoadingIndicator } from "@widgets/loading-indicator";
 
 interface IReadArticleProps {
   articleId: number;
@@ -25,10 +26,26 @@ const ReadArticle = (props: IReadArticleProps): ReactElement => {
   const { articleId } = props;
 
   return (
+    <Suspense fallback={<LoadingIndicator />}>
+      <ReadArticleContent articleId={articleId} />
+    </Suspense>
+  );
+};
+
+const ReadArticleContent = ({
+  articleId,
+}: {
+  articleId: number;
+}): ReactElement => {
+  const { data: article } = useSuspenseQuery(
+    ArticleQueries.readArticleDetailQuery(articleId)
+  );
+
+  return (
     <div className="flex flex-col w-full h-screen items-center">
-      <TopBar articleId={articleId} />
+      <TopBar articleId={articleId} creatorId={article.creatorId} />
       <div className="flex-1 overflow-y-auto flex flex-col w-1/2 p-10 gap-2 items-start">
-        <ArticleDetail articleId={articleId} />
+        <ArticleDetail article={article} />
       </div>
     </div>
   );
@@ -38,11 +55,13 @@ export default ReadArticle;
 
 interface ITopBarProps {
   articleId: number;
+  creatorId: string;
 }
 
 const TopBar = (props: ITopBarProps): ReactElement => {
-  const { articleId } = props;
+  const { articleId, creatorId } = props;
   const navigate = useNavigate();
+  const { aid } = useAccountStore();
 
   const {
     confirmMessage,
@@ -74,22 +93,24 @@ const TopBar = (props: ITopBarProps): ReactElement => {
   };
 
   return (
-    <div className="flex flex-row w-full border-b border-neutral-700 items-center justify-between">
+    <div className="flex flex-row w-full border-b border-neutral-700 items-center justify-between pt-2 px-4">
       <div
-        className="flex flex-row items-center gap-3 cursor-pointer hover:bg-neutral-100 rounded-lg p-2"
+        className="flex flex-row items-center gap-3 cursor-pointer hover:bg-neutral-900 rounded-lg p-2"
         onClick={handleBack}
       >
         <BackIcon className="w-6 h-6 text-neutral-500" />
         <h1 className="text-h1 text-neutral-500 text-start">뒤로가기</h1>
       </div>
-      <div
-        className="flex flex-end items-center cursor-pointer hover:bg-neutral-100 rounded-lg p-2"
-        onClick={handleDelete}
-      >
-        <h1 className="text-h1 text-red-500 text-center cursor-pointer">
-          삭제하기
-        </h1>
-      </div>
+      {aid === creatorId && (
+        <div
+          className="flex flex-end items-center cursor-pointer hover:bg-neutral-900 rounded-lg p-2"
+          onClick={handleDelete}
+        >
+          <h1 className="text-h1 text-red-500 text-center cursor-pointer">
+            삭제하기
+          </h1>
+        </div>
+      )}
       {isConfirmOpen && (
         <Confirm
           title={confirmTitle}
@@ -103,25 +124,11 @@ const TopBar = (props: ITopBarProps): ReactElement => {
 };
 
 interface IArticleDetailProps {
-  articleId: number;
+  article: ReadArticleDetail;
 }
 
 const ArticleDetail = (props: IArticleDetailProps): ReactElement => {
-  const { articleId } = props;
-
-  return (
-    <Suspense fallback={<LoadingIndicator />}>
-      <ArticleContent articleId={articleId} />
-    </Suspense>
-  );
-};
-
-const ArticleContent = (props: IArticleDetailProps): ReactElement => {
-  const { articleId } = props;
-
-  const { data: article } = useSuspenseQuery(
-    ArticleQueries.readArticleDetailQuery(articleId)
-  );
+  const { article } = props;
 
   return (
     <div className="flex flex-col w-full h-full">
@@ -154,10 +161,10 @@ const ArticleContent = (props: IArticleDetailProps): ReactElement => {
           </div>
         </div>
       </div>
+      <hr className="w-full h-[1px] bg-neutral-700 my-10" />
       <MarkdownViewer markdownValue={article.content} />
-      <CreateComment articleId={articleId} className="m-10" />
-      <ReadCommentList articleId={articleId} />
-      <UpdateButton articleId={articleId} />
+      <ReadCommentList articleId={article.id} />
+      <UpdateButton articleId={article.id} />
     </div>
   );
 };
@@ -172,7 +179,7 @@ const Tag = (props: ITagProps): ReactElement => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center px-5 h-6 bg-secondary-900 rounded-lg ${isFirst ? "ml-0" : "ml-3"} cursor-pointer`}
+      className={`flex flex-col items-center justify-center px-5 h-6 bg-secondary-900 rounded-full ${isFirst ? "ml-0" : "ml-3"}`}
     >
       <p className="text-sub2 text-primary-500 text-center">{tag}</p>
     </div>
@@ -194,10 +201,10 @@ const UpdateButton = (props: IUpdateButtonProps): ReactElement => {
 
   return (
     <button
-      className="flex py-4 px-5 rounded-xl bg-primary-500 gap-3 items-center fixed right-10 bottom-10 cursor-pointer"
+      className="flex py-4 px-5 rounded-full bg-primary-500 hover:bg-primary-400 gap-3 items-center fixed right-10 bottom-10 cursor-pointer"
       onClick={handleUpdateButtonClick}
     >
-      <h1 className="text-h3 text-white">칼럼 수정하기</h1>
+      <h1 className="text-h1 text-white">칼럼 수정하기</h1>
       <WritingIcon className="w-6 h-6 text-white" />
     </button>
   );

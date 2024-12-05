@@ -13,12 +13,17 @@ import { Confirm } from "@widgets/confirm";
 import useCreateArticleMutation from "./create-article.mutation";
 import { MarkdownEditor } from "@widgets/markdown/markdown-editor/markdown-editor.ui";
 import { MarkdownViewer } from "@widgets/markdown/markdown-viewer";
+import { useAlertMessage } from "@shared/lib/alert/use-alert-message";
+import Alert from "@widgets/alert/alert.ui";
 
 const CreateArticle = (): ReactElement => {
   const [title, setTitle] = useState<string>("");
   const [tagInput, setTagInput] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [markdownValue, setMarkdownValue] = useState<string | undefined>("");
+
+  const { isAlertOpen, alertMessage, setIsAlertOpen, setAlertMessage } =
+    useAlertMessage();
 
   const navigate = useNavigate();
 
@@ -40,6 +45,16 @@ const CreateArticle = (): ReactElement => {
   };
 
   const handleCreateArticle = () => {
+    if (
+      title.length === 0 ||
+      markdownValue === undefined ||
+      tags.length === 0
+    ) {
+      setIsAlertOpen(true);
+      setAlertMessage("입력을 확인해주세요.");
+      return;
+    }
+
     createArticle({
       title,
       content: markdownValue!,
@@ -50,9 +65,9 @@ const CreateArticle = (): ReactElement => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col w-full h-screen">
       <TopBar onClick={handleCreateArticle} />
-      <div className="flex flex-row flex-1 gap-3 p-5 h-full">
+      <div className="flex flex-row w-full h-full flex-1 gap-3 p-5 ">
         <ArticleInput
           title={title}
           handleTitleChange={handleTitleChange}
@@ -67,6 +82,9 @@ const CreateArticle = (): ReactElement => {
           markdownValue={markdownValue!}
         />
       </div>
+      {isAlertOpen && (
+        <Alert title={alertMessage} onClick={() => setIsAlertOpen(false)} />
+      )}
     </div>
   );
 };
@@ -101,20 +119,19 @@ const TopBar = (props: ITopBarProps): ReactElement => {
   };
 
   return (
-    <div className="flex flex-row w-full justify-between items-center border-b border-neutral-700">
-      <h1 className="text-h1 text-start text-black">칼럼 작성하기</h1>
-      <div className="flex flex-row gap-2 items-center">
+    <div className="flex flex-row w-full justify-end items-center border-b border-neutral-700">
+      <div className="flex flex-row gap-3 pt-2 pr-2">
         <button
-          className="w-24 h-12 p-2 rounded-lg bg-red-600 hover:bg-red-700"
+          className="px-8 py-4 rounded-2xl bg-red-600 hover:bg-red-500"
           onClick={handleCancleButtonClick}
         >
-          취소
+          <h4 className="text-h4 text-white">취소하기</h4>
         </button>
         <button
-          className="w-24 h-12 p-2 rounded-lg bg-secondary-500 hover:bg-secondary-600"
+          className="px-8 py-4 rounded-2xl bg-secondary-500 hover:bg-secondary-400"
           onClick={onClick}
         >
-          등록
+          <h4 className="text-h4 text-white">등록하기</h4>
         </button>
       </div>
       {isConfirmOpen && (
@@ -172,7 +189,7 @@ const TitleInput = (props: ITitleInputProps): ReactElement => {
         <div className="flex-1 h-[1px] bg-primary-500"></div>
       </div>
       <input
-        className="w-full p-4 rounded-lg border border-neutral-700 text-sub2"
+        className="w-full p-4 rounded-xl border border-neutral-700 text-sub2"
         placeholder="제목을 입력하세요"
         value={props.title}
         onChange={props.handleTitleChange}
@@ -196,7 +213,7 @@ const TagInput = (props: ITagInputProps): ReactElement => {
         <div className="flex-1 h-[1px] bg-primary-500"></div>
       </div>
       <input
-        className="w-full p-4 rounded-lg border border-neutral-700 text-sub2"
+        className="w-full p-4 rounded-xl border border-neutral-700 text-sub2"
         placeholder="태그를 입력하세요"
         value={props.tagInput}
         onChange={props.handleTagInputChange}
@@ -266,7 +283,7 @@ interface ITagProps {
 const Tag = (props: ITagProps): ReactElement => {
   return (
     <div
-      className={`flex flex-col items-center justify-center px-5 h-6 bg-secondary-900 rounded-lg ${props.isFirst ? "ml-0" : "ml-3"}`}
+      className={`flex flex-col items-center justify-center px-5 h-6 bg-secondary-900 rounded-full ${props.isFirst ? "ml-0" : "ml-3"}`}
     >
       <p className="text-sub2 text-center text-primary-500">{props.tag}</p>
     </div>

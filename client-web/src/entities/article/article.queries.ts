@@ -11,7 +11,7 @@ export class ArticleQueries {
     return queryOptions({
       queryKey: [...this.keys.list, searchTerm],
       queryFn: async () => {
-        const response = await ArticleService.readArticleListQuery();
+        const response = await ArticleService.readArticleListQuery(searchTerm);
         return response.data;
       },
     });

@@ -4,7 +4,7 @@ import { ReadQuestion } from "@features/question";
 import { useParams } from "react-router-dom";
 
 const QuestionReadingPage = (): ReactElement => {
-  const questionId = useParams().questionId;
+  const questionId = useParams().id;
 
   return (
     <DefaultLayout>

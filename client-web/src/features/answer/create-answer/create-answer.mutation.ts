@@ -37,7 +37,7 @@ export function useCreateAnswerMutation(
     onMutate,
     onSuccess: (data, variables, context) => {
       queryClient.invalidateQueries({
-        queryKey: ["answer", "list", variables],
+        queryKey: ["answer", "list", variables.questionId],
       });
       onSuccess?.(data, variables, context);
     },

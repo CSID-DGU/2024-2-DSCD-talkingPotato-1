@@ -35,7 +35,7 @@ export function useDeleteAnswerMutation(
     onMutate,
     onSuccess: (data, variables, context) => {
       queryClient.invalidateQueries({
-        queryKey: ["answer", "list", variables],
+        queryKey: ["answer", "list"],
       });
       onSuccess?.(data, variables, context);
     },

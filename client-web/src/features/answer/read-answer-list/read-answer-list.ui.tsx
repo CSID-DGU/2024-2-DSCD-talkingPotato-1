@@ -6,6 +6,7 @@ import { useDeleteAnswerMutation } from "../delete-answer";
 import { useConfirmMessage } from "@shared/lib/confirm/use-confirm-message";
 import { DateTimeUtil } from "@app/utils";
 import Confirm from "@widgets/confirm/confirm.ui";
+import useAccountStore from "@shared/store/account";
 
 interface IReadAnswerListProps {
   questionId: number;
@@ -37,6 +38,7 @@ interface IAnswerProps {
 
 const Answer = (props: IAnswerProps): ReactElement => {
   const { answer } = props;
+  const { aid } = useAccountStore();
 
   const { mutate: deleteAnswer } = useDeleteAnswerMutation();
 
@@ -77,27 +79,32 @@ const Answer = (props: IAnswerProps): ReactElement => {
   };
 
   return (
-    <div className="flex flex-col w-full py-3 px-5">
+    <div className="flex flex-col w-full py-4">
       <div className="flex flex-row w-full items-center mb-3">
         <p
-          className={`text-sub2 whitespace-nowrap mr-3 ${getColorByStatus(answer.nickname)}`}
+          className={`text-sub2 whitespace-nowrap mr-3 text-${getColorByStatus(answer.nickname)}`}
         >
           {getAnswerStatus(answer.nickname)}
         </p>
-        <div className="w-full h-[1px] bg-neutral-700" />
+        <div
+          className={`w-full h-[1px] bg-${getColorByStatus(answer.nickname)}`}
+        />
       </div>
+      <p className={`text-sub2 text-neutral-300`}>{answer.content}</p>
       <div className="flex flex-row w-full items-center justify-between">
         <p className="text-sub3 text-start text-neutral-500 text-start">
           {DateTimeUtil.convertDateToKoreanString(
             DateTimeUtil.convertStringToDate(answer.createdAt)
           )}
         </p>
-        <div
-          className="flex flex-column rounded-lg hover:bg-neutral-100 p-2 cursor-pointer"
-          onClick={handleDeleteAnswer}
-        >
-          <p className="text-sub3 text-red-500">삭제하기</p>
-        </div>
+        {aid === answer.creatorId && (
+          <div
+            className="flex flex-column rounded-lg hover:bg-neutral-900 p-2 cursor-pointer"
+            onClick={handleDeleteAnswer}
+          >
+            <p className="text-sub3 text-red-500">삭제하기</p>
+          </div>
+        )}
       </div>
       {isConfirmOpen && (
         <Confirm

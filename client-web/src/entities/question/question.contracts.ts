@@ -4,7 +4,7 @@ export const ReadQuestionDetailDtoSchema = z.object({
   id: z.number(),
   content: z.string(),
   createdAt: z.string(),
-  answerCnt: z.number(),
+  answerCount: z.number(),
   nickname: z.string(),
   creatorId: z.string(),
 });
@@ -14,7 +14,7 @@ export const ReadQuestionDtoSchema = z.object({
   preview: z.string(),
   answerStatus: z.string(),
   createdAt: z.string(),
-  answerCnt: z.number(),
+  answerCount: z.number(),
   nickname: z.string(),
   creatorId: z.string(),
 });

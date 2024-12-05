@@ -1,21 +1,16 @@
-import { AuthService, authTypes } from "@entities/auth";
+import { AuthService } from "@entities/auth/auth.service";
 import {
   DefaultError,
   UseMutationOptions,
   useMutation,
 } from "@tanstack/react-query";
 
-type TMutationType = {
-  registerDto: authTypes.RegisterDto;
-  temporaryToken: string;
-};
-
-export function useRegisterMutation(
+export function useLogoutMutation(
   options?: Pick<
     UseMutationOptions<
-      Awaited<ReturnType<typeof AuthService.register>>,
+      Awaited<ReturnType<typeof AuthService.logoutMutation>>,
       DefaultError,
-      TMutationType,
+      void,
       unknown
     >,
     "mutationKey" | "onMutate" | "onSuccess" | "onError" | "onSettled"
@@ -31,10 +26,11 @@ export function useRegisterMutation(
 
   return useMutation({
     mutationKey: ["auth", ...mutationKey],
-    mutationFn: async (data: TMutationType) =>
-      AuthService.register(data.registerDto, data.temporaryToken),
+    mutationFn: async () => AuthService.logoutMutation(),
     onMutate,
-    onSuccess,
+    onSuccess: async (response, variables, context) => {
+      await onSuccess?.(response, variables, context);
+    },
     onError,
     onSettled,
   });
