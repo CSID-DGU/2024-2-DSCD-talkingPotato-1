@@ -23,20 +23,6 @@ class ReadQuestionDetailUseCase extends BaseUseCase
   Future<StateWrapper<QuestionDetailState>> execute(
     ReadQuestionDetailCondition condition,
   ) async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    return StateWrapper(
-      success: true,
-      data: QuestionDetailState(
-        id: 1,
-        content: 'content',
-        createdAt: 'createdAt',
-        answerCnt: 1,
-        creator: 'creator',
-        creatorId: 'creatorId',
-      ),
-    );
-
     return await _questionRepository.readQuestionDetail(condition);
   }
 }

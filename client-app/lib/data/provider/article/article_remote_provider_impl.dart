@@ -11,7 +11,7 @@ class ArticleRemoteProviderImpl extends BaseConnect
     required String page,
     required String size,
   }) async {
-    Map<String, String> query = {
+    Map<String, dynamic> query = {
       'page': page,
       'size': size,
     };
@@ -21,7 +21,7 @@ class ArticleRemoteProviderImpl extends BaseConnect
     }
 
     Response response = await get(
-      '/articles',
+      '/api/v1/articles',
       query: query,
       headers: BaseConnect.useBearerToken,
     );
@@ -34,7 +34,7 @@ class ArticleRemoteProviderImpl extends BaseConnect
     required int articleId,
   }) async {
     Response response = await get(
-      '/articles/$articleId',
+      '/api/v1/articles/$articleId',
       headers: BaseConnect.useBearerToken,
     );
 

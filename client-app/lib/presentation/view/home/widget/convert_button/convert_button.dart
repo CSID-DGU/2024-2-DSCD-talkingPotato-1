@@ -21,59 +21,48 @@ class ConvertButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: ColorSystem.neutral.shade300,
-            offset: const Offset(0, 0),
-            blurRadius: 10,
-          ),
-        ],
-      ),
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          // Size
-          minimumSize: size,
-          fixedSize: size,
+    return FilledButton(
+      onPressed: onPressed,
+      style: FilledButton.styleFrom(
+        // Size
+        minimumSize: size,
+        fixedSize: size,
 
-          // Color
-          backgroundColor: ColorSystem.white,
-          foregroundColor: ColorSystem.primary,
-          disabledBackgroundColor: ColorSystem.neutral.shade300,
+        // Color
+        backgroundColor: ColorSystem.white,
+        foregroundColor: ColorSystem.primary,
+        disabledBackgroundColor: ColorSystem.neutral.shade300,
 
-          // Border
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
+        // Border
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 16,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgImageView(
-                assetPath: assetPath,
-                height: 80.0,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 16,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgImageView(
+              assetPath: assetPath,
+              height: 80.0,
+            ),
+            const Spacer(),
+            Text(
+              title,
+              style: FontSystem.Sub1,
+            ),
+            Text(
+              content,
+              style: FontSystem.Sub3.copyWith(
+                color: ColorSystem.neutral.shade600,
               ),
-              const Spacer(),
-              Text(
-                title,
-                style: FontSystem.Sub1,
-              ),
-              Text(
-                content,
-                style: FontSystem.Sub3.copyWith(
-                  color: ColorSystem.neutral.shade600,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

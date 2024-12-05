@@ -13,6 +13,21 @@ class BoardScreen extends BaseScreen<BoardViewModel> {
   const BoardScreen({super.key});
 
   @override
+  Color get unSafeAreaColor => ColorSystem.white;
+
+  @override
+  Color? get screenBackgroundColor => ColorSystem.white;
+
+  @override
+  bool get wrapWithOuterSafeArea => true;
+
+  @override
+  bool get setTopOuterSafeArea => true;
+
+  @override
+  bool get setBottomOuterSafeArea => false;
+
+  @override
   PreferredSizeWidget? buildAppBar(BuildContext context) {
     return const TextDefaultAppBar(
       preferredSize: Size.fromHeight(64),

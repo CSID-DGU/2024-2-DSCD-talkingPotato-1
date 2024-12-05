@@ -21,7 +21,7 @@ class QuestionRemoteProviderImpl extends BaseConnect
     }
 
     Response response = await get(
-      '/questions',
+      '/api/v1/questions',
       query: query,
       headers: BaseConnect.useBearerToken,
     );
@@ -34,7 +34,7 @@ class QuestionRemoteProviderImpl extends BaseConnect
     required int questionId,
   }) async {
     Response response = await get(
-      '/questions/$questionId',
+      '/api/v1/questions/$questionId',
       headers: BaseConnect.useBearerToken,
     );
 

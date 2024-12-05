@@ -22,21 +22,6 @@ class ReadArticleDetailUseCase extends BaseUseCase
   Future<StateWrapper<ArticleDetailState>> execute(
     ReadArticleDetailCondition condition,
   ) async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    return StateWrapper(
-      success: true,
-      data: ArticleDetailState(
-        id: 1,
-        title: 'title',
-        content: 'content',
-        createdAt: '2024-10-01',
-        creator: 'creator',
-        tags: ['tag1', 'tag2'],
-        commentCnt: 0,
-      ),
-    );
-
     return await _articleRepository.readArticleDetail(condition);
   }
 }

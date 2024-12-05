@@ -17,13 +17,6 @@ class MyStepGraphLayer extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: ColorSystem.white,
-        boxShadow: [
-          BoxShadow(
-            color: ColorSystem.neutral.shade300,
-            offset: const Offset(0, 0),
-            blurRadius: 10,
-          ),
-        ],
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

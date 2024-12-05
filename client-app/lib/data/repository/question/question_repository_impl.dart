@@ -66,8 +66,8 @@ class QuestionRepositoryImpl extends GetxService implements QuestionRepository {
     }
 
     List<QuestionSummaryState> questionSummaryList = response.data!['questions']
-        .map<QuestionBriefState>(
-          (question) => QuestionBriefState.fromJson(question),
+        .map<QuestionSummaryState>(
+          (question) => QuestionSummaryState.fromJson(question),
         )
         .toList();
 

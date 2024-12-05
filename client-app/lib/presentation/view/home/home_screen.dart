@@ -16,6 +16,9 @@ class HomeScreen extends BaseScreen<HomeViewModel> {
   Color get unSafeAreaColor => ColorSystem.primary;
 
   @override
+  Color? get screenBackgroundColor => ColorSystem.neutral.shade200;
+
+  @override
   bool get wrapWithOuterSafeArea => true;
 
   @override

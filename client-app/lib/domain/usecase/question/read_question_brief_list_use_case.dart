@@ -23,36 +23,6 @@ class ReadQuestionBriefListUseCase extends BaseUseCase
   Future<StateWrapper<List<QuestionBriefState>>> execute(
     ReadQuestionBriefListCondition condition,
   ) async {
-    return StateWrapper(
-      success: true,
-      data: [
-        QuestionBriefState(
-          id: 1,
-          preview:
-              '요즘 관절염이 심해서 근이완제를 먹고 있는데 효과가 있나요? 효과가 없어서 다른 약을 찾아보려고 하는데 추천해주실 수 있나요?',
-          createdAt: '2024-10-31 10:21:22',
-          creator: '홍길동',
-          answerStatus: 'NONE',
-        ),
-        QuestionBriefState(
-          id: 2,
-          preview:
-              '요즘 관절염이 심해서 근이완제를 먹고 있는데 효과가 있나요? 효과가 없어서 다른 약을 찾아보려고 하는데 추천해주실 수 있나요?',
-          createdAt: '2024-10-30 10:21:22',
-          creator: '길동홍',
-          answerStatus: 'AI',
-        ),
-        QuestionBriefState(
-          id: 3,
-          preview:
-              '요즘 관절염이 심해서 근이완제를 먹고 있는데 효과가 있나요? 효과가 없어서 다른 약을 찾아보려고 하는데 추천해주실 수 있나요?',
-          createdAt: '2024-10-30 10:21:22',
-          creator: '동홍길',
-          answerStatus: 'EXPERT',
-        ),
-      ],
-    );
-
     return await _questionRepository.readQuestionBriefList(condition);
   }
 }
