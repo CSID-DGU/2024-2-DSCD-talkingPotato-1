@@ -38,7 +38,7 @@ class QuestionSummaryState {
       id: json['id'],
       preview: json['preview'],
       answerStatus: json['answer_status'],
-      answerCnt: json['answer_cnt'],
+      answerCnt: json['answer_count'],
       createdAt: json['created_at'],
       creator: json['nickname'],
     );

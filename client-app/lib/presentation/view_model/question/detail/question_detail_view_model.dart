@@ -56,14 +56,14 @@ class QuestionDetailViewModel extends GetxController {
     _isInitLoading.value = true;
 
     await Future.wait([
-      _fetchArticleDetail(),
-      _fetchArticleCommentList(),
+      _fetchQuestionDetail(),
+      _fetchQuestionCommentList(),
     ]);
 
     _isInitLoading.value = false;
   }
 
-  Future<void> _fetchArticleDetail() async {
+  Future<void> _fetchQuestionDetail() async {
     StateWrapper<QuestionDetailState> state =
         await _readQuestionDetailUseCase.execute(
       ReadQuestionDetailCondition(
@@ -78,7 +78,7 @@ class QuestionDetailViewModel extends GetxController {
     _questionDetail.value = state.data!;
   }
 
-  Future<void> _fetchArticleCommentList() async {
+  Future<void> _fetchQuestionCommentList() async {
     StateWrapper<List<AnswerState>> state =
         await _readQuestionAnswerListUseCase.execute(
       ReadQuestionAnswerListCondition(

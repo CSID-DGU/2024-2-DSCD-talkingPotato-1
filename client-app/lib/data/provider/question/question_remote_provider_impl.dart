@@ -40,4 +40,21 @@ class QuestionRemoteProviderImpl extends BaseConnect
 
     return ResponseWrapper.fromJson(response.body);
   }
+
+  @override
+  Future<ResponseWrapper> postQuestion({
+    required String content,
+    required bool isMadeByStt,
+  }) async {
+    Response response = await post(
+      '/api/v1/questions',
+      {
+        'content': content,
+        'isMadeByStt': isMadeByStt,
+      },
+      headers: BaseConnect.useBearerToken,
+    );
+
+    return ResponseWrapper.fromJson(response.body);
+  }
 }

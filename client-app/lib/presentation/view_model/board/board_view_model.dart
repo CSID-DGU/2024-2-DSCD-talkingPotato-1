@@ -62,7 +62,7 @@ class BoardViewModel extends GetxController {
     StateWrapper<List<ArticleBriefState>> state =
         await _readArticleBriefListUseCase.execute(
       ReadArticleBriefListCondition(
-        page: 1,
+        page: 0,
         size: 3,
       ),
     );
@@ -78,7 +78,7 @@ class BoardViewModel extends GetxController {
     StateWrapper<List<QuestionBriefState>> state =
         await _readQuestionBriefListUseCase.execute(
       ReadQuestionBriefListCondition(
-        page: 1,
+        page: 0,
         size: 3,
       ),
     );

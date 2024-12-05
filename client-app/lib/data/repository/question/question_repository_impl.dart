@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:wooahan/core/wrapper/response_wrapper.dart';
 import 'package:wooahan/core/wrapper/state_wrapper.dart';
 import 'package:wooahan/data/provider/question/question_remote_provider.dart';
+import 'package:wooahan/domain/condition/create_question_condition.dart';
 import 'package:wooahan/domain/condition/question/read_question_brief_list_condition.dart';
 import 'package:wooahan/domain/condition/question/read_question_detail_condition.dart';
 import 'package:wooahan/domain/condition/question/read_question_summary_list_condition.dart';
@@ -100,5 +101,17 @@ class QuestionRepositoryImpl extends GetxService implements QuestionRepository {
       success: true,
       data: questionDetail,
     );
+  }
+
+  @override
+  Future<StateWrapper<void>> createQuestion(
+    CreateQuestionCondition condition,
+  ) async {
+    ResponseWrapper response = await _remoteProvider.postQuestion(
+      content: condition.content,
+      isMadeByStt: condition.isMadeByStt,
+    );
+
+    return StateWrapper.fromResponse(response);
   }
 }

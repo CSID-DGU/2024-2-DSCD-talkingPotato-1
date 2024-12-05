@@ -23,37 +23,6 @@ class ReadQuestionAnswerListUseCase extends BaseUseCase
   Future<StateWrapper<List<AnswerState>>> execute(
     ReadQuestionAnswerListCondition condition,
   ) async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    return StateWrapper(success: true, data: [
-      AnswerState(
-        id: 1,
-        content: '댓글 내용',
-        createdAt: '2024-10-03',
-      ),
-      AnswerState(
-        id: 4,
-        content: '댓글 내용',
-        createdAt: '2024-10-03',
-        creator: '작성자',
-        creatorId: '작성자 아이디',
-      ),
-      AnswerState(
-        id: 5,
-        content: '댓글 내용',
-        createdAt: '2024-10-03',
-        creator: '작성자',
-        creatorId: '작성자 아이디',
-      ),
-      AnswerState(
-        id: 6,
-        content: '댓글 내용',
-        createdAt: '2024-10-03',
-        creator: '작성자',
-        creatorId: '작성자 아이디',
-      ),
-    ]);
-
     return await _answerRepository.readQuestionAnswerList(condition);
   }
 }

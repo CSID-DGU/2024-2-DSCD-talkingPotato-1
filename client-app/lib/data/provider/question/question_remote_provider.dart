@@ -10,4 +10,9 @@ abstract class QuestionRemoteProvider {
   Future<ResponseWrapper> getQuestion({
     required int questionId,
   });
+
+  Future<ResponseWrapper> postQuestion({
+    required String content,
+    required bool isMadeByStt,
+  });
 }

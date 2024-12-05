@@ -47,19 +47,19 @@ class QuestionViewModel extends GetxController {
     _isInitLoading.value = true;
 
     await Future.wait([
-      _fetchArticleSummaryList(),
+      _fetchQuestionSummaryList(),
     ]);
 
     _isInitLoading.value = false;
   }
 
-  Future<void> _fetchArticleSummaryList() async {
+  Future<void> _fetchQuestionSummaryList() async {
     StateWrapper<List<QuestionSummaryState>> state =
         await _readQuestionSummaryListUseCase.execute(
       ReadQuestionSummaryListCondition(
         searchTerm: '',
-        page: 1,
-        size: 10,
+        page: 0,
+        size: 100,
       ),
     );
 

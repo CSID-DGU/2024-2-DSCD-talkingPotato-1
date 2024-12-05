@@ -12,7 +12,7 @@ class AnswerRemoteProviderImpl extends BaseConnect
     required String size,
   }) async {
     Response response = await get(
-      '/questions/$questionId/answers',
+      '/api/v1/questions/$questionId/answers',
     );
 
     return ResponseWrapper.fromJson(response.body);

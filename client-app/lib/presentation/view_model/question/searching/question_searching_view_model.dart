@@ -105,7 +105,7 @@ class QuestionSearchingViewModel extends GetxController {
         await _readQuestionSummaryListUseCase.execute(
       ReadQuestionSummaryListCondition(
         searchTerm: _searchTerm.value,
-        page: 1,
+        page: 0,
         size: 100,
       ),
     );
