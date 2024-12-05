@@ -30,6 +30,16 @@ class QuestionRemoteProviderImpl extends BaseConnect
   }
 
   @override
+  Future<ResponseWrapper> getMyQuestionList() async {
+    Response response = await get(
+      '/api/v1/users/questions',
+      headers: BaseConnect.useBearerToken,
+    );
+
+    return ResponseWrapper.fromJson(response.body);
+  }
+
+  @override
   Future<ResponseWrapper> getQuestion({
     required int questionId,
   }) async {

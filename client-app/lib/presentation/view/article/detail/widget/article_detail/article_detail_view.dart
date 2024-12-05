@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
@@ -40,13 +41,54 @@ class ArticleDetailView extends BaseWidget<ArticleDetailViewModel> {
           ),
         ),
         const SizedBox(height: 32),
-        Container(
-          constraints: const BoxConstraints(
-            minHeight: 200,
-          ),
-          child: Text(
-            viewModel.articleDetail.content,
-            style: FontSystem.H6,
+        Obx(
+          () => Markdown(
+            data: viewModel.articleDetail.content,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            styleSheet: MarkdownStyleSheet(
+              p: FontSystem.Sub2.copyWith(
+                fontSize: 16,
+                height: 1.5,
+                color: ColorSystem.neutral.shade900,
+              ),
+              h1: FontSystem.H1.copyWith(
+                color: ColorSystem.neutral.shade900,
+              ),
+              h1Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
+              h2: FontSystem.H2.copyWith(
+                color: ColorSystem.neutral.shade900,
+              ),
+              h2Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
+              h3: FontSystem.H3.copyWith(
+                color: ColorSystem.neutral.shade900,
+              ),
+              h3Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
+              h4: FontSystem.H4.copyWith(
+                color: ColorSystem.neutral.shade900,
+              ),
+              h4Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
+              h5: FontSystem.H5.copyWith(
+                color: ColorSystem.neutral.shade900,
+              ),
+              h5Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
+              h6: FontSystem.Sub2.copyWith(
+                color: ColorSystem.neutral.shade900,
+              ),
+              h6Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
+              blockquote: FontSystem.Sub2.copyWith(
+                color: ColorSystem.neutral.shade900,
+              ),
+              blockquoteDecoration: BoxDecoration(
+                color: ColorSystem.neutral.shade100,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              code: FontSystem.Sub2.copyWith(
+                color: ColorSystem.red,
+                backgroundColor: ColorSystem.neutral.shade100,
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 32),
@@ -55,7 +97,7 @@ class ArticleDetailView extends BaseWidget<ArticleDetailViewModel> {
           children: [
             Obx(
               () => Text(
-                '${viewModel.articleDetail.createdAt} | ${viewModel.articleDetail.creator} | ${viewModel.articleDetail.commentCnt}의 댓글 ',
+                '${viewModel.articleDetail.createdAt} | ${viewModel.articleDetail.creator} | ${viewModel.articleDetail.commentCnt}개의 댓글 ',
                 style: FontSystem.H6.copyWith(
                   color: ColorSystem.neutral,
                 ),

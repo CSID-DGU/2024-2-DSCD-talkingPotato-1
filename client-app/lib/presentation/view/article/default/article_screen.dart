@@ -34,9 +34,12 @@ class ArticleScreen extends BaseScreen<ArticleViewModel> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: ArticleSummaryCardListView(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: RefreshIndicator(
+        onRefresh: viewModel.onRefresh,
+        child: const ArticleSummaryCardListView(),
+      ),
     );
   }
 }

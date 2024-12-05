@@ -14,7 +14,6 @@ class ArticleViewModel extends GetxController {
   /* Private Fields --------------------------------------- */
   /* ------------------------------------------------------ */
   late final RxBool _isInitLoading;
-  late final RxBool _isMoreLoading;
   late final RxList<ArticleSummaryState> _articleSummaryList;
 
   /* ------------------------------------------------------ */
@@ -22,7 +21,6 @@ class ArticleViewModel extends GetxController {
   /* ------------------------------------------------------ */
 
   bool get isLoading => _isInitLoading.value;
-  bool get isMoreLoading => _isMoreLoading.value;
   List<ArticleSummaryState> get articleSummaryList => _articleSummaryList;
 
   /* ------------------------------------------------------ */
@@ -35,7 +33,6 @@ class ArticleViewModel extends GetxController {
     _readArticleSummaryListUseCase = Get.find<ReadArticleSummaryListUseCase>();
 
     _isInitLoading = true.obs;
-    _isMoreLoading = false.obs;
     _articleSummaryList = <ArticleSummaryState>[].obs;
   }
 
@@ -43,18 +40,30 @@ class ArticleViewModel extends GetxController {
   void onReady() async {
     super.onReady();
 
-    await _fetchArticleSummaryList();
+    await Future.wait([
+      _fetchArticleSummaryList(),
+    ]);
+
+    _isInitLoading.value = false;
+  }
+
+  Future<void> onRefresh() async {
+    _isInitLoading.value = true;
+
+    await Future.wait([
+      _fetchArticleSummaryList(),
+    ]);
+
+    _isInitLoading.value = false;
   }
 
   Future<void> _fetchArticleSummaryList() async {
-    _isInitLoading.value = true;
-
     StateWrapper<List<ArticleSummaryState>> state =
         await _readArticleSummaryListUseCase.execute(
       ReadArticleSummaryListCondition(
         searchTerm: '',
-        page: 1,
-        size: 10,
+        page: 0,
+        size: 100,
       ),
     );
 
@@ -64,8 +73,6 @@ class ArticleViewModel extends GetxController {
       return;
     }
 
-    _articleSummaryList.addAll(state.data!);
-
-    _isInitLoading.value = false;
+    _articleSummaryList.assignAll(state.data!);
   }
 }

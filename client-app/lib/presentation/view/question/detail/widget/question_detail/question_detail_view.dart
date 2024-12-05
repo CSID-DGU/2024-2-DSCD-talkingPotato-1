@@ -33,12 +33,19 @@ class QuestionDetailView extends BaseWidget<QuestionDetailViewModel> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Obx(
-              () => Text(
-                '${DateTimeUtil.calRemainDateTime(viewModel.questionDetail.createdAt)} | ${viewModel.questionDetail.creator} | ${viewModel.questionDetail.answerCnt}개의 답변',
-                style: FontSystem.H6.copyWith(
-                  color: ColorSystem.neutral,
-                ),
-              ),
+              () {
+                if (viewModel.isInitLoading) {
+                  return const SizedBox(
+                    height: 20,
+                  );
+                }
+                return Text(
+                  '${DateTimeUtil.calRemainDateTime(viewModel.questionDetail.createdAt)} | ${viewModel.questionDetail.creator} | ${viewModel.questionDetail.answerCnt}개의 답변',
+                  style: FontSystem.H6.copyWith(
+                    color: ColorSystem.neutral,
+                  ),
+                );
+              },
             ),
           ],
         ),

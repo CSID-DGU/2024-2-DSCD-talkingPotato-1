@@ -52,9 +52,6 @@ class ArticleDetailViewModel extends GetxController {
   @override
   void onReady() async {
     super.onReady();
-
-    _isInitLoading.value = true;
-
     await Future.wait([
       _fetchArticleDetail(),
       _fetchArticleCommentList(),

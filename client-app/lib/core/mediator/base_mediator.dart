@@ -1,11 +1,15 @@
 import 'package:get/get.dart';
 import 'package:wooahan/presentation/view_model/board/board_view_model.dart';
+import 'package:wooahan/presentation/view_model/home/home_view_model.dart';
 import 'package:wooahan/presentation/view_model/question/default/question_view_model.dart';
 
 class BaseMediator extends GetxService {
   void propagateArticle() {}
 
   Future<void> publishCreateQuestionEvent() async {
+    try {
+      await Get.find<HomeViewModel>().onRefresh();
+    } catch (_) {}
     try {
       await Get.find<BoardViewModel>().onRefresh();
     } catch (_) {}
@@ -15,6 +19,9 @@ class BaseMediator extends GetxService {
   }
 
   Future<void> publishDeleteQuestionEvent(int questionId) async {
+    try {
+      await Get.find<HomeViewModel>().onRefresh();
+    } catch (_) {}
     try {
       await Get.find<BoardViewModel>().onRefresh();
     } catch (_) {}

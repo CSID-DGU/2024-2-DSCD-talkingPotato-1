@@ -21,6 +21,8 @@ abstract class QuestionRepository {
     ReadQuestionDetailCondition condition,
   );
 
+  Future<StateWrapper<List<QuestionBriefState>>> readQuestionBriefListByUser();
+
   Future<StateWrapper<void>> createQuestion(
     CreateQuestionCondition condition,
   );

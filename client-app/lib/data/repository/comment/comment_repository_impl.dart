@@ -34,7 +34,7 @@ class CommentRepositoryImpl extends GetxService implements CommentRepository {
     }
 
     List<CommentState> commentList = response.data!['comments']
-        .map((e) => CommentState.fromJson(e))
+        .map<CommentState>((e) => CommentState.fromJson(e))
         .toList();
 
     return StateWrapper(

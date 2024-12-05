@@ -105,6 +105,41 @@ class QuestionRepositoryImpl extends GetxService implements QuestionRepository {
   }
 
   @override
+  Future<StateWrapper<List<QuestionBriefState>>>
+      readQuestionBriefListByUser() async {
+    ResponseWrapper response = await _remoteProvider.getMyQuestionList();
+
+    if (response.isFailure) {
+      return StateWrapper(
+        success: false,
+        message: response.message,
+        data: [
+          QuestionBriefState.initial(),
+          QuestionBriefState.initial(),
+          QuestionBriefState.initial(),
+        ],
+      );
+    }
+
+    List<QuestionBriefState> questionBriefList = [];
+
+    questionBriefList.addAll(response.data!['questions']
+        .map<QuestionBriefState>(
+          (question) => QuestionBriefState.fromJson(question),
+        )
+        .toList());
+
+    for (int i = questionBriefList.length; i < 3; i++) {
+      questionBriefList.add(QuestionBriefState.initial());
+    }
+
+    return StateWrapper(
+      success: true,
+      data: questionBriefList,
+    );
+  }
+
+  @override
   Future<StateWrapper<void>> createQuestion(
     CreateQuestionCondition condition,
   ) async {

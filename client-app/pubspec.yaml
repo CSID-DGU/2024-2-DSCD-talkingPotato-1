@@ -78,6 +78,9 @@ dev_dependencies:
   # STT
   speech_to_text: ^7.0.0
 
+  # Markdown
+  flutter_markdown: ^0.7.4+1
+
 flutter:
   uses-material-design: true
 

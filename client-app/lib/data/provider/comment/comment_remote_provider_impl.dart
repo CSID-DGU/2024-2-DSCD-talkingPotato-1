@@ -12,7 +12,7 @@ class CommentRemoteProviderImpl extends BaseConnect
     required int size,
   }) async {
     Response response = await get(
-      '/articles/$articleId/comments',
+      '/api/v1/articles/$articleId/comments',
       headers: BaseConnect.useBearerToken,
     );
 

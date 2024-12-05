@@ -19,4 +19,6 @@ abstract class QuestionRemoteProvider {
   Future<ResponseWrapper> deleteQuestion({
     required int questionId,
   });
+
+  Future<ResponseWrapper> getMyQuestionList();
 }

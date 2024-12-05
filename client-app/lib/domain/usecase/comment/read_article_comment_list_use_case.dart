@@ -23,39 +23,6 @@ class ReadArticleCommentListUseCase extends BaseUseCase
   Future<StateWrapper<List<CommentState>>> execute(
     ReadArticleCommentListCondition condition,
   ) async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    return StateWrapper(success: true, data: [
-      CommentState(
-        id: 4,
-        content: '댓글 내용',
-        createdAt: '2024-10-03',
-        creator: '작성자',
-        creatorId: '작성자 아이디',
-      ),
-      CommentState(
-        id: 3,
-        content: '댓글 내용',
-        createdAt: '2024-10-03',
-        creator: '작성자',
-        creatorId: '작성자 아이디',
-      ),
-      CommentState(
-        id: 2,
-        content: '댓글 내용',
-        createdAt: '2024-10-03',
-        creator: '작성자',
-        creatorId: '작성자 아이디',
-      ),
-      CommentState(
-        id: 1,
-        content: '댓글 내용',
-        createdAt: '2024-10-03',
-        creator: '작성자',
-        creatorId: '작성자 아이디',
-      ),
-    ]);
-
     return await _commentRepository.readArticleCommentList(condition);
   }
 }

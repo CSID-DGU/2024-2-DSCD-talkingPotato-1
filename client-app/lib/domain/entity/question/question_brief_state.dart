@@ -38,4 +38,14 @@ class QuestionBriefState {
       creator: json['nickname'],
     );
   }
+
+  factory QuestionBriefState.initial() {
+    return QuestionBriefState(
+      id: 0,
+      preview: '',
+      answerStatus: '',
+      createdAt: '',
+      creator: '',
+    );
+  }
 }
