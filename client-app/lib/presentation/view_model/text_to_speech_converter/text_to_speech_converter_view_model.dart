@@ -1,24 +1,49 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:wooahan/core/wrapper/state_wrapper.dart';
+import 'package:wooahan/domain/condition/analysis/analysis_document_condition.dart';
+import 'package:wooahan/domain/usecase/anlaysis/analysis_document_use_case.dart';
 
 class TextToSpeechConverterViewModel extends GetxController {
+  /* ------------------------------------------------------ */
+  /* DI Fields -------------------------------------------- */
+  /* ------------------------------------------------------ */
   late final PageController pageController;
 
-  late final Rxn<XFile?> _image;
+  late final AnalysisDocumentUseCase _analysisDocumentUseCase;
+
+  /* ------------------------------------------------------ */
+  /* Private Fields --------------------------------------- */
+  /* ------------------------------------------------------ */
   late final RxBool _isListening;
 
-  XFile? get image => _image.value;
+  late final Rxn<XFile?> _image;
+  late final RxString _analysisResult;
+
+  /* ------------------------------------------------------ */
+  /* Public Fields ---------------------------------------- */
+  /* ------------------------------------------------------ */
   bool get isListening => _isListening.value;
 
+  XFile? get image => _image.value;
+  String get analysisResult => _analysisResult.value;
+
+  /* ------------------------------------------------------ */
+  /* Method ----------------------------------------------- */
+  /* ------------------------------------------------------ */
   @override
   void onInit() {
     super.onInit();
 
     pageController = PageController(initialPage: 0);
 
-    _image = Rxn<XFile?>();
     _isListening = false.obs;
+
+    _image = Rxn<XFile?>();
+    _analysisResult = ''.obs;
   }
 
   void takePicture() async {
@@ -32,16 +57,19 @@ class TextToSpeechConverterViewModel extends GetxController {
   }
 
   void analysisPicture() async {
-    // 1. 페이지 이동
     pageController.nextPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
 
-    // 2. API 요청
-    await Future.delayed(const Duration(seconds: 4));
+    StateWrapper<String> result = await _analysisDocumentUseCase.execute(
+      AnalysisDocumentCondition(file: File(image!.path)),
+    );
 
-    // 3. 페이지 이동
+    if (result.success) {
+      _analysisResult.value = result.data!;
+    }
+
     pageController.nextPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,

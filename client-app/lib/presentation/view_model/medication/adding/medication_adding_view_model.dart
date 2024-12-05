@@ -118,7 +118,6 @@ class MedicationAddingViewModel extends GetxController {
         file: File('asdf'),
       ),
     );
-    print(result);
 
     if (result.success) {
       _drugSummaryList.assignAll(result.data!);

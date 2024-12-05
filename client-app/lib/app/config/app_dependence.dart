@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:wooahan/core/mediator/base_mediator.dart';
-import 'package:wooahan/data/provider/analysis/analysis_remote_provider.dart';
-import 'package:wooahan/data/provider/analysis/analysis_remote_provider_impl.dart';
+import 'package:wooahan/data/provider/analysis/image_analysis_remote_provider.dart';
+import 'package:wooahan/data/provider/analysis/image_analysis_remote_provider_impl.dart';
+import 'package:wooahan/data/provider/analysis/language_analysis_remote_provider.dart';
+import 'package:wooahan/data/provider/analysis/language_analysis_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/answer/answer_remote_provider.dart';
 import 'package:wooahan/data/provider/answer/answer_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/article/article_remote_provider.dart';
@@ -51,7 +53,12 @@ class AppDependency extends Bindings {
 
     // Add your provider dependencies here
     Get.lazyPut<DrugRemoteProvider>(() => DrugRemoteProviderImpl());
-    Get.lazyPut<AnalysisRemoteProvider>(() => AnalysisRemoteProviderImpl());
+    Get.lazyPut<ImageAnalysisRemoteProvider>(
+      () => ImageAnalysisRemoteProviderImpl(),
+    );
+    Get.lazyPut<LanguageAnalysisRemoteProvider>(
+      () => LanguageAnalysisRemoteProviderImpl(),
+    );
 
     Get.lazyPut<AuthProvider>(() => AuthProviderImpl());
     Get.lazyPut<UserRemoteProvider>(() => UserRemoteProviderImpl());
