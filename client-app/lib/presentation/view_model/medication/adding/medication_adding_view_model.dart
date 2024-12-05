@@ -8,7 +8,9 @@ import 'package:wooahan/domain/condition/analysis/analysis_drug_bag_condition.da
 import 'package:wooahan/domain/entity/drug/drug_brief_state.dart';
 import 'package:wooahan/domain/entity/drug/drug_summary_state.dart';
 import 'package:wooahan/domain/entity/medication/medication_state.dart';
+import 'package:wooahan/domain/usecase/drug/read_drug_brief_list_use_case.dart';
 import 'package:wooahan/domain/usecase/drug_bag/analysis_drug_bag_use_case.dart';
+import 'package:wooahan/domain/usecase/medication/create_medication_list_use_case.dart';
 
 class MedicationAddingViewModel extends GetxController {
   /* ------------------------------------------------------ */
@@ -17,6 +19,8 @@ class MedicationAddingViewModel extends GetxController {
   late final PageController pageController;
 
   late final AnalysisDrugBagUseCase _analysisDrugBagUseCase;
+  late final ReadDrugBriefListUseCase _readDrugBriefListUseCase;
+  late final CreateMedicationListUseCase _createMedicationListUseCase;
 
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
@@ -55,6 +59,8 @@ class MedicationAddingViewModel extends GetxController {
     super.onInit();
 
     _analysisDrugBagUseCase = Get.find<AnalysisDrugBagUseCase>();
+    _readDrugBriefListUseCase = Get.find<ReadDrugBriefListUseCase>();
+    _createMedicationListUseCase = Get.find<CreateMedicationListUseCase>();
 
     pageController = PageController(initialPage: 0);
 
