@@ -22,7 +22,11 @@ export class AuthService {
     formData.append("serial_id", loginDto.serialId);
     formData.append("password", loginDto.password);
 
-    return httpClient.post(`/auth/login`, formData);
+    return httpClient.post(`/auth/login`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   }
 
   /**
