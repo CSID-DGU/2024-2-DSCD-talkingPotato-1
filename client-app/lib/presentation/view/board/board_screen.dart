@@ -16,7 +16,7 @@ class BoardScreen extends BaseScreen<BoardViewModel> {
   Color get unSafeAreaColor => ColorSystem.white;
 
   @override
-  Color? get screenBackgroundColor => ColorSystem.white;
+  Color? get screenBackgroundColor => ColorSystem.neutral.shade200;
 
   @override
   bool get wrapWithOuterSafeArea => true;
@@ -37,88 +37,93 @@ class BoardScreen extends BaseScreen<BoardViewModel> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: RefreshIndicator(
-        onRefresh: viewModel.onRefresh,
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            return CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                SliverFillRemaining(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.maxHeight,
-                    ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 32),
-                          _buildArticleHeaderView(),
-                          const SizedBox(height: 16),
-                          const ArticleBriefCardListView(),
-                          const SizedBox(height: 32),
-                          _buildQuestionHeaderView(),
-                          const SizedBox(height: 16),
-                          const QuestionBriefCardListView(),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            );
-          },
-        ),
+    return RefreshIndicator(
+      onRefresh: viewModel.onRefresh,
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildArticleView(),
+                    const SizedBox(height: 16),
+                    _buildQuestionHeaderView(),
+                  ],
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
 
-  Widget _buildArticleHeaderView() {
-    return Row(
-      children: [
-        const Text(
-          '지금 많이 읽는 글',
-          style: FontSystem.H4,
-        ),
-        const Spacer(),
-        GestureDetector(
-          onTap: () {
-            Get.toNamed(AppRoutes.ARTICLE);
-          },
-          child: Text(
-            '더보기',
-            style: FontSystem.Sub1.copyWith(
-              color: ColorSystem.neutral.shade600,
-            ),
+  Widget _buildArticleView() {
+    return Container(
+      color: ColorSystem.white,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              const Text(
+                '지금 많이 읽는 글',
+                style: FontSystem.H4,
+              ),
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.ARTICLE);
+                },
+                child: Text(
+                  '더보기',
+                  style: FontSystem.Sub1.copyWith(
+                    color: ColorSystem.neutral.shade600,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+          const SizedBox(height: 16),
+          const ArticleBriefCardListView(),
+        ],
+      ),
     );
   }
 
   Widget _buildQuestionHeaderView() {
-    return Row(
-      children: [
-        const Text(
-          '최근 올리온 질문',
-          style: FontSystem.H4,
-        ),
-        const Spacer(),
-        GestureDetector(
-          onTap: () {
-            Get.toNamed(AppRoutes.QUESTION);
-          },
-          child: Text(
-            '더보기',
-            style: FontSystem.Sub1.copyWith(
-              color: ColorSystem.neutral.shade600,
-            ),
+    return Container(
+      color: ColorSystem.white,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              const Text(
+                '최근 올리온 질문',
+                style: FontSystem.H4,
+              ),
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.QUESTION);
+                },
+                child: Text(
+                  '더보기',
+                  style: FontSystem.Sub1.copyWith(
+                    color: ColorSystem.neutral.shade600,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+          const SizedBox(height: 16),
+          const QuestionBriefCardListView(),
+        ],
+      ),
     );
   }
 }

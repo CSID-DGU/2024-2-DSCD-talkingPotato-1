@@ -46,27 +46,32 @@ class MedicationScreen extends BaseScreen<MedicationViewModel> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return NestedScrollView(
-      physics: const AlwaysScrollableScrollPhysics(),
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return [
-          SliverToBoxAdapter(
-            child: Container(
-              color: ColorSystem.neutral.shade100,
-              child: const Column(
-                children: [
-                  SizedBox(height: 20),
-                  TimelineCardListView(),
-                  SizedBox(height: 32),
-                  ScheduleHeaderView(),
-                  SizedBox(height: 32),
-                ],
+    return RefreshIndicator(
+      onRefresh: viewModel.onRefresh,
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Container(
+                  color: ColorSystem.neutral.shade100,
+                  child: const Column(
+                    children: [
+                      SizedBox(height: 20),
+                      TimelineCardListView(),
+                      SizedBox(height: 32),
+                      ScheduleHeaderView(),
+                      SizedBox(height: 32),
+                      ScheduleCardListView(),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-        ];
-      },
-      body: const ScheduleCardListView(),
+            ],
+          );
+        },
+      ),
     );
   }
 }
