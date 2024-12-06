@@ -104,7 +104,7 @@ class BoardScreen extends BaseScreen<BoardViewModel> {
           Row(
             children: [
               const Text(
-                '최근 올리온 질문',
+                '최근 올라온 질문',
                 style: FontSystem.H4,
               ),
               const Spacer(),

@@ -59,10 +59,9 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
         return Column(
           children: [
             const SizedBox(height: 46),
-            Container(
+            SizedBox(
               width: 160,
-              height: 68,
-              margin: const EdgeInsets.only(top: 6),
+              height: 70,
               child: Stack(
                 alignment: Alignment.center,
                 children: [

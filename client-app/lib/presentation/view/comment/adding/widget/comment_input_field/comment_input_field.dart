@@ -18,7 +18,7 @@ class CommentInputField extends BaseWidget<CommentAddingViewModel> {
         minLines: 6,
         maxLines: 6,
         maxLength: 100,
-        placeholder: '댓글를 입력해주세요',
+        placeholder: '댓글을 입력해주세요(10자 이상)',
         enabledCounter: true,
         hasSuffixIcon: false,
         fillColor: ColorSystem.neutral.shade100,

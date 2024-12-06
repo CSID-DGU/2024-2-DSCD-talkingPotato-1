@@ -18,7 +18,7 @@ class QuestionInputField extends BaseWidget<QuestionAddingViewModel> {
         minLines: 10,
         maxLines: 10,
         maxLength: 500,
-        placeholder: '질문를 입력해주세요',
+        placeholder: '질문를 입력해주세요(10자 이상)',
         enabledCounter: true,
         hasSuffixIcon: false,
         fillColor: ColorSystem.neutral.shade200,
