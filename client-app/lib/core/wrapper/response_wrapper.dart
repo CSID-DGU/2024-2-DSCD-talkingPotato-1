@@ -3,6 +3,9 @@ class ResponseWrapper {
   final String? message;
   final Map<String, dynamic>? data;
 
+  bool get isSuccess => success;
+  bool get isFailure => !success;
+
   ResponseWrapper({
     required this.success,
     this.message,

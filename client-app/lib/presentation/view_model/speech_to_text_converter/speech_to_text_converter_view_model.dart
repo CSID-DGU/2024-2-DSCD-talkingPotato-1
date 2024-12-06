@@ -1,21 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-import 'package:wooahan/domain/entity/speech_to_text_state.dart';
+import 'package:wooahan/core/wrapper/state_wrapper.dart';
+import 'package:wooahan/domain/condition/analysis/analysis_speech_condition.dart';
+import 'package:wooahan/domain/entity/stt/speech_to_text_state.dart';
+import 'package:wooahan/domain/usecase/anlaysis/analysis_speech_use_case.dart';
 
 class SpeechToTextConverterViewModel extends GetxController {
+  /* ------------------------------------------------------ */
+  /* DI Fields -------------------------------------------- */
+  /* ------------------------------------------------------ */
   late final PageController pageController;
   late final SpeechToText _speechToText;
 
+  late final AnalysisSpeechUseCase _analysisSpeechUseCase;
+
+  /* ------------------------------------------------------ */
+  /* Private Fields --------------------------------------- */
+  /* ------------------------------------------------------ */
   late final Rx<SpeechToTextState> _speechToTextState;
   late final RxnString _recordedSpeech;
 
+  /* ------------------------------------------------------ */
+  /* Public Fields ---------------------------------------- */
+  /* ------------------------------------------------------ */
   SpeechToTextState get speechToTextState => _speechToTextState.value;
   String? get recordedSpeech => _recordedSpeech.value;
 
+  /* ------------------------------------------------------ */
+  /* Method ----------------------------------------------- */
+  /* ------------------------------------------------------ */
   @override
   void onInit() {
     super.onInit();
+
+
+    _analysisSpeechUseCase = Get.find<AnalysisSpeechUseCase>();
 
     pageController = PageController(initialPage: 0);
     _speechToText = SpeechToText();
@@ -65,19 +85,21 @@ class SpeechToTextConverterViewModel extends GetxController {
   }
 
   void analysisSpeech() async {
-    // 1. 페이지 이동
     pageController.nextPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
 
-    // 2. API 요청
-    await Future.delayed(const Duration(seconds: 4));
-    _speechToTextState.value = _speechToTextState.value.copyWith(
-      afterSpeechText: _speechToTextState.value.beforeSpeechText,
+    StateWrapper<String> result = await _analysisSpeechUseCase.execute(
+      AnalysisSpeechCondition(text: _speechToTextState.value.beforeSpeechText),
     );
 
-    // 3. 페이지 이동
+    if (result.success) {
+      _speechToTextState.value = _speechToTextState.value.copyWith(
+        afterSpeechText: result.data!,
+      );
+    }
+
     pageController.nextPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,

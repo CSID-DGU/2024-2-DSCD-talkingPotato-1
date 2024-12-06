@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wooahan/core/screen/base_widget.dart';
+import 'package:wooahan/presentation/view_model/question/searching/question_searching_view_model.dart';
+import 'package:wooahan/presentation/widget/common/text_input/custom_text_form_field.dart';
+
+class QuestionSearchTermField extends BaseWidget<QuestionSearchingViewModel> {
+  const QuestionSearchTermField({super.key});
+
+  @override
+  Widget buildView(BuildContext context) {
+    return Obx(
+      () => CustomInputTextField(
+        enable: !viewModel.isLoading,
+        minLines: 1,
+        maxLines: 1,
+        placeholder: '검색어를 입력해주세요',
+        hasSuffixIcon: viewModel.searchTerm.isNotEmpty,
+        textInputType: TextInputType.text,
+        textInputAction: TextInputAction.search,
+        onChangedCallBack: viewModel.updateSearchTerm,
+        onClearCallBack: viewModel.updateSearchTerm,
+        onSubmittedCallBack: viewModel.updateArticleSummaryList,
+      ),
+    );
+  }
+}

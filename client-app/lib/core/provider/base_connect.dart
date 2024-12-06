@@ -2,24 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:wooahan/app/config/app_routes.dart';
-import 'package:wooahan/app/env/common/environment.dart';
 import 'package:wooahan/app/env/common/environment_factory.dart';
 import 'package:wooahan/app/utility/log_util.dart';
 import 'package:wooahan/data/factory/storage_factory.dart';
-import 'package:wooahan/data/provider/common/system_provider.dart';
+import 'package:wooahan/data/provider/system/system_provider.dart';
 
 abstract class BaseConnect extends GetConnect {
   static final GetHttpClient _customHttpClient = GetHttpClient();
 
-  static final Environment _environment = EnvironmentFactory.environment;
   static final SystemProvider _systemProvider = StorageFactory.systemProvider;
 
-  static const Map<String, String> usedInSplashScreen = {
-    "usedInSplashScreen": "true",
+  static const Map<String, String> useBearerToken = {
+    "useBearerToken": "true",
   };
 
-  static const Map<String, String> unusedInSplashScreen = {
-    "usedInSplashScreen": "false",
+  static const Map<String, String> notUseBearerToken = {
+    "useBearerToken": "false",
   };
 
   @override
@@ -27,20 +25,19 @@ abstract class BaseConnect extends GetConnect {
     super.onInit();
 
     httpClient
-      ..baseUrl = _environment.apiServerUrl
+      ..baseUrl = apiServerUrl
       ..defaultContentType = 'application/json; charset=utf-8'
       ..timeout = const Duration(seconds: 10);
 
     httpClient.addRequestModifier<dynamic>((request) {
-      String usedAuthorization = request.headers["usedAuthorization"]!;
-      String? usedInSplashScreen = request.headers["usedInSplashScreen"];
+      String? useBearerToken = request.headers["useBearerToken"];
 
-      if (usedAuthorization == "true") {
+      if (useBearerToken == "true") {
         request.headers["Authorization"] = "Bearer $accessToken";
       }
 
-      if (usedInSplashScreen == null) {
-        request.headers["usedInSplashScreen"] = "false";
+      if (useBearerToken == null) {
+        request.headers["useBearerToken"] = "false";
       }
 
       LogUtil.info(
@@ -101,7 +98,7 @@ abstract class BaseConnect extends GetConnect {
 
     try {
       response = await _customHttpClient.post(
-        "${_environment.apiServerUrl}/auth/reissue/token",
+        "$apiServerUrl/auth/reissue/token",
         contentType: 'application/json; charset=utf-8',
         headers: {
           "Authorization": "Bearer $refreshToken",
@@ -120,10 +117,10 @@ abstract class BaseConnect extends GetConnect {
     required Request<dynamic> request,
     required int statusCodeOrErrorCode,
   }) async {
-    String usedInSplashScreen = request.headers["usedInSplashScreen"]!;
+    String useBearerToken = request.headers["useBearerToken"]!;
 
     if ((statusCodeOrErrorCode == 401 || statusCodeOrErrorCode == 40402) &&
-        usedInSplashScreen == 'false') {
+        useBearerToken == 'false') {
       await StorageFactory.systemProvider.deallocateTokens();
 
       Get.snackbar(
@@ -134,6 +131,9 @@ abstract class BaseConnect extends GetConnect {
       Get.offAllNamed(AppRoutes.ROOT);
     }
   }
+
+  @protected
+  String get apiServerUrl => EnvironmentFactory.environment.apiServerUrl;
 
   @protected
   String get accessToken => _systemProvider.getAccessToken();
