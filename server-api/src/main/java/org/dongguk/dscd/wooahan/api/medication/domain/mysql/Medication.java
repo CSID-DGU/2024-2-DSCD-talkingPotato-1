@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.dongguk.dscd.wooahan.api.user.domain.mysql.User;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -48,6 +50,12 @@ public class Medication {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator", nullable = false)
     private User creator;
+
+    /* -------------------------------------------- */
+    /* Relation Column - Child -------------------- */
+    /* -------------------------------------------- */
+    @OneToMany(mappedBy = "medication", cascade = CascadeType.ALL)
+    private List<Schedule> schedules = new ArrayList<>();
 
     /* -------------------------------------------- */
     /* Functions ---------------------------------- */
