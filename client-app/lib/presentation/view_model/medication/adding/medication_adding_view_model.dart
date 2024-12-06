@@ -12,9 +12,9 @@ import 'package:wooahan/domain/condition/medication/create_medication_list_condi
 import 'package:wooahan/domain/entity/drug/drug_brief_state.dart';
 import 'package:wooahan/domain/entity/drug/drug_summary_state.dart';
 import 'package:wooahan/domain/entity/medication/medication_state.dart';
+import 'package:wooahan/domain/usecase/anlaysis/analysis_drug_bag_use_case.dart';
 import 'package:wooahan/domain/usecase/drug/read_drug_brief_list_use_case.dart';
 import 'package:wooahan/domain/usecase/drug/read_drug_summary_use_case.dart';
-import 'package:wooahan/domain/usecase/drug_bag/analysis_drug_bag_use_case.dart';
 import 'package:wooahan/domain/usecase/medication/create_medication_list_use_case.dart';
 import 'package:wooahan/domain/usecase/medication/read_medication_list_use_case.dart';
 
@@ -175,7 +175,7 @@ class MedicationAddingViewModel extends GetxController {
     StateWrapper<List<DrugSummaryState>> result =
         await _analysisDrugBagUseCase.execute(
       AnalysisDrugBagCondition(
-        file: File('asdf'),
+        file: File(_willAnalysisImage.value!.path),
       ),
     );
 
