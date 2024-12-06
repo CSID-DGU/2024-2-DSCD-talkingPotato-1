@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:wooahan/core/mediator/base_mediator.dart';
-import 'package:wooahan/data/provider/analysis/image_analysis_remote_provider.dart';
-import 'package:wooahan/data/provider/analysis/image_analysis_remote_provider_impl.dart';
-import 'package:wooahan/data/provider/analysis/language_analysis_remote_provider.dart';
-import 'package:wooahan/data/provider/analysis/language_analysis_remote_provider_impl.dart';
+import 'package:wooahan/data/provider/analysis/analysis_remote_provider.dart';
+import 'package:wooahan/data/provider/analysis/analysis_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/answer/answer_remote_provider.dart';
 import 'package:wooahan/data/provider/answer/answer_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/article/article_remote_provider.dart';
@@ -12,6 +10,8 @@ import 'package:wooahan/data/provider/auth/auth_provider.dart';
 import 'package:wooahan/data/provider/auth/auth_provider_impl.dart';
 import 'package:wooahan/data/provider/comment/comment_remote_provider.dart';
 import 'package:wooahan/data/provider/comment/comment_remote_provider_impl.dart';
+import 'package:wooahan/data/provider/correction/correction_remote_provider.dart';
+import 'package:wooahan/data/provider/correction/correction_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/drug/drug_remote_provider.dart';
 import 'package:wooahan/data/provider/drug/drug_remote_provider_impl.dart';
 import 'package:wooahan/data/provider/medication/medication_remote_provider.dart';
@@ -27,6 +27,7 @@ import 'package:wooahan/data/repository/answer/answer_repository_impl.dart';
 import 'package:wooahan/data/repository/article/article_repository_impl.dart';
 import 'package:wooahan/data/repository/auth/auth_repository_impl.dart';
 import 'package:wooahan/data/repository/comment/comment_repository_impl.dart';
+import 'package:wooahan/data/repository/correction/correction_repository_impl.dart';
 import 'package:wooahan/data/repository/drug/drug_repository_impl.dart';
 import 'package:wooahan/data/repository/medication/medication_repository_impl.dart';
 import 'package:wooahan/data/repository/question/question_repository_impl.dart';
@@ -38,6 +39,7 @@ import 'package:wooahan/domain/repository/answer/answer_repository.dart';
 import 'package:wooahan/domain/repository/article/article_repository.dart';
 import 'package:wooahan/domain/repository/auth/auth_repository.dart';
 import 'package:wooahan/domain/repository/comment/comment_repository.dart';
+import 'package:wooahan/domain/repository/correction/correction_repository.dart';
 import 'package:wooahan/domain/repository/drug/drug_repository.dart';
 import 'package:wooahan/domain/repository/medication/medication_repository.dart';
 import 'package:wooahan/domain/repository/question/question_repository.dart';
@@ -53,12 +55,9 @@ class AppDependency extends Bindings {
 
     // Add your provider dependencies here
     Get.lazyPut<DrugRemoteProvider>(() => DrugRemoteProviderImpl());
-    Get.lazyPut<ImageAnalysisRemoteProvider>(
-      () => ImageAnalysisRemoteProviderImpl(),
-    );
-    Get.lazyPut<LanguageAnalysisRemoteProvider>(
-      () => LanguageAnalysisRemoteProviderImpl(),
-    );
+    Get.lazyPut<AnalysisRemoteProvider>(() => AnalysisRemoteProviderImpl());
+
+    Get.lazyPut<CorrectionRemoteProvider>(() => CorrectionRemoteProviderImpl());
 
     Get.lazyPut<AuthProvider>(() => AuthProviderImpl());
     Get.lazyPut<UserRemoteProvider>(() => UserRemoteProviderImpl());
@@ -74,6 +73,8 @@ class AppDependency extends Bindings {
 
     Get.lazyPut<DrugRepository>(() => DrugRepositoryImpl());
     Get.lazyPut<AnalysisRepository>(() => AnalysisRepositoryImpl());
+
+    Get.lazyPut<CorrectionRepository>(() => CorrectionRepositoryImpl());
 
     Get.lazyPut<AuthRepository>(() => AuthRepositoryImpl());
     Get.lazyPut<UserRepository>(() => UserRepositoryImpl());

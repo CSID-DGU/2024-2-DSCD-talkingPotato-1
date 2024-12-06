@@ -20,13 +20,6 @@ class AnalysisDocumentUseCase extends BaseUseCase
   Future<StateWrapper<String>> execute(
     AnalysisDocumentCondition condition,
   ) async {
-    await Future.delayed(const Duration(seconds: 3));
-
-    return StateWrapper(
-      success: true,
-      data: '분석 결과',
-    );
-
     return await _analysisRepository.analysisDocument(condition);
   }
 }
