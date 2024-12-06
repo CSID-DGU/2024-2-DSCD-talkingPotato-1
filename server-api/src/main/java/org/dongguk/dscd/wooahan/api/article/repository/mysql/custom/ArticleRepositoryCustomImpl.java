@@ -49,7 +49,7 @@ public class ArticleRepositoryCustomImpl implements ArticleRepositoryCustom {
                                 ReadArticleListProjection.class,
                                 article.id,
                                 article.title,
-                                article.content.substring(0, 50),
+                                article.content,
                                 article.createdAt,
                                 article.creator.nickname,
                                 article.creator.id,

@@ -16,23 +16,34 @@ public record ReadArticleListDto (
 
     @Builder
     public record ReadArticleDto (
+
             @JsonProperty("id")
             Long id,
+
             @JsonProperty("title")
             String title,
+
             @JsonProperty("preview")
             String preview,
+
             @JsonProperty("tags")
             List<String> tags,
+
             @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             @JsonProperty("created_at")
             LocalDateTime createdAt,
+
             @JsonProperty("comment_cnt")
             Long commentCnt,
+
             @JsonProperty("nickname")
             String nickname,
+
             @JsonProperty("creator_id")
-            UUID creatorId
+            UUID creatorId,
+
+            @JsonProperty("thumbnail_url")
+            String thumbnailUrl
     ) {
     }
 }
