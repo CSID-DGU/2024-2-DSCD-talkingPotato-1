@@ -24,78 +24,80 @@ class CommentAddingScreen extends BaseScreen<CommentAddingViewModel> {
   Widget buildBody(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 32),
-            const CommentInputField(),
-            const SizedBox(height: 32),
-            FilledButton(
-              onPressed: () {},
-              style: FilledButton.styleFrom(
-                // Size
-                minimumSize: const Size(212, 32),
-                fixedSize: const Size(212, 32),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 32),
+              const CommentInputField(),
+              const SizedBox(height: 32),
+              FilledButton(
+                onPressed: () {},
+                style: FilledButton.styleFrom(
+                  // Size
+                  minimumSize: const Size(212, 32),
+                  fixedSize: const Size(212, 32),
 
-                padding: EdgeInsets.zero,
+                  padding: EdgeInsets.zero,
 
-                // Color
-                backgroundColor: ColorSystem.neutral.shade300,
-                foregroundColor: ColorSystem.white,
+                  // Color
+                  backgroundColor: ColorSystem.neutral.shade300,
+                  foregroundColor: ColorSystem.white,
 
-                disabledBackgroundColor: ColorSystem.neutral.shade300,
+                  disabledBackgroundColor: ColorSystem.neutral.shade300,
 
-                // Border
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
+                  // Border
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(12),
+                    ),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    "커뮤니티 이용규칙 전체 보기",
+                    style: FontSystem.H5.copyWith(
+                      color: ColorSystem.neutral,
+                      height: 1.0,
+                    ),
                   ),
                 ),
               ),
-              child: Center(
-                child: Text(
-                  "커뮤니티 이용규칙 전체 보기",
-                  style: FontSystem.H5.copyWith(
-                    color: ColorSystem.neutral,
-                    height: 1.0,
-                  ),
+              Text(
+                "우아한은 건간을 위한 커뮤니티를 만들기 위해 커뮤니티 이용규칙을 제정하여 운영하고 있습니다. 위반 시 게시물이 삭제되고 서비스 이용이 일정 기간 제한될 수 있습니다."
+                "\n"
+                "\n"
+                "아래는 이 게시판에 해당하는 핵심 내용에 대한 요약 사항이며, 게시물 작성 전 커뮤니티 이용규칙 전문을 반드시 확인하시기 바랍니다.",
+                style: FontSystem.H6.copyWith(
+                  color: ColorSystem.neutral.shade600,
                 ),
               ),
-            ),
-            Text(
-              "우아한은 건간을 위한 커뮤니티를 만들기 위해 커뮤니티 이용규칙을 제정하여 운영하고 있습니다. 위반 시 게시물이 삭제되고 서비스 이용이 일정 기간 제한될 수 있습니다."
-              "\n"
-              "\n"
-              "아래는 이 게시판에 해당하는 핵심 내용에 대한 요약 사항이며, 게시물 작성 전 커뮤니티 이용규칙 전문을 반드시 확인하시기 바랍니다.",
-              style: FontSystem.H6.copyWith(
-                color: ColorSystem.neutral.shade600,
-              ),
-            ),
-            const Spacer(),
-            Obx(() {
-              VoidCallback? onPressed = viewModel.content.length > 10
-                  ? () {
-                      viewModel.createComment().then((value) {
-                        if (value) {
-                          Get.back();
-                        } else {
-                          Get.snackbar('알림', '댓글 작성에 실패했습니다.');
-                        }
-                      });
-                    }
-                  : null;
+              const Spacer(),
+              Obx(() {
+                VoidCallback? onPressed = viewModel.content.length > 10
+                    ? () {
+                        viewModel.createComment().then((value) {
+                          if (value) {
+                            Get.back();
+                          } else {
+                            Get.snackbar('알림', '댓글 작성에 실패했습니다.');
+                          }
+                        });
+                      }
+                    : null;
 
-              return PrimaryFillButton(
-                width: Get.width,
-                height: 60,
-                content: '완료',
-                onPressed: onPressed,
-              );
-            }),
-            SizedBox(height: GetPlatform.isAndroid ? 20 : 40),
-          ],
+                return PrimaryFillButton(
+                  width: Get.width,
+                  height: 60,
+                  content: '완료',
+                  onPressed: onPressed,
+                );
+              }),
+              SizedBox(height: GetPlatform.isAndroid ? 20 : 40),
+            ],
+          ),
         ),
       ),
     );

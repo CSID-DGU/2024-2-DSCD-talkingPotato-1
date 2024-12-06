@@ -1,7 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:envied/envied.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:wooahan/app/env/common/environment.dart';
+import 'package:wooahan/app/env/dev/firebase_options.dart';
 
 part 'dev_environment.g.dart';
 
@@ -18,4 +20,7 @@ class DevEnvironment implements Environment {
 
   @override
   String get drugServerUrl => DRUG_SERVER_URL;
+
+  @override
+  FirebaseOptions get firebaseOptions => DefaultFirebaseOptions.currentPlatform;
 }

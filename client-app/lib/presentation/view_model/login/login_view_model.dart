@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/utility/validator_util.dart';
 import 'package:wooahan/core/wrapper/result_wrapper.dart';
@@ -111,11 +112,13 @@ class LoginViewModel extends GetxController {
   }
 
   Future<void> _updateDeviceToken() async {
-    String? token = "testtest";
+    String? token = await FirebaseMessaging.instance.getToken();
+
+    print('token: $token');
 
     await _updateDeviceTokenInUserUsecase.execute(
       UpdateDeviceTokenInUserCondition(
-        deviceToken: token,
+        deviceToken: token!,
       ),
     );
   }

@@ -40,6 +40,8 @@ class TextToSpeechConverterViewModel extends GetxController {
 
     pageController = PageController(initialPage: 0);
 
+    _analysisDocumentUseCase = Get.find<AnalysisDocumentUseCase>();
+
     _isListening = false.obs;
 
     _image = Rxn<XFile?>();

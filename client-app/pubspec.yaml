@@ -55,6 +55,13 @@ dependencies:
   # Smooth Page Indicator
   smooth_page_indicator: ^1.2.0+3
 
+  # Firebase
+  firebase_core: ^3.8.1
+  firebase_messaging: ^15.1.6
+
+  # Local Notification For Foreground
+  flutter_local_notifications: ^18.0.1
+
 dev_dependencies:
   # Default
   flutter_test:

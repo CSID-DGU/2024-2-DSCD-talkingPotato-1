@@ -4,6 +4,7 @@ class ArticleSummaryState {
   final String preview;
   final String createdAt;
   final String creator;
+  final String? thumbnailUrl;
 
   final List<String> tags;
   final int commentCnt;
@@ -16,6 +17,7 @@ class ArticleSummaryState {
     required this.creator,
     required this.tags,
     required this.commentCnt,
+    this.thumbnailUrl,
   });
 
   ArticleSummaryState copyWith({
@@ -26,6 +28,7 @@ class ArticleSummaryState {
     String? creator,
     List<String>? tags,
     int? commentCnt,
+    String? thumbnailUrl,
   }) {
     return ArticleSummaryState(
       id: id ?? this.id,
@@ -35,6 +38,7 @@ class ArticleSummaryState {
       creator: creator ?? this.creator,
       tags: tags ?? this.tags,
       commentCnt: commentCnt ?? this.commentCnt,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
     );
   }
 
@@ -47,6 +51,7 @@ class ArticleSummaryState {
       creator: map['nickname'] as String,
       tags: List<String>.from(map['tags'] as List),
       commentCnt: map['comment_cnt'] as int,
+      thumbnailUrl: map['thumbnail_url'] as String?,
     );
   }
 }
