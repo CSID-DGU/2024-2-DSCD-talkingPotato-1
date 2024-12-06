@@ -28,4 +28,5 @@ abstract class AppRoutes {
   static const String ADDING_PATH = '/adding';
   static const String EDITING_PATH = '/editing';
   static const String SEARCHING_PATH = '/searching';
+  static const String SHOPPING_CART_PATH = '/shopping-cart';
 }

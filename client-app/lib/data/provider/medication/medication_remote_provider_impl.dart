@@ -17,17 +17,17 @@ class MedicationRemoteProviderImpl extends BaseConnect
 
   @override
   Future<ResponseWrapper> postMedicationList({
-    required List<dynamic> drugs,
+    required List<dynamic> medications,
   }) async {
-    Response response = await post(
-      '/api/v1/medications',
-      {
-        'drugs': drugs,
-      },
-      headers: BaseConnect.useBearerToken,
-    );
+    for (dynamic medication in medications) {
+      await post(
+        '/api/v1/medications',
+        medication,
+        headers: BaseConnect.useBearerToken,
+      );
+    }
 
-    return ResponseWrapper.fromJson(response.body);
+    return ResponseWrapper.noContent();
   }
 
   @override

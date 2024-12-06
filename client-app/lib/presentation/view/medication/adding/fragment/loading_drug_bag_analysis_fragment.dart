@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/core/screen/base_widget.dart';
-import 'package:wooahan/presentation/view/medication/adding/widget/drug_summary_card/drug_summary_card_item_view.dart';
 import 'package:wooahan/presentation/view_model/medication/adding/medication_adding_view_model.dart';
 import 'package:wooahan/presentation/widget/common/animation/rive_animation_view.dart';
 import 'package:wooahan/presentation/widget/common/button/primary/primary_fill_button.dart';
+import 'package:wooahan/presentation/widget/drug/summary/drug_summary_default_item_view.dart';
 
 class LoadingDrugBagAnalysisFragment
     extends BaseWidget<MedicationAddingViewModel> {
@@ -34,7 +34,7 @@ class LoadingDrugBagAnalysisFragment
 
   Widget _buildTitleView() {
     return Obx(() {
-      if (viewModel.isAnalysing) {
+      if (viewModel.isLoadingForAnalysis) {
         return const SizedBox();
       }
 
@@ -58,7 +58,7 @@ class LoadingDrugBagAnalysisFragment
 
   Widget _buildContentView() {
     return Obx(() {
-      if (viewModel.isAnalysing) {
+      if (viewModel.isLoadingForAnalysis) {
         return Column(
           children: [
             Center(
@@ -80,7 +80,7 @@ class LoadingDrugBagAnalysisFragment
                     repeatForever: true,
                     animatedTexts: [
                       FadeAnimatedText(
-                        viewModel.analysingText,
+                        viewModel.loadingTextForAnalysis,
                         textAlign: TextAlign.center,
                         duration: const Duration(seconds: 2),
                       ),
@@ -98,7 +98,7 @@ class LoadingDrugBagAnalysisFragment
         physics: const NeverScrollableScrollPhysics(),
         itemCount: viewModel.drugSummaryList.length,
         itemBuilder: (context, index) {
-          return DrugSummaryCardItemView(
+          return DrugSummaryDefaultItemView(
             state: viewModel.drugSummaryList[index],
           );
         },
@@ -108,7 +108,7 @@ class LoadingDrugBagAnalysisFragment
 
   Widget _buildButton() {
     return Obx(() {
-      if (viewModel.isAnalysing) {
+      if (viewModel.isLoadingForAnalysis) {
         return const SizedBox();
       }
 
@@ -116,13 +116,10 @@ class LoadingDrugBagAnalysisFragment
         width: Get.width,
         height: 64,
         content: '다음',
-        onPressed: viewModel.isAnalysing
+        onPressed: viewModel.isLoadingForAnalysis
             ? null
             : () {
-                viewModel.pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
+                viewModel.nextPage();
               },
       );
     });

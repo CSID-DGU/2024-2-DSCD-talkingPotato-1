@@ -112,9 +112,9 @@ class SelectingDrugBagPictureFragment
         content: '다음',
         onPressed: () {
           if (viewModel.willAnalysisImage == null) {
-            viewModel.analyzeImage();
-          } else {
             viewModel.loadDrugList();
+          } else {
+            viewModel.analyzeImage();
           }
         },
       ),

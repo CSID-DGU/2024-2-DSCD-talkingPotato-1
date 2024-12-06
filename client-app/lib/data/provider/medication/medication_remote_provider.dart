@@ -4,7 +4,7 @@ abstract class MedicationRemoteProvider {
   Future<ResponseWrapper> getMedicationList();
 
   Future<ResponseWrapper> postMedicationList({
-    required List<dynamic> drugs,
+    required List<dynamic> medications,
   });
 
   Future<ResponseWrapper> putMedicationList({

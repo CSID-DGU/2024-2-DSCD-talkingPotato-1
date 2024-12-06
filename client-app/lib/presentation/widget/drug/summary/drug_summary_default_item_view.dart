@@ -6,8 +6,8 @@ import 'package:wooahan/domain/entity/drug/drug_summary_state.dart';
 import 'package:wooahan/presentation/widget/common/image/network_image_view.dart';
 import 'package:wooahan/presentation/widget/common/image/svg_image_view.dart';
 
-class DrugSummaryCardItemView extends StatelessWidget {
-  const DrugSummaryCardItemView({
+class DrugSummaryDefaultItemView extends StatelessWidget {
+  const DrugSummaryDefaultItemView({
     super.key,
     required this.state,
   });
@@ -34,7 +34,7 @@ class DrugSummaryCardItemView extends StatelessWidget {
 
   Widget _buildEmptyImageView() {
     if (state.type == 'CUSTOM' || state.type == 'MEDICINE') {
-      int idSum = state.id ?? 10 % 7;
+      int idSum = state.id % 7;
 
       return Container(
         width: 95,
@@ -72,7 +72,7 @@ class DrugSummaryCardItemView extends StatelessWidget {
       );
     }
 
-    int idSum = state.id ?? 10 % 2;
+    int idSum = state.id % 2;
 
     return Container(
       width: 95,
@@ -116,7 +116,7 @@ class DrugSummaryCardItemView extends StatelessWidget {
 
   Widget _buildTextView() {
     return SizedBox(
-      width: Get.width - 40 - 24 - 164,
+      width: Get.width - 40 - 24 - 95,
       height: state.type == 'VITAMIN' ? 95 : null,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

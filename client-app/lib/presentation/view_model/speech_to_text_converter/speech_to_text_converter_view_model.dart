@@ -34,6 +34,9 @@ class SpeechToTextConverterViewModel extends GetxController {
   void onInit() {
     super.onInit();
 
+
+    _analysisSpeechUseCase = Get.find<AnalysisSpeechUseCase>();
+
     pageController = PageController(initialPage: 0);
     _speechToText = SpeechToText();
 

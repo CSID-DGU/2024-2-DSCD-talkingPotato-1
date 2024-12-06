@@ -66,7 +66,7 @@ class ScheduleCardItemView extends StatelessWidget {
 
   Widget _buildEmptyImageView() {
     if (state.drugType == 'CUSTOM' || state.drugType == 'MEDICINE') {
-      int idSum = state.drugId ?? 10 % 7;
+      int idSum = state.drugId % 7;
 
       return Container(
         width: 95,
@@ -104,7 +104,7 @@ class ScheduleCardItemView extends StatelessWidget {
       );
     }
 
-    int idSum = state.drugId ?? 10 % 2;
+    int idSum = state.drugId % 2;
 
     return Container(
       width: 95,

@@ -15,7 +15,7 @@ class ScheduleHeaderView extends BaseWidget<MedicationViewModel> {
         () {
           if (viewModel.selectedTimeline == 'daily') {
             return Text(
-              '오늘 알림을 받지 않은 복약 기록들이에요',
+              '오늘 알림을 받지 않은 약들이에요',
               style: FontSystem.Sub2.copyWith(
                 color: ColorSystem.neutral,
               ),

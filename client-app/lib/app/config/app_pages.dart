@@ -10,6 +10,7 @@ import 'package:wooahan/presentation/view/drug/detail/drug_detail_screen.dart';
 import 'package:wooahan/presentation/view/login/login_screen.dart';
 import 'package:wooahan/presentation/view/medication/adding/medication_adding_screen.dart';
 import 'package:wooahan/presentation/view/medication/editing/medication_editing_screen.dart';
+import 'package:wooahan/presentation/view/medication/shopping_cart/medication_shopping_cart_screen.dart';
 import 'package:wooahan/presentation/view/question/adding/question_adding_screen.dart';
 import 'package:wooahan/presentation/view/question/default/question_screen.dart';
 import 'package:wooahan/presentation/view/question/detail/question_detail_screen.dart';
@@ -30,6 +31,7 @@ import 'package:wooahan/presentation/view_model/login/login_binding.dart';
 import 'package:wooahan/presentation/view_model/medication/adding/medication_adding_binding.dart';
 import 'package:wooahan/presentation/view_model/medication/default/medication_binding.dart';
 import 'package:wooahan/presentation/view_model/medication/editing/medication_editing_binding.dart';
+import 'package:wooahan/presentation/view_model/medication/shopping_cart/medication_shopping_cart_binding.dart';
 import 'package:wooahan/presentation/view_model/question/adding/question_adding_binding.dart';
 import 'package:wooahan/presentation/view_model/question/default/question_binding.dart';
 import 'package:wooahan/presentation/view_model/question/detail/question_detail_binding.dart';
@@ -78,6 +80,11 @@ abstract class AppPages {
           name: AppRoutes.EDITING_PATH,
           page: () => const MedicationEditingScreen(),
           binding: MedicationEditingBinding(),
+        ),
+        GetPage(
+          name: AppRoutes.SHOPPING_CART_PATH,
+          page: () => const MedicationShoppingCartScreen(),
+          binding: MedicationShoppingCartBinding(),
         ),
       ],
     ),

@@ -1,10 +1,10 @@
 class ReadDrugBriefListCondition {
-  final String query;
+  final String searchTerm;
   final int page;
   final int size;
 
   ReadDrugBriefListCondition({
-    required this.query,
+    required this.searchTerm,
     required this.page,
     required this.size,
   });

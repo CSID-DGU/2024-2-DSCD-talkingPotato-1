@@ -25,7 +25,7 @@ class DrugRepositoryImpl extends GetxService implements DrugRepository {
     ReadDrugBriefListCondition condition,
   ) async {
     ResponseWrapper response = await _remoteProvider.getDrugBriefList(
-      query: condition.query,
+      query: condition.searchTerm,
       page: condition.page.toString(),
       size: condition.size.toString(),
     );

@@ -16,7 +16,8 @@ class HomeViewModel extends GetxController {
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
   /* ------------------------------------------------------ */
-  late final RxBool _isLoading;
+  late final RxBool _isInitLoading;
+  late final RxBool _isMoreLoading;
 
   late final RxString _nickname;
   late final RxList<QuestionBriefState> _questionBriefList;
@@ -24,7 +25,8 @@ class HomeViewModel extends GetxController {
   /* ------------------------------------------------------ */
   /* Public Fields ---------------------------------------- */
   /* ------------------------------------------------------ */
-  bool get isLoading => _isLoading.value;
+  bool get isInitLoading => _isInitLoading.value;
+  bool get isMoreLoading => _isMoreLoading.value;
 
   String get nickname => _nickname.value;
   List<QuestionBriefState> get questionBriefList => _questionBriefList;
@@ -40,7 +42,8 @@ class HomeViewModel extends GetxController {
     _readQuestionBriefListByUserUseCase =
         Get.find<ReadQuestionBriefListByUserUseCase>();
 
-    _isLoading = true.obs;
+    _isInitLoading = true.obs;
+    _isMoreLoading = false.obs;
 
     _nickname = "".obs;
     _questionBriefList = <QuestionBriefState>[
@@ -59,18 +62,17 @@ class HomeViewModel extends GetxController {
       _fetchQuestionBriefList(),
     ]);
 
-    _isLoading.value = false;
+    _isInitLoading.value = false;
   }
 
   Future<void> onRefresh() async {
-    _isLoading.value = true;
+    _isMoreLoading.value = true;
 
     await Future.wait([
-      _fetchUserInformation(),
       _fetchQuestionBriefList(),
     ]);
 
-    _isLoading.value = false;
+    _isMoreLoading.value = false;
   }
 
   Future<void> _fetchUserInformation() async {

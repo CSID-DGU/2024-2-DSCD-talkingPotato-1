@@ -54,7 +54,7 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
   Widget _buildImageView() {
     if (state.drugImageUrl == null) {
       if (state.drugType == 'CUSTOM' || state.drugType == 'MEDICINE') {
-        int idSum = state.drugId ?? 10 % 7;
+        int idSum = state.drugId % 7;
 
         return Column(
           children: [
@@ -70,6 +70,7 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     child: const SvgImageView(
                       assetPath: "assets/icons/drug_background.svg",
+                      width: 160,
                     ),
                   ),
                   Positioned(
@@ -98,7 +99,7 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
         );
       }
 
-      int idSum = state.drugId ?? 10 % 2;
+      int idSum = state.drugId % 2;
 
       return Container(
         width: 160,
@@ -158,23 +159,26 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
   }
 
   Widget _buildTextView() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          state.drugClassificationOrManufacturer ?? '미등록 약품',
-          overflow: TextOverflow.ellipsis,
-          style: FontSystem.H6,
-        ),
-        Text(
-          state.drugName!,
-          overflow: TextOverflow.ellipsis,
-          style: FontSystem.Sub3.copyWith(
-            color: ColorSystem.neutral.shade500,
+    return SizedBox(
+      width: 200,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            state.drugClassificationOrManufacturer ?? '미등록 약품',
+            overflow: TextOverflow.ellipsis,
+            style: FontSystem.H6,
           ),
-        ),
-      ],
+          Text(
+            state.drugName!,
+            overflow: TextOverflow.ellipsis,
+            style: FontSystem.Sub3.copyWith(
+              color: ColorSystem.neutral.shade500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

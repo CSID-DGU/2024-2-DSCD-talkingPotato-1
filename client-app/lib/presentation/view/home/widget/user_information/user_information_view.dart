@@ -56,7 +56,7 @@ class UserInformationView extends BaseWidget<HomeViewModel> {
           children: [
             const SizedBox(height: 20),
             Text(
-              "${viewModel.isLoading ? 'OOO' : viewModel.nickname}님",
+              "${viewModel.isInitLoading ? 'OOO' : viewModel.nickname}님",
               style: FontSystem.H1.copyWith(
                 color: ColorSystem.white,
               ),
@@ -90,9 +90,32 @@ class UserInformationView extends BaseWidget<HomeViewModel> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "내가 작성한 최근 질문들",
-              style: FontSystem.H4,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "내가 작성한 최근 질문들",
+                  style: FontSystem.H4,
+                ),
+                GestureDetector(
+                  onTap: viewModel.onRefresh,
+                  child: Row(
+                    children: [
+                      Text(
+                        "새로고침",
+                        style: FontSystem.H6.copyWith(
+                          color: ColorSystem.primary,
+                        ),
+                      ),
+                      const Icon(
+                        Icons.refresh,
+                        size: 16,
+                        color: ColorSystem.primary,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
             Obx(
               () => ListView.separated(

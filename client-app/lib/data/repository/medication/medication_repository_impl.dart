@@ -44,9 +44,15 @@ class MedicationRepositoryImpl extends GetxService
   Future<StateWrapper<void>> createMedicationList(
     CreateMedicationListCondition condition,
   ) async {
+    List<MedicationState> willAddMedications = condition.newMedicationList
+        .where((newMedication) => !condition.existingMedicationList.any(
+            (existingMedication) =>
+                newMedication.drugId == existingMedication.drugId))
+        .toList();
+
     ResponseWrapper response =
         await _medicationRemoteProvider.postMedicationList(
-      drugs: condition.medicationList.map((e) => e.toJson()).toList(),
+      medications: willAddMedications.map((e) => e.toJson()).toList(),
     );
 
     return StateWrapper.fromResponse(response);
