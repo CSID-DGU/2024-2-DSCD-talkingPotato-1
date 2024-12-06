@@ -35,7 +35,7 @@ public class ReadArticleListService implements ReadArticleListUseCase {
                         .map(article -> ReadArticleListDto.ReadArticleDto.builder()
                                 .id(article.id())
                                 .title(article.title())
-                                .preview(parseTextInPreview(article.preview()).substring(0, 200))
+                                .preview(parseTextInPreview(article.preview()))
                                 .tags(getTagNames(article.tags()))
                                 .createdAt(article.createdAt())
                                 .commentCnt(article.commentCnt())
@@ -78,7 +78,14 @@ public class ReadArticleListService implements ReadArticleListUseCase {
 
         // 3. HTML에서 텍스트 추출
         Document doc = Jsoup.parse(html);
+        String parsedText = doc.text();
 
-        return doc.text();
+        // 4. 200자 이상이면 200자까지만 반환
+        if (parsedText.length() > 200) {
+            return parsedText.substring(0, 200);
+        }
+
+        // 5. 200자 미만이면 전체 반환
+        return parsedText;
     }
 }
