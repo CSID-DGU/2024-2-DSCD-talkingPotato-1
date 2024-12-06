@@ -45,7 +45,7 @@ class TimelineCardItemView extends StatelessWidget {
               title,
               style: FontSystem.Sub2,
             ),
-            const SizedBox(height: 12),
+            const Spacer(),
             SizedBox(
               width: (Get.width - 100) / 4 - 24,
               child: CircularPercentIndicator(

@@ -62,6 +62,9 @@ dependencies:
   # Local Notification For Foreground
   flutter_local_notifications: ^18.0.1
 
+  # Connectivity
+  connectivity_plus: ^6.0.5
+
 dev_dependencies:
   # Default
   flutter_test:

@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
       ),
 
       // Initial Route
-      initialRoute: AppRoutes.ROOT,
+      initialRoute: AppRoutes.SPLASH,
       initialBinding: AppDependency(),
 
       // Routes

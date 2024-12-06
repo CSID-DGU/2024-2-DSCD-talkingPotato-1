@@ -95,7 +95,7 @@ class ConfirmDialog extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 20.0),
+        const Spacer(),
         FilledButton(
           onPressed: onPressedApply,
           style: FilledButton.styleFrom(

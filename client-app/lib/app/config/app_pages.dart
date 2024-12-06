@@ -19,6 +19,7 @@ import 'package:wooahan/presentation/view/root/root_screen.dart';
 import 'package:wooahan/presentation/view/setting/setting_screen.dart';
 import 'package:wooahan/presentation/view/sign_up/sign_up_screen.dart';
 import 'package:wooahan/presentation/view/speech_to_text_converter/speech_to_text_converter_screen.dart';
+import 'package:wooahan/presentation/view/splash/splash_screen.dart';
 import 'package:wooahan/presentation/view/text_to_speech_converter/text_to_speech_converter_screen.dart';
 import 'package:wooahan/presentation/view_model/article/default/article_binding.dart';
 import 'package:wooahan/presentation/view_model/article/detail/article_detail_binding.dart';
@@ -40,10 +41,16 @@ import 'package:wooahan/presentation/view_model/root/root_binding.dart';
 import 'package:wooahan/presentation/view_model/setting/setting_binding.dart';
 import 'package:wooahan/presentation/view_model/sign_up/sign_up_binding.dart';
 import 'package:wooahan/presentation/view_model/speech_to_text_converter/speech_to_text_converter_binding.dart';
+import 'package:wooahan/presentation/view_model/splash/splash_binding.dart';
 import 'package:wooahan/presentation/view_model/text_to_speech_converter/text_to_speech_converter_binding.dart';
 
 abstract class AppPages {
   static List<GetPage> data = [
+    GetPage(
+      name: AppRoutes.SPLASH,
+      page: () => const SplashScreen(),
+      binding: SplashBinding(),
+    ),
     GetPage(
       name: AppRoutes.LOGIN,
       page: () => const LoginScreen(),

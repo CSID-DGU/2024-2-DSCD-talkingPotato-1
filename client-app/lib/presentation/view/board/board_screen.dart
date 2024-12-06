@@ -51,6 +51,7 @@ class BoardScreen extends BaseScreen<BoardViewModel> {
                     _buildArticleView(),
                     const SizedBox(height: 16),
                     _buildQuestionHeaderView(),
+                    const SizedBox(height: 80),
                   ],
                 ),
               )
