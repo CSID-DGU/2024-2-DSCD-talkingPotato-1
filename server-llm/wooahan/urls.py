@@ -27,19 +27,19 @@ urlpatterns = [
     ),
 
     path(
-        'api/v2/corrections/documents',
+        'v1/corrections/documents',
         AnalysisDocumentView.as_view(),
         name='correction-documents'
     ),
 
     path(
-        'api/v2/corrections/speeches',
+        'v1/corrections/speeches',
         AnalysisSpeechView.as_view(),
         name='correction-speeches'
     ),
 
     path(
-        'api/v2/generations/similar-questions',
+        'v1/generations/similar-questions',
         GenerationSimilarQuestionView.as_view(),
         name='generation-similar-questions',
     ),
