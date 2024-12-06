@@ -31,11 +31,15 @@ public class UpdateMedicationService implements UpdateMedicationUseCase {
             UUID accountId,
             UpdateMedicationDto requestDto
     ) {
+
+        // 1. 사용자 조회
         User user = userRepository.findById(accountId)
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_USER));
 
+        // 2. 복약 기록 조회
         List<Medication> medications =  medicationRepository.findAllByCreator(user);
 
+        // 3. 복약 기록 업데이트
         Map<Integer, UpdateMedicationDto.MedicationDto> newMedicationMap = requestDto.medications()
                 .stream()
                 .collect(Collectors.toMap(UpdateMedicationDto.MedicationDto::drugId, med -> med));
@@ -51,6 +55,8 @@ public class UpdateMedicationService implements UpdateMedicationUseCase {
                     medication.updateIsTakenInDinner(updateMedication.isTakenInDinner());
                     medication.updateIsTakenInDaily(updateMedication.isTakenInDaily());
                 }
+            } else {
+                medicationRepository.delete(medication);
             }
         }
     }
