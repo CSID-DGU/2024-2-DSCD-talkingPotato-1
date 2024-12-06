@@ -8,6 +8,7 @@ import 'package:wooahan/presentation/view/medication/editing/widget/medication_i
 import 'package:wooahan/presentation/view_model/medication/editing/medication_editing_view_model.dart';
 import 'package:wooahan/presentation/widget/common/appbar/text_back_app_bar.dart';
 import 'package:wooahan/presentation/widget/common/button/primary/primary_fill_button.dart';
+import 'package:wooahan/presentation/widget/common/dialog/confirm_dialog.dart';
 
 class MedicationEditingScreen extends BaseScreen<MedicationEditingViewModel> {
   const MedicationEditingScreen({super.key});
@@ -33,6 +34,42 @@ class MedicationEditingScreen extends BaseScreen<MedicationEditingViewModel> {
       title: '복약 수정하기',
       backgroundColor: ColorSystem.white,
       onBackPress: Get.back,
+      actions: [
+        GestureDetector(
+          onTap: () {
+            Get.dialog(
+              ConfirmDialog(
+                title: "복약 삭제",
+                content: '해당 약을 지우시겠어요?'
+                    '\n'
+                    '삭제 시 알림을 받을 수 없어요.',
+                onPressedCancel: Get.back,
+                onPressedApply: () {
+                  viewModel.deleteAllApply().then((value) {
+                    if (value) {
+                      Get.back();
+                    } else {
+                      Get.snackbar(
+                        '알림',
+                        '전체 삭제에 실패했어요. 다시 시도해주세요.',
+                        backgroundColor: ColorSystem.primary,
+                        colorText: ColorSystem.white,
+                      );
+                    }
+                  });
+                },
+              ),
+            );
+          },
+          child: Text(
+            '전체 삭제',
+            style: FontSystem.H6.copyWith(
+              color: ColorSystem.red,
+            ),
+          ),
+        ),
+        const SizedBox(width: 20),
+      ],
       preferredSize: const Size.fromHeight(64),
     );
   }

@@ -26,49 +26,60 @@ class QuestionAddingScreen extends BaseScreen<QuestionAddingViewModel> {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 32),
-              const QuestionInputField(),
-              const SizedBox(height: 32),
-              FilledButton(
-                onPressed: () {},
-                style: FilledButton.styleFrom(
-                  // Size
-                  minimumSize: const Size(212, 32),
-                  fixedSize: const Size(212, 32),
-
-                  padding: EdgeInsets.zero,
-
-                  // Color
-                  backgroundColor: ColorSystem.neutral.shade300,
-                  foregroundColor: ColorSystem.white,
-
-                  disabledBackgroundColor: ColorSystem.neutral.shade300,
-
-                  // Border
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    "커뮤니티 이용규칙 전체 보기",
-                    style: FontSystem.H5.copyWith(
-                      color: ColorSystem.neutral,
-                      height: 1.0,
-                    ),
-                  ),
-                ),
-              ),
-              Text(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 32),
+            ),
+            const SliverToBoxAdapter(
+              child: QuestionInputField(),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 32),
+            ),
+            // SliverToBoxAdapter(
+            //   child: Row(
+            //     children: [
+            //       FilledButton(
+            //         onPressed: () {},
+            //         style: FilledButton.styleFrom(
+            //           // Size
+            //           minimumSize: const Size(200, 32),
+            //           fixedSize: const Size(200, 32),
+            //
+            //           padding: EdgeInsets.zero,
+            //
+            //           // Color
+            //           backgroundColor: ColorSystem.neutral.shade300,
+            //           foregroundColor: ColorSystem.white,
+            //
+            //           disabledBackgroundColor: ColorSystem.neutral.shade300,
+            //
+            //           // Border
+            //           shape: const RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.all(
+            //               Radius.circular(12),
+            //             ),
+            //           ),
+            //         ),
+            //         child: Center(
+            //           child: Text(
+            //             "커뮤니티 이용규칙 전체 보기",
+            //             style: FontSystem.H5.copyWith(
+            //               color: ColorSystem.neutral,
+            //               height: 1.0,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       const Spacer(),
+            //     ],
+            //   ),
+            // ),
+            SliverToBoxAdapter(
+              child: Text(
                 "우아한은 건간을 위한 커뮤니티를 만들기 위해 커뮤니티 이용규칙을 제정하여 운영하고 있습니다. 위반 시 게시물이 삭제되고 서비스 이용이 일정 기간 제한될 수 있습니다."
                 "\n"
                 "\n"
@@ -77,29 +88,40 @@ class QuestionAddingScreen extends BaseScreen<QuestionAddingViewModel> {
                   color: ColorSystem.neutral.shade600,
                 ),
               ),
-              Obx(() {
-                VoidCallback? onPressed = viewModel.content.length > 10
-                    ? () {
-                        viewModel.createQuestion().then((value) {
-                          if (value) {
-                            Get.back();
-                          } else {
-                            Get.snackbar('알림', '질문 작성에 실패했습니다.');
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  const SizedBox(height: 32),
+                  Obx(() {
+                    final onPressed = viewModel.content.length > 10
+                        ? () {
+                            viewModel.createQuestion().then((value) {
+                              if (value) {
+                                Get.back();
+                              } else {
+                                Get.snackbar('알림', '질문 작성에 실패했습니다.');
+                              }
+                            });
                           }
-                        });
-                      }
-                    : null;
+                        : null;
 
-                return PrimaryFillButton(
-                  width: Get.width,
-                  height: 60,
-                  content: '완료',
-                  onPressed: onPressed,
-                );
-              }),
-              SizedBox(height: GetPlatform.isAndroid ? 20 : 40),
-            ],
-          ),
+                    return PrimaryFillButton(
+                      width: Get.width,
+                      height: 60,
+                      content: '완료',
+                      onPressed: onPressed,
+                    );
+                  }),
+                  SizedBox(
+                    height: GetPlatform.isAndroid ? 20 : 40,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

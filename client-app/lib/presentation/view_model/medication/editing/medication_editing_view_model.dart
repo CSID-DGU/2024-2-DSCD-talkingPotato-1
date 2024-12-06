@@ -153,6 +153,26 @@ class MedicationEditingViewModel extends GetxController {
     _isEdited.value = !_equalsMedicationList();
   }
 
+  Future<bool> deleteAllApply() async {
+    StateWrapper<void> stateWrapper =
+        await _updateMedicationListUseCase.execute(
+      UpdateMedicationListCondition(
+        medicationList: [],
+      ),
+    );
+
+    if (!stateWrapper.success) {
+      return false;
+    }
+
+    _modifiedMedicationList.clear();
+    _currentIndex.value = 0;
+
+    await Get.find<BaseMediator>().publishUpdateMedicationEvent();
+
+    return true;
+  }
+
   Future<bool> confirmApply() async {
     StateWrapper<void> stateWrapper =
         await _updateMedicationListUseCase.execute(

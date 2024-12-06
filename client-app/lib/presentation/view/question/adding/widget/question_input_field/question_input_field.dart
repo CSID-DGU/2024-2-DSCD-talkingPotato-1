@@ -15,13 +15,15 @@ class QuestionInputField extends BaseWidget<QuestionAddingViewModel> {
       () => CustomInputTextField(
         textStyle: FontSystem.H6,
         enable: !viewModel.isLoading,
-        minLines: 6,
-        maxLines: 6,
+        minLines: 10,
+        maxLines: 10,
+        maxLength: 500,
         placeholder: '질문를 입력해주세요',
+        enabledCounter: true,
         hasSuffixIcon: false,
         fillColor: ColorSystem.neutral.shade200,
         textInputType: TextInputType.multiline,
-        textInputAction: TextInputAction.search,
+        textInputAction: TextInputAction.done,
         onChangedCallBack: viewModel.updateContent,
         onClearCallBack: viewModel.updateContent,
         onSubmittedCallBack: () {

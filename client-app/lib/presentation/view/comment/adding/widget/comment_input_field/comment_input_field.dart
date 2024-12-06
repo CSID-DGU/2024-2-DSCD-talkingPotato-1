@@ -23,7 +23,7 @@ class CommentInputField extends BaseWidget<CommentAddingViewModel> {
         hasSuffixIcon: false,
         fillColor: ColorSystem.neutral.shade100,
         textInputType: TextInputType.multiline,
-        textInputAction: TextInputAction.search,
+        textInputAction: TextInputAction.done,
         onChangedCallBack: viewModel.updateContent,
         onClearCallBack: viewModel.updateContent,
         onSubmittedCallBack: () {

@@ -16,6 +16,11 @@ class MedicationIndicatorForEditingView
         if (viewModel.isInitLoading) {
           return const SizedBox(height: 16);
         }
+
+        if (viewModel.modifiedMedicationList.isEmpty) {
+          return const SizedBox(height: 16);
+        }
+
         return SizedBox(
           height: 16,
           child: Center(

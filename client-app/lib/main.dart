@@ -34,6 +34,10 @@ Future<void> onInitSystem() async {
 
   // Storage & Database
   await StorageFactory.onInit();
+
+  // Notification
+  await NotificationUtil.initialize();
+  await NotificationUtil.setupRemoteNotification();
 }
 
 Future<void> onReadySystem() async {

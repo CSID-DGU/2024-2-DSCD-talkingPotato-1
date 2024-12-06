@@ -68,6 +68,13 @@ class QuestionDetailViewModel extends GetxController {
     _isInitLoading.value = false;
   }
 
+  Future<void> onRefresh() async {
+    await Future.wait([
+      _fetchQuestionDetail(),
+      _fetchQuestionCommentList(),
+    ]);
+  }
+
   Future<void> _fetchQuestionDetail() async {
     StateWrapper<QuestionDetailState> state =
         await _readQuestionDetailUseCase.execute(

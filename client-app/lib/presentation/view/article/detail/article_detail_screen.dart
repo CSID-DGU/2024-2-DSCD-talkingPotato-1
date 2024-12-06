@@ -37,18 +37,32 @@ class ArticleDetailScreen extends GetView<ArticleDetailViewModel> {
         top: false,
         bottom: true,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const ArticleDetailView(),
-                const CommentCardListView(),
-                SizedBox(height: GetPlatform.isAndroid ? 80 : 120),
-              ],
-            ),
-          ),
-        ),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: RefreshIndicator(
+              onRefresh: viewModel.onRefresh,
+              child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return CustomScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Container(
+                          color: ColorSystem.white,
+                          child: Column(
+                            children: [
+                              const ArticleDetailView(),
+                              const CommentCardListView(),
+                              SizedBox(
+                                  height: GetPlatform.isAndroid ? 80 : 120),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            )),
       ),
     );
   }
