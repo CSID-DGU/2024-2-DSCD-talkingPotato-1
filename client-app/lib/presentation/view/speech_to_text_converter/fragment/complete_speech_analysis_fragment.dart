@@ -40,9 +40,11 @@ class CompleteSpeechAnalysisFragment
                     : ColorSystem.neutral.shade100,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Text(
-                viewModel.speechToTextState.beforeSpeechText,
-                style: FontSystem.Sub3,
+              child: SingleChildScrollView(
+                child: Text(
+                  viewModel.speechToTextState.afterSpeechText,
+                  style: FontSystem.Sub3,
+                ),
               ),
             ),
           ),

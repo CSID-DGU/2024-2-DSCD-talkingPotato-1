@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:wooahan/core/wrapper/state_wrapper.dart';
-import 'package:wooahan/domain/condition/analysis/analysis_speech_condition.dart';
+import 'package:wooahan/domain/condition/correction/correct_speech_text_condition.dart';
 import 'package:wooahan/domain/entity/stt/speech_to_text_state.dart';
-import 'package:wooahan/domain/usecase/anlaysis/analysis_speech_use_case.dart';
+import 'package:wooahan/domain/usecase/correction/correct_speech_text_use_case.dart';
 
 class SpeechToTextConverterViewModel extends GetxController {
   /* ------------------------------------------------------ */
@@ -13,7 +13,7 @@ class SpeechToTextConverterViewModel extends GetxController {
   late final PageController pageController;
   late final SpeechToText _speechToText;
 
-  late final AnalysisSpeechUseCase _analysisSpeechUseCase;
+  late final CorrectSpeechTextUseCase _correctSpeechTextUseCase;
 
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
@@ -34,8 +34,7 @@ class SpeechToTextConverterViewModel extends GetxController {
   void onInit() {
     super.onInit();
 
-
-    _analysisSpeechUseCase = Get.find<AnalysisSpeechUseCase>();
+    _correctSpeechTextUseCase = Get.find<CorrectSpeechTextUseCase>();
 
     pageController = PageController(initialPage: 0);
     _speechToText = SpeechToText();
@@ -90,8 +89,10 @@ class SpeechToTextConverterViewModel extends GetxController {
       curve: Curves.easeInOut,
     );
 
-    StateWrapper<String> result = await _analysisSpeechUseCase.execute(
-      AnalysisSpeechCondition(text: _speechToTextState.value.beforeSpeechText),
+    StateWrapper<String> result = await _correctSpeechTextUseCase.execute(
+      CorrectSpeechTextCondition(
+        content: _speechToTextState.value.beforeSpeechText,
+      ),
     );
 
     if (result.success) {
