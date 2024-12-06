@@ -41,10 +41,10 @@ jobs:
           echo "${{ secrets.APPLICATION_YML }}" | base64 --decode > ./server-api/src/main/resources/application-dev.yml
 
       ### Firebase Key 설정
-      # - name: Set Firebase Key
-      #   run: |
-      #     mkdir -p ./server-api/src/main/resources/firebase
-      #     echo "${{ secrets.FIREBASE_ADMIN_KEY }}" | base64 --decode > ./server-api/src/main/resources/firebase/firebase-admin-key.json
+      - name: Set Firebase Key
+        run: |
+          mkdir -p ./server-api/src/main/resources/firebase
+          echo "${{ secrets.FIREBASE_ADMIN_KEY }}" | base64 --decode > ./server-api/src/main/resources/firebase/firebase-admin-key.json
 
       ### gradlew 실행 권한 부여
       - name: Grant execute Permission for gradlew
