@@ -63,7 +63,7 @@ class MedicationEditingScreen extends BaseScreen<MedicationEditingViewModel> {
           },
           child: Text(
             '전체 삭제',
-            style: FontSystem.H6.copyWith(
+            style: FontSystem.Sub1.copyWith(
               color: ColorSystem.red,
             ),
           ),

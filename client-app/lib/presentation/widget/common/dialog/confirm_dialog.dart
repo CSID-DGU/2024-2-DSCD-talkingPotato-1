@@ -45,14 +45,14 @@ class ConfirmDialog extends StatelessWidget {
   Widget _buildTitleView() {
     return Text(
       title,
-      style: FontSystem.H2,
+      style: FontSystem.H3,
     );
   }
 
   Widget _buildContentView() {
     return Text(
       content,
-      style: FontSystem.Sub2,
+      style: FontSystem.Sub3,
     );
   }
 
@@ -88,7 +88,7 @@ class ConfirmDialog extends StatelessWidget {
           child: Center(
             child: Text(
               "취소",
-              style: FontSystem.H4.copyWith(
+              style: FontSystem.H5.copyWith(
                 color: ColorSystem.neutral,
                 height: 1.0,
               ),
@@ -123,7 +123,7 @@ class ConfirmDialog extends StatelessWidget {
           child: Center(
             child: Text(
               "확인",
-              style: FontSystem.H4.copyWith(
+              style: FontSystem.H5.copyWith(
                 color: ColorSystem.white,
                 height: 1.0,
               ),

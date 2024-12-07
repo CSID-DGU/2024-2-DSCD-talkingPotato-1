@@ -28,7 +28,7 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
     return GestureDetector(
       onLongPress: onLongPress,
       child: Container(
-        height: 300,
+        height: 340,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: ColorSystem.white,
@@ -165,12 +165,16 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            state.drugClassificationOrManufacturer ?? '미등록 약품',
+            state.drugType == 'VITAMIN'
+                ? state.drugName!
+                : state.drugClassificationOrManufacturer ?? '미등록 약품',
             overflow: TextOverflow.ellipsis,
             style: FontSystem.H6,
           ),
           Text(
-            state.drugName!,
+            state.drugType == 'VITAMIN'
+                ? state.drugClassificationOrManufacturer ?? '미등록 약품'
+                : state.drugName!,
             overflow: TextOverflow.ellipsis,
             style: FontSystem.Sub3.copyWith(
               color: ColorSystem.neutral.shade500,
@@ -183,7 +187,7 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
 
   Widget _buildTimeLineButtons() {
     return SizedBox(
-      height: 32,
+      height: 36,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -227,8 +231,8 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
         padding: EdgeInsets.zero,
 
         // Size
-        minimumSize: const Size(56, 32),
-        fixedSize: const Size(56, 32),
+        minimumSize: const Size(56, 36),
+        fixedSize: const Size(56, 36),
 
         // Color
         backgroundColor: isSelected
@@ -241,14 +245,14 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
         // Border
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(16),
+            Radius.circular(18),
           ),
         ),
       ),
       child: Center(
         child: Text(
           text,
-          style: FontSystem.H6.copyWith(
+          style: FontSystem.Sub2.copyWith(
             color: isSelected
                 ? ColorSystem.secondary
                 : ColorSystem.neutral.shade700,

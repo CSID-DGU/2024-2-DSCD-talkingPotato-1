@@ -27,23 +27,23 @@ class MedicationContentForEditingView
   Widget _buildLeftButton() {
     return Obx(() {
       if (viewModel.isInitLoading) {
-        return const SizedBox(width: 48);
+        return const SizedBox(width: 44);
       }
 
       if (viewModel.modifiedMedicationList.isEmpty) {
-        return const SizedBox(width: 48);
+        return const SizedBox(width: 44);
       }
 
       if (viewModel.currentIndex != 0) {
         return EditingIconButton(
           icon: const Icon(
             Icons.chevron_left,
-            size: 48,
+            size: 44,
           ),
           onTap: viewModel.decrementCurrentIndex,
         );
       } else {
-        return const SizedBox(width: 48);
+        return const SizedBox(width: 44);
       }
     });
   }
@@ -114,11 +114,11 @@ class MedicationContentForEditingView
   Widget _buildRightButton() {
     return Obx(() {
       if (viewModel.isInitLoading) {
-        return const SizedBox(width: 48);
+        return const SizedBox(width: 44);
       }
 
       if (viewModel.modifiedMedicationList.isEmpty) {
-        return const SizedBox(width: 48);
+        return const SizedBox(width: 44);
       }
 
       if (viewModel.currentIndex !=
@@ -126,12 +126,12 @@ class MedicationContentForEditingView
         return EditingIconButton(
           icon: const Icon(
             Icons.chevron_right,
-            size: 48,
+            size: 44,
           ),
           onTap: viewModel.incrementCurrentIndex,
         );
       } else {
-        return const SizedBox(width: 48);
+        return const SizedBox(width: 44);
       }
     });
   }
