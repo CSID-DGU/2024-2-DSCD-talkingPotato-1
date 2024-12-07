@@ -43,7 +43,7 @@ class TimelineCardItemView extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               title,
-              style: FontSystem.Sub2,
+              style: FontSystem.Sub1,
             ),
             const Spacer(),
             SizedBox(
@@ -59,7 +59,7 @@ class TimelineCardItemView extends StatelessWidget {
                 backgroundColor: ColorSystem.primary.withOpacity(0.2),
                 center: Text(
                   '${state.takenAmount}/${state.totalAmount}',
-                  style: FontSystem.Sub3,
+                  style: FontSystem.Sub3.copyWith(height: 1.0),
                 ),
               ),
             )

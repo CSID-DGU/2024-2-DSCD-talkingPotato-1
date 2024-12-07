@@ -29,13 +29,18 @@ class MedicationScreen extends BaseScreen<MedicationViewModel> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
+              Icon(
                 Icons.edit_note_outlined,
+                color: ColorSystem.secondary.shade800,
                 size: 28,
               ),
               Text(
                 '수정하기',
-                style: FontSystem.Sub3.copyWith(height: 1.0),
+                style: FontSystem.Sub3.copyWith(
+                  color: ColorSystem.secondary.shade800,
+                  fontSize: 14,
+                  height: 1.0,
+                ),
               )
             ],
           ),

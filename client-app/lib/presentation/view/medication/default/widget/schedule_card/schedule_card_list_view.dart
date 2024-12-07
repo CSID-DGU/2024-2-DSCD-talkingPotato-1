@@ -24,7 +24,7 @@ class ScheduleCardListView extends BaseWidget<MedicationViewModel> {
             child: Center(
               child: Text(
                 '해당하는 복약 일정이 없어요!!',
-                style: FontSystem.H6.copyWith(
+                style: FontSystem.H5.copyWith(
                   color: ColorSystem.neutral.shade600,
                 ),
               ),
