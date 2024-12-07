@@ -86,7 +86,7 @@ class SelectingDrugBagPictureFragment
         File(viewModel.willAnalysisImage!.path),
         width: Get.width,
         height: Get.height * 0.45,
-        fit: BoxFit.cover,
+        fit: BoxFit.fitHeight,
       );
     });
   }

@@ -169,7 +169,7 @@ class MedicationBasicDefaultItemView extends StatelessWidget {
                 ? state.drugName!
                 : state.drugClassificationOrManufacturer ?? '미등록 약품',
             overflow: TextOverflow.ellipsis,
-            style: FontSystem.H6,
+            style: FontSystem.H5,
           ),
           Text(
             state.drugType == 'VITAMIN'

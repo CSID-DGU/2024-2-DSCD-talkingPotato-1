@@ -154,12 +154,16 @@ class ScheduleCardItemView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            state.drugClassificationOrManufacturer ?? '미등록 약품',
+            state.drugType == 'VITAMIN'
+                ? state.drugName
+                : state.drugClassificationOrManufacturer ?? '미등록 약품',
             overflow: TextOverflow.ellipsis,
             style: FontSystem.H5,
           ),
           Text(
-            state.drugName,
+            state.drugType == 'VITAMIN'
+                ? state.drugClassificationOrManufacturer ?? '미등록 약품'
+                : state.drugName,
             overflow: TextOverflow.ellipsis,
             style: FontSystem.Sub3.copyWith(
               color: ColorSystem.neutral.shade500,

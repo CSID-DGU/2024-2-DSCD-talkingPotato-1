@@ -48,12 +48,13 @@ class FinishMedicationFragment extends BaseScreen<MedicationAddingViewModel> {
   List<Widget> _buildTitleViews() {
     return [
       const Text(
-        "복약지도를 받을 약들을 추가했어요!",
+        "알림 받을 약들을 추가했어요!",
         style: FontSystem.H1,
       ),
+      const SizedBox(height: 4),
       Text(
         "설정한 시간대에 알림을 받을 예정이에요.",
-        style: FontSystem.H5.copyWith(
+        style: FontSystem.H6.copyWith(
           color: ColorSystem.neutral.shade600,
         ),
       ),
