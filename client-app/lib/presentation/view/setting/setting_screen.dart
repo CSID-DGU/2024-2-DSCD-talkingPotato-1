@@ -193,6 +193,20 @@ class SettingScreen extends BaseScreen<SettingViewModel> {
           child: Column(
             children: [
               TextSectionView(
+                title: '비밀번호 변경',
+                textColor: ColorSystem.black.withOpacity(0.8),
+                onTap: () {
+                  Get.toNamed(AppRoutes.SETTING+AppRoutes.CHANGE_PASSWORD);
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: InfinityHorizonLine(
+                  gap: 0.5,
+                  color: ColorSystem.neutral.shade300,
+                ),
+              ),
+              TextSectionView(
                 title: '로그아웃',
                 textColor: ColorSystem.blue.shade400,
                 onTap: () {

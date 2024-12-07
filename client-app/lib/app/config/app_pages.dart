@@ -5,6 +5,7 @@ import 'package:wooahan/core/screen/no_implement_screen.dart';
 import 'package:wooahan/presentation/view/article/default/article_screen.dart';
 import 'package:wooahan/presentation/view/article/detail/article_detail_screen.dart';
 import 'package:wooahan/presentation/view/article/searching/article_searching_screen.dart';
+import 'package:wooahan/presentation/view/change_password/change_password_screen.dart';
 import 'package:wooahan/presentation/view/comment/adding/comment_adding_screen.dart';
 import 'package:wooahan/presentation/view/drug/detail/drug_detail_screen.dart';
 import 'package:wooahan/presentation/view/login/login_screen.dart';
@@ -25,6 +26,7 @@ import 'package:wooahan/presentation/view_model/article/default/article_binding.
 import 'package:wooahan/presentation/view_model/article/detail/article_detail_binding.dart';
 import 'package:wooahan/presentation/view_model/article/searching/article_searching_binding.dart';
 import 'package:wooahan/presentation/view_model/board/board_binding.dart';
+import 'package:wooahan/presentation/view_model/change_password/change_password_binding.dart';
 import 'package:wooahan/presentation/view_model/comment/adding/comment_adding_binding.dart';
 import 'package:wooahan/presentation/view_model/drug/detail/drug_detail_binding.dart';
 import 'package:wooahan/presentation/view_model/home/home_binding.dart';
@@ -160,6 +162,13 @@ abstract class AppPages {
       name: AppRoutes.SETTING,
       page: () => const SettingScreen(),
       binding: SettingBinding(),
+      children: [
+        GetPage(
+          name: AppRoutes.CHANGE_PASSWORD,
+          page: () => const ChangePasswordScreen(),
+          binding: ChangePasswordBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: AppRoutes.TEXT_TO_SPEECH_CONVERTER,
