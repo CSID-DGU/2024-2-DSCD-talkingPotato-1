@@ -25,37 +25,43 @@ class NicknameInputFragment extends BaseScreen<SignUpViewModel> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: CustomScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        slivers: [
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: GestureDetector(
-              onTap: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildTitleViews(),
-                  const SizedBox(height: 40),
-                  _buildPasswordView(),
-                  const Spacer(),
-                  _buildNextButton(),
-                ],
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Container(
+        color: ColorSystem.white,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: GestureDetector(
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildTitleViews(),
+                    const SizedBox(height: 40),
+                    _buildPasswordView(),
+                    const Spacer(),
+                    _buildNextButton(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildTitleViews() {
     return const Text(
-      "약알에서 사용할"
+      "우아한에서 사용할"
       "\n"
       "닉네임을 입력해주세요",
       style: FontSystem.H1,

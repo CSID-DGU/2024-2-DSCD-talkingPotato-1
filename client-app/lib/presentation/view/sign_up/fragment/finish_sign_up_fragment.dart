@@ -65,7 +65,7 @@ class FinishSignUpFragment extends BaseScreen<SignUpViewModel> {
         style: FontSystem.H1,
       ),
       Text(
-        "이제 약알의 모든 서비스를 누릴 수 있어요",
+        "이제 우아한의 서비스를 누릴 수 있어요",
         style: FontSystem.H5.copyWith(
           color: ColorSystem.neutral.shade600,
         ),

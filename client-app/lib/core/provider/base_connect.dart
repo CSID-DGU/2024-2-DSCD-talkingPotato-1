@@ -121,7 +121,7 @@ abstract class BaseConnect extends GetConnect {
 
     if (((statusCodeOrErrorCode != 40100 &&
                 statusCodeOrErrorCode.toString().startsWith("401")) ||
-            statusCodeOrErrorCode == 40302) &&
+            statusCodeOrErrorCode == 40402) &&
         useBearerToken == "false") {
       await StorageFactory.systemProvider.deallocateTokens();
 
