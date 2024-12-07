@@ -50,20 +50,32 @@ class QuestionSpeechButton extends BaseWidget<QuestionAddingViewModel> {
             }
 
             if (viewModel.isStoppingSpeechToText) {
-              child = Text(
-                "녹음 종료 중...",
-                style: FontSystem.H4.copyWith(
-                  color: ColorSystem.white,
-                  height: 1.0,
-                ),
+              child = Column(
+                children: [
+                  const SizedBox(height: 10.5),
+                  Text(
+                    "녹음 종료 중...",
+                    style: FontSystem.H5.copyWith(
+                      color: ColorSystem.white,
+                      height: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 10.5),
+                ],
               );
             } else if (viewModel.speechToTextState.isListening) {
-              child = Text(
-                "녹음 끝내기",
-                style: FontSystem.H4.copyWith(
-                  color: ColorSystem.white,
-                  height: 1.0,
-                ),
+              child = Column(
+                children: [
+                  const SizedBox(height: 10.5),
+                  Text(
+                    "녹음 끝내기",
+                    style: FontSystem.H5.copyWith(
+                      color: ColorSystem.white,
+                      height: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 10.5),
+                ],
               );
             } else {
               child = Column(
@@ -71,7 +83,7 @@ class QuestionSpeechButton extends BaseWidget<QuestionAddingViewModel> {
                 children: [
                   Text(
                     "목소리로 입력하기",
-                    style: FontSystem.H6.copyWith(
+                    style: FontSystem.H5.copyWith(
                       color: ColorSystem.white,
                       height: 1.0,
                     ),
@@ -91,6 +103,15 @@ class QuestionSpeechButton extends BaseWidget<QuestionAddingViewModel> {
             return OutlinedButton(
               onPressed: onPressed,
               style: OutlinedButton.styleFrom(
+                // Padding
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 20,
+                ),
+
+                // Size
+                minimumSize: Size(Get.width * 0.6, 0),
+
                 // Color
                 backgroundColor: viewModel.speechToTextState.isListening
                     ? ColorSystem.secondary
@@ -116,6 +137,7 @@ class QuestionSpeechButton extends BaseWidget<QuestionAddingViewModel> {
             );
           },
         ),
+        const Spacer(),
       ],
     );
   }

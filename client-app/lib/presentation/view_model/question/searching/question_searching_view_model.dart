@@ -16,7 +16,7 @@ class QuestionSearchingViewModel extends GetxController {
       _readQuestionSearchTermListUseCase;
 
   late final UpsertQuestionSearchTermListUseCase
-      _upsertQuestionSearchTermListCondition;
+      _upsertQuestionSearchTermListUseCase;
 
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
@@ -56,7 +56,7 @@ class QuestionSearchingViewModel extends GetxController {
     _readQuestionSearchTermListUseCase =
         Get.find<ReadQuestionSearchTermListUseCase>();
 
-    _upsertQuestionSearchTermListCondition =
+    _upsertQuestionSearchTermListUseCase =
         Get.find<UpsertQuestionSearchTermListUseCase>();
 
     _mode = 'searching'.obs;
@@ -100,8 +100,15 @@ class QuestionSearchingViewModel extends GetxController {
 
     _mode.value = 'searched';
 
+    if (_recentSearchTermList.contains(_searchTerm.value)) {
+      _recentSearchTermList.remove(_searchTerm.value);
+    } else if (_recentSearchTermList.length >= 5) {
+      _recentSearchTermList.removeLast();
+    }
+
     _recentSearchTermList.insert(0, _searchTerm.value);
-    await _upsertQuestionSearchTermListCondition.execute(
+
+    await _upsertQuestionSearchTermListUseCase.execute(
       UpsertQuestionSearchTermListCondition(
         searchTerms: _recentSearchTermList,
       ),
@@ -128,7 +135,7 @@ class QuestionSearchingViewModel extends GetxController {
   void removeInRecentSearchTerm(int index) {
     _recentSearchTermList.removeAt(index);
 
-    _upsertQuestionSearchTermListCondition.execute(
+    _upsertQuestionSearchTermListUseCase.execute(
       UpsertQuestionSearchTermListCondition(
         searchTerms: _recentSearchTermList,
       ),
@@ -138,7 +145,7 @@ class QuestionSearchingViewModel extends GetxController {
   void removeAllInRecentSearchTermList() {
     _recentSearchTermList.clear();
 
-    _upsertQuestionSearchTermListCondition.execute(
+    _upsertQuestionSearchTermListUseCase.execute(
       UpsertQuestionSearchTermListCondition(
         searchTerms: _recentSearchTermList,
       ),
