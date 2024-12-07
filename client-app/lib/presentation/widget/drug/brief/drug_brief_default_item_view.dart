@@ -58,8 +58,10 @@ class DrugBriefDefaultItemView extends StatelessWidget {
 
   Widget _buildBadge() {
     return Container(
-      width: 60,
-      height: 32,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 4,
+      ),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: ColorSystem.secondary.shade100,
@@ -67,10 +69,11 @@ class DrugBriefDefaultItemView extends StatelessWidget {
       ),
       child: Text(
         state.type == 'MEDICINE' ? "의약품" : "영양제",
-        style: FontSystem.Sub1.copyWith(
+        style: FontSystem.Sub3.copyWith(
           color: state.type == 'MEDICINE'
               ? ColorSystem.secondary.shade500
               : ColorSystem.primary.shade500,
+          fontWeight: FontWeight.w700,
           height: 1.0,
         ),
       ),
@@ -82,7 +85,8 @@ class DrugBriefDefaultItemView extends StatelessWidget {
       width: Get.width - 168,
       child: Text(
         state.name,
-        style: FontSystem.H2.copyWith(
+        style: FontSystem.H5.copyWith(
+          height: 1.0,
           color: ColorSystem.neutral.shade500,
         ),
         maxLines: 1,

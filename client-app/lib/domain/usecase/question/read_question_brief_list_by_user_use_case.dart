@@ -18,6 +18,7 @@ class ReadQuestionBriefListByUserUseCase extends BaseUseCase
 
   @override
   Future<StateWrapper<List<QuestionBriefState>>> execute() async {
+    await Future.delayed(const Duration(milliseconds: 500));
     return await _questionRepository.readQuestionBriefListByUser();
   }
 }

@@ -26,7 +26,7 @@ class QuestionMiniDefaultItemView extends StatelessWidget {
               width: Get.width - 40 - 40 - 120,
               child: Text(
                 state.preview,
-                style: FontSystem.Sub2,
+                style: FontSystem.Sub3,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -63,7 +63,7 @@ class QuestionMiniDefaultItemView extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(20),
@@ -72,6 +72,7 @@ class QuestionMiniDefaultItemView extends StatelessWidget {
         badgeText,
         style: FontSystem.Sub3.copyWith(
           color: textColor,
+          height: 1.0,
         ),
       ),
     );

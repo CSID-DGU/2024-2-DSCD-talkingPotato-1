@@ -40,13 +40,13 @@ class DrugFloatingActionButton extends StatelessWidget {
         children: [
           const SvgImageView(
             assetPath: 'assets/icons/pill.svg',
-            width: 20,
-            height: 20,
+            width: 16,
+            height: 16,
           ),
           const SizedBox(width: 8),
           Text(
             '복약 추가하기',
-            style: FontSystem.H4.copyWith(
+            style: FontSystem.Sub1.copyWith(
               color: ColorSystem.white,
             ),
           ),

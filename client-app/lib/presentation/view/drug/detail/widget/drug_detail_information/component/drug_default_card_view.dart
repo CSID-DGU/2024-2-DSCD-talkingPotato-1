@@ -27,14 +27,15 @@ class DrugDefaultCardView extends StatelessWidget {
         children: [
           Text(
             title,
-            style: FontSystem.H2.copyWith(
+            style: FontSystem.H4.copyWith(
               color: ColorSystem.neutral.shade900,
             ),
           ),
           const SizedBox(height: 4),
           Text(
             content ?? '해당하는 정보가 없습니다.',
-            style: FontSystem.H5.copyWith(
+            style: FontSystem.Sub2.copyWith(
+              height: 1.6,
               color: ColorSystem.neutral.shade500,
             ),
           ),

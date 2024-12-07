@@ -30,7 +30,7 @@ class QuestionResultView extends BaseWidget<QuestionSearchingViewModel> {
           children: [
             Text(
               "최근 검색",
-              style: FontSystem.H2.copyWith(
+              style: FontSystem.H5.copyWith(
                 color: ColorSystem.neutral.shade600,
               ),
             ),
@@ -38,7 +38,7 @@ class QuestionResultView extends BaseWidget<QuestionSearchingViewModel> {
               onTap: viewModel.removeAllInRecentSearchTermList,
               child: Text(
                 "전체 삭제",
-                style: FontSystem.H4.copyWith(
+                style: FontSystem.Sub2.copyWith(
                   fontWeight: FontWeight.w500,
                   color: ColorSystem.neutral,
                 ),
@@ -55,6 +55,21 @@ class QuestionResultView extends BaseWidget<QuestionSearchingViewModel> {
   Widget _buildContentView() {
     return Obx(() {
       if (viewModel.mode == 'searching') {
+        if (viewModel.recentSearchTermList.isEmpty) {
+          return SizedBox(
+            height: 120,
+            child: Center(
+              child: Text(
+                '최근 검색어가 없습니다.',
+                style: FontSystem.Sub3.copyWith(
+                  color: ColorSystem.neutral.shade600,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          );
+        }
+
         return ListView.builder(
           itemCount: viewModel.recentSearchTermList.length,
           shrinkWrap: true,
@@ -71,13 +86,13 @@ class QuestionResultView extends BaseWidget<QuestionSearchingViewModel> {
                   children: [
                     Icon(
                       Icons.access_time,
-                      size: 24,
+                      size: 20,
                       color: ColorSystem.neutral.shade600,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       viewModel.recentSearchTermList[index],
-                      style: FontSystem.H3.copyWith(
+                      style: FontSystem.H6.copyWith(
                         fontWeight: FontWeight.w500,
                         color: ColorSystem.neutral.shade600,
                         height: 1.0,

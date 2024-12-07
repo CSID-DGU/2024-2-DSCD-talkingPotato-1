@@ -6,7 +6,7 @@ class CustomInputTextField extends StatefulWidget {
   const CustomInputTextField({
     super.key,
     this.content = '',
-    this.textStyle = FontSystem.H2,
+    this.textStyle = FontSystem.Sub2,
     this.maxLength,
     this.maxLines = 1,
     this.minLines = 1,
@@ -125,20 +125,19 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
         filled: widget.fillColor != null,
         fillColor: widget.fillColor,
         labelText: widget.label,
-        labelStyle: FontSystem.H2.copyWith(
+        labelStyle: widget.textStyle.copyWith(
           color: ColorSystem.neutral.shade700,
         ),
         hintText: widget.placeholder,
-        hintStyle: FontSystem.H5.copyWith(
-          color: ColorSystem.neutral.shade300,
-          height: 1.875,
+        hintStyle: widget.textStyle.copyWith(
+          color: ColorSystem.neutral.shade500,
         ),
         floatingLabelBehavior: FloatingLabelBehavior.never,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 17,
         ),
-        errorStyle: FontSystem.H5.copyWith(
+        errorStyle: FontSystem.Sub3.copyWith(
           color: ColorSystem.red.shade600,
           height: 1,
         ),

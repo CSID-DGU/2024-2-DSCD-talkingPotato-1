@@ -33,7 +33,7 @@ class TextDefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         title: Text(
           title,
-          style: FontSystem.H3,
+          style: FontSystem.H2,
         ),
         surfaceTintColor: ColorSystem.white,
         backgroundColor: ColorSystem.white,

@@ -40,13 +40,13 @@ class ToggleSectionView extends BaseWidget<SettingViewModel> {
       children: [
         Text(
           title,
-          style: FontSystem.H2.copyWith(
+          style: FontSystem.H5.copyWith(
             color: ColorSystem.neutral.shade900,
           ),
         ),
         Text(
           content,
-          style: FontSystem.Sub2.copyWith(
+          style: FontSystem.Sub3.copyWith(
             color: ColorSystem.neutral,
           ),
         ),

@@ -41,7 +41,7 @@ abstract class BaseFillButton extends StatelessWidget {
       child: Center(
         child: Text(
           content,
-          style: FontSystem.H4.copyWith(
+          style: FontSystem.H5.copyWith(
             color: onPressed != null ? ColorSystem.white : ColorSystem.neutral,
             height: 1.0,
           ),

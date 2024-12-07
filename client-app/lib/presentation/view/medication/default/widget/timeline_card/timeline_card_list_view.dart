@@ -10,7 +10,7 @@ class TimelineCardListView extends BaseWidget<MedicationViewModel> {
   @override
   Widget buildView(BuildContext context) {
     return SizedBox(
-      height: 180,
+      height: ((Get.width - 100) / 4) * 2.3,
       child: Obx(
         () => ListView.separated(
           shrinkWrap: true,

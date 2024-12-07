@@ -25,32 +25,38 @@ class PasswordInputFragment extends BaseScreen<SignUpViewModel> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: CustomScrollView(
-        physics: const ClampingScrollPhysics(),
-        slivers: [
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: GestureDetector(
-              onTap: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ..._buildTitleViews(),
-                  const SizedBox(height: 40),
-                  _buildPasswordView(),
-                  const SizedBox(height: 16),
-                  _buildPasswordValidationView(),
-                  const Spacer(),
-                  _buildNextButton(),
-                ],
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Container(
+        color: ColorSystem.white,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: GestureDetector(
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ..._buildTitleViews(),
+                    const SizedBox(height: 40),
+                    _buildPasswordView(),
+                    const SizedBox(height: 16),
+                    _buildPasswordValidationView(),
+                    const Spacer(),
+                    _buildNextButton(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -94,11 +100,14 @@ class PasswordInputFragment extends BaseScreen<SignUpViewModel> {
 
               return null;
             },
+            maxLines: 1,
+            minLines: 1,
+            maxLength: 20,
             textInputType: TextInputType.visiblePassword,
             hasSuffixIcon: false,
             obscureText: true,
             enableSuggestions: false,
-            autocorrect: false,
+            autocorrect: true,
             enable: true,
             onChangedCallBack: viewModel.updateWantPassword,
             onClearCallBack: viewModel.updateWantPassword,
@@ -135,13 +144,16 @@ class PasswordInputFragment extends BaseScreen<SignUpViewModel> {
 
               return null;
             },
+            maxLines: 1,
+            minLines: 1,
+            maxLength: 20,
             textInputType: TextInputType.visiblePassword,
-            onChangedCallBack: viewModel.updateValidatePassword,
             hasSuffixIcon: false,
             obscureText: true,
             enableSuggestions: false,
-            autocorrect: false,
+            autocorrect: true,
             enable: true,
+            onChangedCallBack: viewModel.updateValidatePassword,
             onClearCallBack: viewModel.updateValidatePassword,
             onSubmittedCallBack: () {
               FocusManager.instance.primaryFocus?.unfocus();

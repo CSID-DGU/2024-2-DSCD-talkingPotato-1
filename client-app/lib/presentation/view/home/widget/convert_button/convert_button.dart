@@ -60,6 +60,7 @@ class ConvertButton extends StatelessWidget {
               content,
               style: FontSystem.Sub3.copyWith(
                 color: ColorSystem.neutral.shade600,
+                height: 1.2,
               ),
             ),
           ],

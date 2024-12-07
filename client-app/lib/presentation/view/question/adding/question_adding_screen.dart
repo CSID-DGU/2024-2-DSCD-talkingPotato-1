@@ -74,7 +74,7 @@ class QuestionAddingScreen extends BaseScreen<QuestionAddingViewModel> {
       "\n"
       "\n"
       "아래는 이 게시판에 해당하는 핵심 내용에 대한 요약 사항이며, 게시물 작성 전 커뮤니티 이용규칙 전문을 반드시 확인하시기 바랍니다.",
-      style: FontSystem.H6.copyWith(
+      style: FontSystem.Sub3.copyWith(
         color: ColorSystem.neutral.shade600,
       ),
     );

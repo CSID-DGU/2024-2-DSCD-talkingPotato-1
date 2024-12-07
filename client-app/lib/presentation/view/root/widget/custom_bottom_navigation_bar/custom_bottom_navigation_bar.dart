@@ -38,17 +38,23 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
 
             // When not selected
             unselectedItemColor: ColorSystem.neutral.shade400,
-            unselectedLabelStyle: FontSystem.Sub3,
+            unselectedLabelStyle: FontSystem.Sub3.copyWith(
+              fontSize: 12,
+              height: 1.714,
+            ),
 
             // When selected
             selectedItemColor: ColorSystem.primary,
-            selectedLabelStyle: FontSystem.Sub3,
+            selectedLabelStyle: FontSystem.Sub3.copyWith(
+              fontSize: 12,
+              height: 1.714,
+            ),
 
             // Items
             items: [
               BottomNavigationBarItem(
                 icon: SvgImageView(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   assetPath: 'assets/icons/home.svg',
                   height: 24,
                   color: viewModel.selectedIndex == 0
@@ -59,7 +65,7 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
               ),
               BottomNavigationBarItem(
                 icon: SvgImageView(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   assetPath: 'assets/icons/medication_management.svg',
                   height: 24,
                   color: viewModel.selectedIndex == 1
@@ -70,7 +76,7 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
               ),
               BottomNavigationBarItem(
                 icon: SvgImageView(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   assetPath: 'assets/icons/chatting.svg',
                   height: 24,
                   color: viewModel.selectedIndex == 2

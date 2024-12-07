@@ -42,8 +42,9 @@ class SplashScreen extends GetView<SplashViewModel> {
               Obx(
                 () => Text(
                   viewModel.informationText,
-                  style: FontSystem.H5.copyWith(
+                  style: FontSystem.H6.copyWith(
                     color: ColorSystem.black,
+                    height: 1.0,
                   ),
                   textAlign: TextAlign.center,
                 ),

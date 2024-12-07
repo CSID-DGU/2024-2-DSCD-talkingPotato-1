@@ -48,7 +48,7 @@ class ScheduleCardItemView extends StatelessWidget {
             child: AnimatedContainer(
               width: Get.width,
               height: state.drugType == 'CUSTOM' || state.drugType == 'MEDICINE'
-                  ? 46 + 32
+                  ? 52 + 32
                   : 95 + 32,
               duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
@@ -68,10 +68,9 @@ class ScheduleCardItemView extends StatelessWidget {
     if (state.drugType == 'CUSTOM' || state.drugType == 'MEDICINE') {
       int idSum = state.drugId % 7;
 
-      return Container(
+      return SizedBox(
         width: 95,
         height: 40,
-        margin: const EdgeInsets.only(top: 6),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -134,7 +133,7 @@ class ScheduleCardItemView extends StatelessWidget {
         height: 40,
         borderRadius: BorderRadius.circular(8),
         backgroundColor: Colors.white,
-      ).marginOnly(top: 6);
+      );
     }
 
     return NetworkImageView(
@@ -155,14 +154,18 @@ class ScheduleCardItemView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            state.drugClassificationOrManufacturer ?? '미등록 약품',
+            state.drugType == 'VITAMIN'
+                ? state.drugName
+                : state.drugClassificationOrManufacturer ?? '미등록 약품',
             overflow: TextOverflow.ellipsis,
-            style: FontSystem.H4,
+            style: FontSystem.H5,
           ),
           Text(
-            state.drugName,
+            state.drugType == 'VITAMIN'
+                ? state.drugClassificationOrManufacturer ?? '미등록 약품'
+                : state.drugName,
             overflow: TextOverflow.ellipsis,
-            style: FontSystem.Sub2.copyWith(
+            style: FontSystem.Sub3.copyWith(
               color: ColorSystem.neutral.shade500,
             ),
           ),

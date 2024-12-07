@@ -89,7 +89,7 @@ class HomeScreen extends BaseScreen<HomeViewModel> {
             (Get.width - 60) / 2,
           ),
           title: '문서 읽어주기',
-          content: '사진의 글자를 읽어요',
+          content: '사진을 읽어줘요',
           assetPath: 'assets/icons/stt.svg',
           onPressed: () {
             Get.toNamed(AppRoutes.TEXT_TO_SPEECH_CONVERTER);
@@ -102,7 +102,7 @@ class HomeScreen extends BaseScreen<HomeViewModel> {
             (Get.width - 60) / 2,
           ),
           title: '목소리 들어주기',
-          content: '말을 하면 적어줘요',
+          content: '말소리를 적어줘요',
           assetPath: 'assets/icons/tts.svg',
           onPressed: () {
             Get.toNamed(AppRoutes.SPEECH_TO_TEXT_CONVERTER);

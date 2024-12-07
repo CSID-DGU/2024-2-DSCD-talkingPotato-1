@@ -27,11 +27,11 @@ class DrugCategoriesCardView extends StatelessWidget {
         children: [
           Text(
             title,
-            style: FontSystem.H2.copyWith(
+            style: FontSystem.H4.copyWith(
               color: ColorSystem.neutral.shade900,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 10,
@@ -39,16 +39,17 @@ class DrugCategoriesCardView extends StatelessWidget {
               (badgeStr) {
                 return Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
+                    horizontal: 12,
+                    vertical: 8,
                   ),
                   decoration: BoxDecoration(
                     color: ColorSystem.secondary.shade100,
-                    borderRadius: BorderRadius.circular(13),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
                     badgeStr,
-                    style: FontSystem.Sub1.copyWith(
+                    style: FontSystem.Sub2.copyWith(
+                      height: 1.0,
                       color: ColorSystem.secondary.shade500,
                     ),
                   ),

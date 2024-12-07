@@ -19,6 +19,7 @@ class QuestionSummaryDefaultItemView extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height: 120,
         padding: const EdgeInsets.symmetric(vertical: 16),
         color: ColorSystem.white,
         child: Column(
@@ -31,12 +32,15 @@ class QuestionSummaryDefaultItemView extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
+            const Spacer(),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator} | ${state.answerCnt}개의 답변',
                   style: FontSystem.Sub3.copyWith(
+                    fontSize: 14,
                     color: ColorSystem.neutral,
                   ),
                 ),
@@ -74,7 +78,7 @@ class QuestionSummaryDefaultItemView extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(20),
@@ -83,6 +87,7 @@ class QuestionSummaryDefaultItemView extends StatelessWidget {
         badgeText,
         style: FontSystem.Sub3.copyWith(
           color: textColor,
+          height: 1.0,
         ),
       ),
     );

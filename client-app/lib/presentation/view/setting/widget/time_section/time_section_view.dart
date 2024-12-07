@@ -29,12 +29,12 @@ class TimeSectionView extends BaseWidget<SettingViewModel> {
           children: [
             Text(
               title,
-              style: FontSystem.H6,
+              style: FontSystem.Sub2,
             ),
             const Spacer(),
             Text(
               "$hour:${minute.toString().padLeft(2, '0')}",
-              style: FontSystem.Sub2.copyWith(
+              style: FontSystem.Sub3.copyWith(
                 color: ColorSystem.neutral.shade600,
               ),
             ),

@@ -19,6 +19,7 @@ class ArticleBriefDefaultItemView extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height: 160,
         padding: const EdgeInsets.symmetric(vertical: 16),
         color: ColorSystem.white,
         child: Column(
@@ -36,7 +37,8 @@ class ArticleBriefDefaultItemView extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
+            const Spacer(),
             Text(
               '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator}',
               style: FontSystem.Sub3.copyWith(

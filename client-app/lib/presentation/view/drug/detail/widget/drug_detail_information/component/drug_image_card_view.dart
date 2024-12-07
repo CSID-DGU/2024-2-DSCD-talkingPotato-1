@@ -29,13 +29,13 @@ class DrugImageCardView extends StatelessWidget {
               children: [
                 Text(
                   mainTitle,
-                  style: FontSystem.H4.copyWith(
+                  style: FontSystem.Sub1.copyWith(
                     color: ColorSystem.neutral.shade500,
                   ),
                 ),
                 Text(
                   subTitle,
-                  style: FontSystem.H1.copyWith(
+                  style: FontSystem.H4.copyWith(
                     color: ColorSystem.neutral.shade900,
                   ),
                 ),
@@ -57,7 +57,8 @@ class DrugImageCardView extends StatelessWidget {
           ),
           child: Text(
             content ?? '해당하는 정보가 없습니다.',
-            style: FontSystem.H5.copyWith(
+            style: FontSystem.Sub2.copyWith(
+              height: 1.6,
               color: ColorSystem.neutral.shade500,
             ),
           ),

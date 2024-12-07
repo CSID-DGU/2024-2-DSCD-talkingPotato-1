@@ -69,6 +69,7 @@ class DrugDetailScreen extends BaseScreen<DrugDetailViewModel> {
         '\n'
         '식품의약품안전처 DB : https://www.data.go.kr/data/15085712/openapi.do?recommendDataYn=Y',
         style: FontSystem.Sub3.copyWith(
+          fontSize: 12,
           color: ColorSystem.neutral.shade500,
         ),
       ),

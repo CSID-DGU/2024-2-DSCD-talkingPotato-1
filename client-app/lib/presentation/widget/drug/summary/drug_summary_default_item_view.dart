@@ -36,10 +36,9 @@ class DrugSummaryDefaultItemView extends StatelessWidget {
     if (state.type == 'CUSTOM' || state.type == 'MEDICINE') {
       int idSum = state.id % 7;
 
-      return Container(
+      return SizedBox(
         width: 95,
         height: 40,
-        margin: const EdgeInsets.only(top: 6),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -102,7 +101,7 @@ class DrugSummaryDefaultItemView extends StatelessWidget {
         height: 40,
         borderRadius: BorderRadius.circular(8),
         backgroundColor: Colors.white,
-      ).marginOnly(top: 6);
+      );
     }
 
     return NetworkImageView(
@@ -123,14 +122,18 @@ class DrugSummaryDefaultItemView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            state.classificationOrManufacturer ?? '미등록 약품',
+            state.type == 'VITAMIN'
+                ? state.name
+                : state.classificationOrManufacturer,
             overflow: TextOverflow.ellipsis,
-            style: FontSystem.H4,
+            style: FontSystem.H5,
           ),
           Text(
-            state.name,
+            state.type == 'VITAMIN'
+                ? state.classificationOrManufacturer
+                : state.name,
             overflow: TextOverflow.ellipsis,
-            style: FontSystem.Sub2.copyWith(
+            style: FontSystem.Sub3.copyWith(
               color: ColorSystem.neutral.shade500,
             ),
           ),

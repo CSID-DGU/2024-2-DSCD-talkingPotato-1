@@ -19,6 +19,7 @@ class QuestionBriefDefaultItemView extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height: 120,
         padding: const EdgeInsets.symmetric(vertical: 16),
         color: ColorSystem.white,
         child: Column(
@@ -27,15 +28,17 @@ class QuestionBriefDefaultItemView extends StatelessWidget {
           children: [
             Text(
               state.preview,
-              style: FontSystem.Sub3,
+              style: FontSystem.Sub2,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
+            const Spacer(),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '${DateTimeUtil.calRemainDateTime(state.createdAt)}| ${state.creator}',
+                  '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator}',
                   style: FontSystem.Sub3.copyWith(
                     color: ColorSystem.neutral,
                   ),
@@ -74,7 +77,7 @@ class QuestionBriefDefaultItemView extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(20),
@@ -83,6 +86,7 @@ class QuestionBriefDefaultItemView extends StatelessWidget {
         badgeText,
         style: FontSystem.Sub3.copyWith(
           color: textColor,
+          height: 1.0,
         ),
       ),
     );

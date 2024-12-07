@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/core/screen/base_widget.dart';
-import 'package:wooahan/presentation/view/drug/detail/widget/drug_detail_information/component/drug_%20categories_card_view.dart';
+import 'package:wooahan/presentation/view/drug/detail/widget/drug_detail_information/component/drug_categories_card_view.dart';
 import 'package:wooahan/presentation/view/drug/detail/widget/drug_detail_information/component/drug_default_card_view.dart';
 import 'package:wooahan/presentation/view/drug/detail/widget/drug_detail_information/component/drug_image_card_view.dart';
 import 'package:wooahan/presentation/view_model/drug/detail/drug_detail_view_model.dart';

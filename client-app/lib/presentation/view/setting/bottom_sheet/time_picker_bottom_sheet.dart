@@ -58,7 +58,7 @@ class _TimePickerBottomSheetState extends State<TimePickerBottomSheet> {
             child: CupertinoTheme(
               data: CupertinoThemeData(
                 textTheme: CupertinoTextThemeData(
-                  dateTimePickerTextStyle: FontSystem.H3.copyWith(
+                  dateTimePickerTextStyle: FontSystem.H6.copyWith(
                     color: ColorSystem.black,
                     height: 1.0,
                   ),

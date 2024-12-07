@@ -91,6 +91,10 @@ class SplashViewModel extends GetxController {
           "로그인 만료",
           "로그인이 만료되었습니다. 다시 로그인해주세요.",
         );
+
+        Get.toNamed(AppRoutes.LOGIN);
+
+        return;
       }
     }
 

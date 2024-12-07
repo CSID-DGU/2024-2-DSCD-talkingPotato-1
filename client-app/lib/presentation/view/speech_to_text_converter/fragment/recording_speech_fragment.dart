@@ -38,6 +38,7 @@ class RecordingSpeechFragment
         '들어줄 목소리를 녹음해주세요',
         style: FontSystem.H2,
       ),
+      SizedBox(height: 8),
       Text(
         '잡음이 적을수록 더 정확하게 들을 수 있어요\n'
         '녹음 중일 때는 아래 네모가 녹색으로 변해요.',
@@ -61,9 +62,11 @@ class RecordingSpeechFragment
                 : ColorSystem.neutral.shade100,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Text(
-            viewModel.speechToTextState.beforeSpeechText,
-            style: FontSystem.H6,
+          child: SingleChildScrollView(
+            child: Text(
+              viewModel.speechToTextState.beforeSpeechText,
+              style: FontSystem.H6,
+            ),
           ),
         );
       },

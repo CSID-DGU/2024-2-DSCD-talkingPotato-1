@@ -37,7 +37,7 @@ class CommentDefaultItemView extends StatelessWidget {
                     color: ColorSystem.transparent,
                     child: Text(
                       '삭제하기',
-                      style: FontSystem.H6.copyWith(
+                      style: FontSystem.Sub3.copyWith(
                         color: ColorSystem.red,
                       ),
                     ),
@@ -45,15 +45,15 @@ class CommentDefaultItemView extends StatelessWidget {
                 ),
             ],
           ),
-          const SizedBox(height: 8),
           Text(
             state.content,
-            style: FontSystem.H6,
+            style: FontSystem.Sub3,
           ),
           const SizedBox(height: 8),
           Text(
             '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator}',
             style: FontSystem.Sub3.copyWith(
+              fontSize: 14,
               color: ColorSystem.neutral,
             ),
           ),
