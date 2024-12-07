@@ -32,11 +32,34 @@ class CompleteTextAnalysisFragment
             ),
           ),
           const Spacer(),
-          Image.file(
-            File(viewModel.image!.path),
-            width: Get.width,
-            height: Get.height * 0.45,
-            fit: BoxFit.cover,
+          GestureDetector(
+            onTap: viewModel.updateViewing,
+            child: Obx(() {
+              if (viewModel.isViewingImage) {
+                return Image.file(
+                  File(viewModel.image!.path),
+                  width: Get.width,
+                  height: Get.height * 0.45,
+                  fit: BoxFit.cover,
+                );
+              }
+
+              return Container(
+                width: Get.width,
+                height: Get.height * 0.45,
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: ColorSystem.neutral.shade100,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: SingleChildScrollView(
+                  child: Text(
+                    viewModel.analysisResult,
+                    style: FontSystem.Sub3,
+                  ),
+                ),
+              );
+            }),
           ),
           const Spacer(),
           Center(

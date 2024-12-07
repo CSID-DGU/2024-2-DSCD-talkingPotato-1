@@ -46,7 +46,9 @@ class AnalysisDocumentView(View):
         return JsonResponse(
             data={
                 "success": True,
-                "data": language_service.correct_document_text(document_text),
+                "data": {
+                    "result": language_service.correct_document_text(document_text)
+                },
                 "error": None
             },
             status=200
@@ -90,7 +92,9 @@ class AnalysisSpeechView(View):
         return JsonResponse(
             data={
                 "success": True,
-                "data": language_service.correct_speech_text(speech_text),
+                "data": {
+                    "result": language_service.correct_speech_text(speech_text)
+                },
                 "error": None
             },
             status=200
