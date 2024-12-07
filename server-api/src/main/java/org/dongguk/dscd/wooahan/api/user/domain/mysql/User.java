@@ -70,10 +70,10 @@ public class User extends Account {
     /* -------------------------------------------- */
     /* Relation Column - Child -------------------- */
     /* -------------------------------------------- */
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     private List<Medication> medications = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();
 
 
