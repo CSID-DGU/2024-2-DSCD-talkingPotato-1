@@ -120,8 +120,9 @@ abstract class BaseConnect extends GetConnect {
     String useBearerToken = request.headers["useBearerToken"]!;
 
     if (((statusCodeOrErrorCode != 40100 &&
-            statusCodeOrErrorCode.toString().startsWith("401")) ||
-        statusCodeOrErrorCode == 40402)) {
+                statusCodeOrErrorCode.toString().startsWith("401")) ||
+            statusCodeOrErrorCode == 40402) &&
+        useBearerToken == "false") {
       await StorageFactory.systemProvider.deallocateTokens();
 
       Get.snackbar(
