@@ -9,6 +9,7 @@ import 'package:wooahan/presentation/view/setting/widget/time_section/time_secti
 import 'package:wooahan/presentation/view/setting/widget/toggle_section/toggle_section_view.dart';
 import 'package:wooahan/presentation/view_model/setting/setting_view_model.dart';
 import 'package:wooahan/presentation/widget/common/appbar/text_back_app_bar.dart';
+import 'package:wooahan/presentation/widget/common/dialog/confirm_dialog.dart';
 import 'package:wooahan/presentation/widget/common/line/infinity_horizon_line.dart';
 
 class SettingScreen extends BaseScreen<SettingViewModel> {
@@ -195,17 +196,26 @@ class SettingScreen extends BaseScreen<SettingViewModel> {
                 title: '로그아웃',
                 textColor: ColorSystem.blue.shade400,
                 onTap: () {
-                  viewModel.logout().then(
-                    (value) {
-                      if (value.success) {
-                        Get.offAllNamed(AppRoutes.LOGIN);
-                      } else {
-                        Get.snackbar(
-                          '로그아웃 실패',
-                          value.message!,
+                  Get.dialog(
+                    ConfirmDialog(
+                      title: "로그아웃",
+                      content: '로그아웃하시겠어요?',
+                      onPressedCancel: Get.back,
+                      onPressedApply: () {
+                        viewModel.logout().then(
+                          (value) {
+                            if (value.success) {
+                              Get.offAllNamed(AppRoutes.LOGIN);
+                            } else {
+                              Get.snackbar(
+                                '로그아웃 실패',
+                                value.message!,
+                              );
+                            }
+                          },
                         );
-                      }
-                    },
+                      },
+                    ),
                   );
                 },
               ),
@@ -220,17 +230,26 @@ class SettingScreen extends BaseScreen<SettingViewModel> {
                 title: '회원탈퇴',
                 textColor: ColorSystem.red.shade400,
                 onTap: () {
-                  viewModel.withdrawal().then(
-                    (value) {
-                      if (value.success) {
-                        Get.offAllNamed(AppRoutes.LOGIN);
-                      } else {
-                        Get.snackbar(
-                          '회원탈퇴 실패',
-                          value.message!,
+                  Get.dialog(
+                    ConfirmDialog(
+                      title: "회원탈퇴",
+                      content: '정말로 회원탈퇴하시겠어요?',
+                      onPressedCancel: Get.back,
+                      onPressedApply: () {
+                        viewModel.withdrawal().then(
+                          (value) {
+                            if (value.success) {
+                              Get.offAllNamed(AppRoutes.LOGIN);
+                            } else {
+                              Get.snackbar(
+                                '회원탈퇴 실패',
+                                value.message!,
+                              );
+                            }
+                          },
                         );
-                      }
-                    },
+                      },
+                    ),
                   );
                 },
               ),
