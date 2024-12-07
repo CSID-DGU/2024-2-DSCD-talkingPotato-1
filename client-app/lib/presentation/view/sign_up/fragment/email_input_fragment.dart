@@ -26,33 +26,39 @@ class EmailInputFragment extends BaseScreen<SignUpViewModel> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: CustomScrollView(
-        physics: const ClampingScrollPhysics(),
-        slivers: [
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: GestureDetector(
-              onTap: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ..._buildTitleViews(),
-                  const SizedBox(height: 40),
-                  _buildEmailView(),
-                  const SizedBox(height: 16),
-                  _buildAuthenticationCodeView(),
-                  _buildValidationButton(),
-                  const Spacer(),
-                  _buildNextButton(),
-                ],
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Container(
+        color: ColorSystem.white,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: GestureDetector(
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ..._buildTitleViews(),
+                    const SizedBox(height: 40),
+                    _buildEmailView(),
+                    const SizedBox(height: 16),
+                    _buildAuthenticationCodeView(),
+                    _buildValidationButton(),
+                    const Spacer(),
+                    _buildNextButton(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -140,9 +146,10 @@ class EmailInputFragment extends BaseScreen<SignUpViewModel> {
                   maxLength: 6,
                   placeholder: "인증번호을 입력해주세요",
                   textInputType: TextInputType.number,
-                  onChangedCallBack: viewModel.updateAuthenticationCode,
                   hasSuffixIcon: false,
                   enable: viewModel.emailInput.isEnabledAuthenticationCode,
+                  textInputAction: TextInputAction.done,
+                  onChangedCallBack: viewModel.updateAuthenticationCode,
                   onClearCallBack: viewModel.updateAuthenticationCode,
                   onSubmittedCallBack: () {
                     FocusManager.instance.primaryFocus?.unfocus();
