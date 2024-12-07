@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.dongguk.dscd.wooahan.api.article.domain.mysql.Article;
+import org.dongguk.dscd.wooahan.api.question.domain.mysql.Answer;
 import org.dongguk.dscd.wooahan.api.security.domain.mysql.Account;
 import org.dongguk.dscd.wooahan.api.security.domain.type.EProvider;
 import org.dongguk.dscd.wooahan.api.security.domain.type.ERole;
@@ -12,6 +14,8 @@ import org.dongguk.dscd.wooahan.api.user.domain.type.EGender;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -54,6 +58,11 @@ public class Expert extends Account {
     /* -------------------------------------------- */
     /* Relation Column - Child -------------------- */
     /* -------------------------------------------- */
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+    private List<Article> articles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+    private List<Answer> answers = new ArrayList<>();
 
 
     /* -------------------------------------------- */
