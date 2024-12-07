@@ -33,17 +33,17 @@ class CompleteSpeechAnalysisFragment
             () => Container(
               width: Get.width,
               height: Get.height * 0.5,
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: viewModel.speechToTextState.isListening
                     ? ColorSystem.primary.withOpacity(0.1)
                     : ColorSystem.neutral.shade100,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(16),
               ),
               child: SingleChildScrollView(
                 child: Text(
                   viewModel.speechToTextState.afterSpeechText,
-                  style: FontSystem.Sub3,
+                  style: FontSystem.H6,
                 ),
               ),
             ),
