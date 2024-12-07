@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.dongguk.dscd.wooahan.api.medication.domain.mysql.Medication;
+import org.dongguk.dscd.wooahan.api.question.domain.mysql.Question;
 import org.dongguk.dscd.wooahan.api.security.domain.mysql.Account;
 import org.dongguk.dscd.wooahan.api.security.domain.type.EProvider;
 import org.dongguk.dscd.wooahan.api.security.domain.type.ERole;
@@ -13,6 +15,8 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -66,6 +70,11 @@ public class User extends Account {
     /* -------------------------------------------- */
     /* Relation Column - Child -------------------- */
     /* -------------------------------------------- */
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Medication> medications = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Question> questions = new ArrayList<>();
 
 
     /* -------------------------------------------- */
