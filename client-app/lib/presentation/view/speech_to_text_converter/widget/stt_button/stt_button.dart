@@ -10,115 +10,132 @@ class SttButton extends BaseWidget<SpeechToTextConverterViewModel> {
 
   @override
   Widget buildView(BuildContext context) {
-    return Center(
-      child: Obx(
-        () {
-          Function()? onPressed;
-          Widget child;
+    return Row(
+      children: [
+        const Spacer(),
+        Obx(
+          () {
+            Function()? onPressed;
+            Widget child;
 
-          if (viewModel.isStoppingSpeechToText) {
-            onPressed = null;
-          } else {
-            onPressed = () {
-              Function()? execute;
+            if (viewModel.isStoppingSpeechToText) {
+              onPressed = null;
+            } else {
+              onPressed = () {
+                Function()? execute;
 
-              if (viewModel.speechToTextState.isListening) {
-                execute = viewModel.stopListening;
-              } else {
-                execute = () async {
-                  bool isAvailable =
-                      await viewModel.checkSpeechToTextAvailability();
+                if (viewModel.speechToTextState.isListening) {
+                  execute = viewModel.stopListening;
+                } else {
+                  execute = () async {
+                    bool isAvailable =
+                        await viewModel.checkSpeechToTextAvailability();
 
-                  if (!isAvailable) {
-                    Get.snackbar(
-                      '권한 오류',
-                      '마이크 권한을 허용해주세요.',
-                      backgroundColor:
-                          ColorSystem.neutral.shade500.withOpacity(0.8),
-                      colorText: ColorSystem.black,
-                    );
-                  } else {
-                    viewModel.startListening();
-                  }
-                };
-              }
+                    if (!isAvailable) {
+                      Get.snackbar(
+                        '권한 오류',
+                        '마이크 권한을 허용해주세요.',
+                        backgroundColor:
+                            ColorSystem.neutral.shade500.withOpacity(0.8),
+                        colorText: ColorSystem.black,
+                      );
+                    } else {
+                      viewModel.startListening();
+                    }
+                  };
+                }
 
-              execute.call();
-            };
-          }
+                execute.call();
+              };
+            }
 
-          if (viewModel.isStoppingSpeechToText) {
-            child = Text(
-              "녹음 종료 중...",
-              style: FontSystem.H4.copyWith(
-                color: ColorSystem.white,
-                height: 1.0,
-              ),
-            );
-          } else if (viewModel.speechToTextState.isListening) {
-            child = Text(
-              "녹음 끝내기",
-              style: FontSystem.H4.copyWith(
-                color: ColorSystem.white,
-                height: 1.0,
-              ),
-            );
-          } else {
-            child = Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "녹음하기",
-                  style: FontSystem.H6.copyWith(
-                    color: ColorSystem.white,
-                    height: 1.0,
+            if (viewModel.isStoppingSpeechToText) {
+              child = Column(
+                children: [
+                  const SizedBox(height: 9),
+                  Text(
+                    "녹음 종료 중...",
+                    style: FontSystem.H4.copyWith(
+                      color: ColorSystem.white,
+                      height: 1.0,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "음성으로 입력해요",
-                  style: FontSystem.Sub2.copyWith(
-                    color: ColorSystem.neutral.shade200,
-                    height: 1.0,
+                  const SizedBox(height: 9),
+                ],
+              );
+            } else if (viewModel.speechToTextState.isListening) {
+              child = Column(
+                children: [
+                  const SizedBox(height: 9),
+                  Text(
+                    "녹음 끝내기",
+                    style: FontSystem.H4.copyWith(
+                      color: ColorSystem.white,
+                      height: 1.0,
+                    ),
                   ),
+                  const SizedBox(height: 9),
+                ],
+              );
+            } else {
+              child = Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "녹음하기",
+                    style: FontSystem.H6.copyWith(
+                      color: ColorSystem.white,
+                      height: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "음성으로 입력해요",
+                    style: FontSystem.Sub2.copyWith(
+                      color: ColorSystem.neutral.shade200,
+                      height: 1.0,
+                    ),
+                  ),
+                ],
+              );
+            }
+
+            return OutlinedButton(
+              onPressed: onPressed,
+              style: OutlinedButton.styleFrom(
+                // Padding
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 20,
                 ),
-              ],
+
+                // Color
+                backgroundColor: viewModel.speechToTextState.isListening
+                    ? ColorSystem.secondary
+                    : ColorSystem.secondary.shade600,
+                foregroundColor: ColorSystem.white,
+
+                // Shape
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+
+                // Border
+                side: BorderSide(
+                  color: ColorSystem.neutral.shade300,
+                  width: 1,
+                ),
+
+                disabledBackgroundColor: ColorSystem.neutral.shade300,
+              ),
+              child: Center(
+                child: child,
+              ),
             );
-          }
-
-          return OutlinedButton(
-            onPressed: onPressed,
-            style: OutlinedButton.styleFrom(
-              // Size
-
-              minimumSize: Size((Get.width - 40) / 2, 60),
-              fixedSize: Size((Get.width - 40) / 2, 60),
-
-              // Color
-              backgroundColor: viewModel.speechToTextState.isListening
-                  ? ColorSystem.secondary
-                  : ColorSystem.secondary.shade600,
-              foregroundColor: ColorSystem.white,
-
-              // Shape
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-
-              // Border
-              side: BorderSide(
-                color: ColorSystem.neutral.shade300,
-                width: 1,
-              ),
-
-              disabledBackgroundColor: ColorSystem.neutral.shade300,
-            ),
-            child: Center(
-              child: child,
-            ),
-          );
-        },
-      ),
+          },
+        ),
+        const Spacer(),
+      ],
     );
   }
 }
