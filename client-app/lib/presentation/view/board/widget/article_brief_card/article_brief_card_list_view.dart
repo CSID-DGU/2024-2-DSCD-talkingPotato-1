@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/config/app_routes.dart';
 import 'package:wooahan/app/config/color_system.dart';
+import 'package:wooahan/app/config/font_system.dart';
 import 'package:wooahan/core/screen/base_widget.dart';
 import 'package:wooahan/presentation/view_model/board/board_view_model.dart';
 import 'package:wooahan/presentation/widget/article/brief/article_brief_default_item_view.dart';
@@ -15,7 +16,7 @@ class ArticleBriefCardListView extends BaseWidget<BoardViewModel> {
     return Obx(() {
       if (viewModel.isLoading) {
         return const SizedBox(
-          height: 120,
+          height: 321,
           child: Center(
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(ColorSystem.primary),
@@ -26,13 +27,12 @@ class ArticleBriefCardListView extends BaseWidget<BoardViewModel> {
 
       if (viewModel.articleBriefList.isEmpty) {
         return SizedBox(
-          height: 120,
+          height: 160,
           child: Center(
             child: Text(
               '게시글이 없습니다.',
-              style: TextStyle(
+              style: FontSystem.H5.copyWith(
                 color: ColorSystem.neutral.shade600,
-                fontSize: 16,
               ),
             ),
           ),

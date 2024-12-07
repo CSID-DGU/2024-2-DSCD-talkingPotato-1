@@ -72,7 +72,7 @@ class BoardScreen extends BaseScreen<BoardViewModel> {
             children: [
               const Text(
                 '지금 많이 읽는 글',
-                style: FontSystem.H4,
+                style: FontSystem.H3,
               ),
               const Spacer(),
               GestureDetector(
@@ -105,7 +105,7 @@ class BoardScreen extends BaseScreen<BoardViewModel> {
             children: [
               const Text(
                 '최근 올라온 질문',
-                style: FontSystem.H4,
+                style: FontSystem.H3,
               ),
               const Spacer(),
               GestureDetector(
