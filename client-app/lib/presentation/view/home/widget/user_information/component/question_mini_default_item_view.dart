@@ -26,7 +26,7 @@ class QuestionMiniDefaultItemView extends StatelessWidget {
               width: Get.width - 40 - 40 - 120,
               child: Text(
                 state.preview,
-                style: FontSystem.Sub2,
+                style: FontSystem.Sub3,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
