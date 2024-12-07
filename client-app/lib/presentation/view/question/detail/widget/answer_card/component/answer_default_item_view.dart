@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wooahan/app/config/color_system.dart';
 import 'package:wooahan/app/config/font_system.dart';
+import 'package:wooahan/app/utility/date_time_util.dart';
 import 'package:wooahan/domain/entity/answer/answer_state.dart';
 
 class AnswerDefaultItemView extends StatelessWidget {
@@ -27,7 +28,7 @@ class AnswerDefaultItemView extends StatelessWidget {
           const SizedBox(height: 4),
           if (state.creator != null)
             Text(
-              '${state.createdAt} | ${state.creator}',
+              '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator}',
               style: FontSystem.Sub3.copyWith(
                 color: ColorSystem.neutral,
               ),

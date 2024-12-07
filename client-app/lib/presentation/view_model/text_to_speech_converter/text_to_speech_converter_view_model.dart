@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:wooahan/core/wrapper/state_wrapper.dart';
@@ -13,6 +14,8 @@ class TextToSpeechConverterViewModel extends GetxController {
   /* ------------------------------------------------------ */
   /* DI Fields -------------------------------------------- */
   /* ------------------------------------------------------ */
+  late final FlutterTts _textToSpeech;
+
   late final PageController pageController;
 
   late final AnalysisDocumentUseCase _analysisDocumentUseCase;
@@ -24,8 +27,10 @@ class TextToSpeechConverterViewModel extends GetxController {
   late final Rxn<XFile?> _image;
 
   late final RxBool _isViewingImage;
-  late final RxBool _isListening;
   late final RxString _analysisResult;
+
+  late final RxBool _isFirstSpeaking;
+  late final RxBool _isSpeaking;
 
   /* ------------------------------------------------------ */
   /* Public Fields ---------------------------------------- */
@@ -33,8 +38,10 @@ class TextToSpeechConverterViewModel extends GetxController {
   XFile? get image => _image.value;
 
   bool get isViewingImage => _isViewingImage.value;
-  bool get isListening => _isListening.value;
   String get analysisResult => _analysisResult.value;
+
+  bool get isFirstSpeaking => _isFirstSpeaking.value;
+  bool get isSpeaking => _isSpeaking.value;
 
   /* ------------------------------------------------------ */
   /* Method ----------------------------------------------- */
@@ -42,6 +49,8 @@ class TextToSpeechConverterViewModel extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    _textToSpeech = FlutterTts();
 
     pageController = PageController(initialPage: 0);
 
@@ -51,8 +60,26 @@ class TextToSpeechConverterViewModel extends GetxController {
     _image = Rxn<XFile?>();
 
     _isViewingImage = false.obs;
-    _isListening = false.obs;
     _analysisResult = ''.obs;
+
+    _isFirstSpeaking = true.obs;
+    _isSpeaking = false.obs;
+  }
+
+  @override
+  void onReady() async {
+    super.onReady();
+
+    _textToSpeech.setLanguage("ko-KR");
+    _textToSpeech.setSpeechRate(0.5);
+    _textToSpeech.setVolume(0.6);
+    _textToSpeech.setPitch(1);
+
+    await _textToSpeech.setVoice(
+      {
+        "identifier": "com.apple.voice.compact.ko-KR.Yuna",
+      },
+    );
   }
 
   void takePicture() async {
@@ -96,7 +123,16 @@ class TextToSpeechConverterViewModel extends GetxController {
     _isViewingImage.value = !_isViewingImage.value;
   }
 
-  void updateListening() {
-    _isListening.value = !_isListening.value;
+  void startSpeaking() {
+    _isFirstSpeaking.value = false;
+    _isSpeaking.value = !_isSpeaking.value;
+
+    _textToSpeech.speak(_analysisResult.value);
+  }
+
+  void pauseSpeaking() async {
+    await _textToSpeech.stop();
+
+    _isSpeaking.value = !_isSpeaking.value;
   }
 }

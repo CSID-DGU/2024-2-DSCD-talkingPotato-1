@@ -33,7 +33,7 @@ class QuestionSearchingScreen extends BaseScreen<QuestionSearchingViewModel> {
             children: [
               const SizedBox(height: 32),
               const QuestionSearchTermField(),
-              const SizedBox(height: 32),
+              const SizedBox(height: 16),
               const QuestionResultView(),
               SizedBox(height: GetPlatform.isAndroid ? 20 : 40),
             ],

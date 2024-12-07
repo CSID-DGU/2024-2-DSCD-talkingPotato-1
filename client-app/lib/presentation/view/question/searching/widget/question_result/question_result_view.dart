@@ -60,36 +60,42 @@ class QuestionResultView extends BaseWidget<QuestionSearchingViewModel> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.access_time,
-                    size: 24,
-                    color: ColorSystem.neutral.shade600,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    viewModel.recentSearchTermList[index],
-                    style: FontSystem.H3.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: ColorSystem.neutral.shade600,
-                      height: 1.0,
-                    ),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      viewModel.removeInRecentSearchTerm(index);
-                    },
-                    child: Icon(
-                      Icons.close,
+            return GestureDetector(
+              onTap: () {
+                viewModel.updateSearchTermBySearchTermItem(index);
+                viewModel.updateArticleSummaryList();
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.access_time,
                       size: 24,
                       color: ColorSystem.neutral.shade600,
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 8),
+                    Text(
+                      viewModel.recentSearchTermList[index],
+                      style: FontSystem.H3.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: ColorSystem.neutral.shade600,
+                        height: 1.0,
+                      ),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        viewModel.removeInRecentSearchTerm(index);
+                      },
+                      child: Icon(
+                        Icons.close,
+                        size: 24,
+                        color: ColorSystem.neutral.shade600,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },

@@ -11,6 +11,7 @@ class SpeechToTextConverterViewModel extends GetxController {
   /* DI Fields -------------------------------------------- */
   /* ------------------------------------------------------ */
   late final PageController pageController;
+
   late final SpeechToText _speechToText;
 
   late final CorrectSpeechTextUseCase _correctSpeechTextUseCase;
@@ -18,14 +19,18 @@ class SpeechToTextConverterViewModel extends GetxController {
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
   /* ------------------------------------------------------ */
-  late final Rx<SpeechToTextState> _speechToTextState;
   late final RxnString _recordedSpeech;
+
+  late final RxBool _isStoppingSpeechToText;
+  late final Rx<SpeechToTextState> _speechToTextState;
 
   /* ------------------------------------------------------ */
   /* Public Fields ---------------------------------------- */
   /* ------------------------------------------------------ */
-  SpeechToTextState get speechToTextState => _speechToTextState.value;
   String? get recordedSpeech => _recordedSpeech.value;
+
+  bool get isStoppingSpeechToText => _isStoppingSpeechToText.value;
+  SpeechToTextState get speechToTextState => _speechToTextState.value;
 
   /* ------------------------------------------------------ */
   /* Method ----------------------------------------------- */
@@ -34,13 +39,16 @@ class SpeechToTextConverterViewModel extends GetxController {
   void onInit() {
     super.onInit();
 
-    _correctSpeechTextUseCase = Get.find<CorrectSpeechTextUseCase>();
-
     pageController = PageController(initialPage: 0);
+
     _speechToText = SpeechToText();
 
-    _speechToTextState = SpeechToTextState.initial().obs;
+    _correctSpeechTextUseCase = Get.find<CorrectSpeechTextUseCase>();
+
     _recordedSpeech = RxnString();
+
+    _isStoppingSpeechToText = false.obs;
+    _speechToTextState = SpeechToTextState.initial().obs;
   }
 
   Future<bool> checkSpeechToTextAvailability() async {
@@ -75,12 +83,16 @@ class SpeechToTextConverterViewModel extends GetxController {
   }
 
   Future<void> stopListening() async {
+    _isStoppingSpeechToText.value = true;
+
     await _speechToText.stop();
 
     _speechToTextState.value = _speechToTextState.value.copyWith(
       isListening: false,
       isCompleted: true,
     );
+
+    _isStoppingSpeechToText.value = false;
   }
 
   void analysisSpeech() async {

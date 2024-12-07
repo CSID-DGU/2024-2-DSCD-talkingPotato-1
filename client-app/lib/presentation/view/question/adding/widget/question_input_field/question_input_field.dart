@@ -13,8 +13,10 @@ class QuestionInputField extends BaseWidget<QuestionAddingViewModel> {
   Widget buildView(BuildContext context) {
     return Obx(
       () => CustomInputTextField(
+        content: viewModel.content,
         textStyle: FontSystem.H6,
-        enable: !viewModel.isLoading,
+        enable:
+            !viewModel.isLoading && !viewModel.speechToTextState.isListening,
         minLines: 10,
         maxLines: 10,
         maxLength: 500,

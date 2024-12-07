@@ -11,6 +11,7 @@ class ArticleSearchTermField extends BaseWidget<ArticleSearchingViewModel> {
   Widget buildView(BuildContext context) {
     return Obx(
       () => CustomInputTextField(
+        content: viewModel.searchTerm,
         enable: !viewModel.isLoading,
         minLines: 1,
         maxLines: 1,

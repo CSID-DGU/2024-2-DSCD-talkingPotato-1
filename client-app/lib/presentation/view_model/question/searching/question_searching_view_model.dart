@@ -89,6 +89,12 @@ class QuestionSearchingViewModel extends GetxController {
     _searchTerm.value = value;
   }
 
+  void updateSearchTermBySearchTermItem(int index) {
+    _mode.value = 'searching';
+
+    _searchTerm.value = _recentSearchTermList[index];
+  }
+
   void updateArticleSummaryList() async {
     _isLoading.value = true;
 

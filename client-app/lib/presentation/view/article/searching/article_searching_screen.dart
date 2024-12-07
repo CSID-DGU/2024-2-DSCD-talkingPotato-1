@@ -33,7 +33,7 @@ class ArticleSearchingScreen extends BaseScreen<ArticleSearchingViewModel> {
             children: [
               const SizedBox(height: 32),
               const ArticleSearchTermField(),
-              const SizedBox(height: 32),
+              const SizedBox(height: 16),
               const ArticleResultView(),
               SizedBox(height: GetPlatform.isAndroid ? 20 : 40),
             ],

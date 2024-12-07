@@ -58,7 +58,7 @@ class ArticleSummaryDefaultItemView extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.commentCnt}개의 댓글 ',
+                    '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator} | ${state.commentCnt}개의 댓글 ',
                     style: FontSystem.Sub3.copyWith(
                       color: ColorSystem.neutral,
                     ),

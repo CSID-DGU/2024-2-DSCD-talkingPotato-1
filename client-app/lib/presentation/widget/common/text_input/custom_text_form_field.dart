@@ -5,6 +5,7 @@ import 'package:wooahan/app/config/font_system.dart';
 class CustomInputTextField extends StatefulWidget {
   const CustomInputTextField({
     super.key,
+    this.content = '',
     this.textStyle = FontSystem.H2,
     this.maxLength,
     this.maxLines = 1,
@@ -27,6 +28,7 @@ class CustomInputTextField extends StatefulWidget {
     required this.onSubmittedCallBack,
   });
 
+  final String content;
   final TextStyle textStyle;
   final int? maxLength;
   final int maxLines;
@@ -74,6 +76,10 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
       setState(() {
         enable = widget.enable;
       });
+    }
+
+    if (oldWidget.content != widget.content) {
+      controller.text = widget.content;
     }
   }
 
