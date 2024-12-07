@@ -100,13 +100,13 @@ class DrugBriefInformationView extends BaseWidget<DrugDetailViewModel> {
         const SizedBox(height: 24),
         Text(
           viewModel.drugSummary.classificationOrManufacturer,
-          style: FontSystem.H4.copyWith(
+          style: FontSystem.H6.copyWith(
             color: ColorSystem.neutral.shade500,
           ),
         ),
         Text(
           viewModel.drugSummary.name,
-          style: FontSystem.H2.copyWith(
+          style: FontSystem.H3.copyWith(
             color: ColorSystem.neutral.shade900,
           ),
           maxLines: 1,
