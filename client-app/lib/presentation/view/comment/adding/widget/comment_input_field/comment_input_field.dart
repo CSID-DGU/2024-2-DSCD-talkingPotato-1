@@ -13,8 +13,10 @@ class CommentInputField extends BaseWidget<CommentAddingViewModel> {
   Widget buildView(BuildContext context) {
     return Obx(
       () => CustomInputTextField(
+        content: viewModel.content,
         textStyle: FontSystem.H6,
-        enable: !viewModel.isLoading,
+        enable:
+            !viewModel.isLoading && !viewModel.speechToTextState.isListening,
         minLines: 6,
         maxLines: 6,
         maxLength: 100,

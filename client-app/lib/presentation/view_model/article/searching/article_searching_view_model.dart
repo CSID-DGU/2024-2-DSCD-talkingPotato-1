@@ -87,12 +87,25 @@ class ArticleSearchingViewModel extends GetxController {
     _searchTerm.value = value;
   }
 
+  void updateSearchTermBySearchTermItem(int index) {
+    _mode.value = 'searching';
+
+    _searchTerm.value = _recentSearchTermList[index];
+  }
+
   void updateArticleSummaryList() async {
     _isLoading.value = true;
 
     _mode.value = 'searched';
 
+    if (_recentSearchTermList.contains(_searchTerm.value)) {
+      _recentSearchTermList.remove(_searchTerm.value);
+    } else if (_recentSearchTermList.length >= 5) {
+      _recentSearchTermList.removeLast();
+    }
+
     _recentSearchTermList.insert(0, _searchTerm.value);
+
     await _upsertArticleSearchTermListUseCase.execute(
       UpsertArticleSearchTermListCondition(
         searchTerms: _recentSearchTermList,
