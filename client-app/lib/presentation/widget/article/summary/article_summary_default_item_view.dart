@@ -21,6 +21,7 @@ class ArticleSummaryDefaultItemView extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height: 180,
         padding: const EdgeInsets.symmetric(vertical: 16),
         color: ColorSystem.white,
         child: Row(
@@ -39,6 +40,7 @@ class ArticleSummaryDefaultItemView extends StatelessWidget {
                           child: Text(
                             "#$tag",
                             style: FontSystem.Sub3.copyWith(
+                              fontSize: 14,
                               color: ColorSystem.primary,
                             ),
                           ),
@@ -47,19 +49,23 @@ class ArticleSummaryDefaultItemView extends StatelessWidget {
                   ),
                   Text(
                     state.title,
-                    style: FontSystem.H6,
+                    style: FontSystem.Sub1,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     state.preview,
-                    style: FontSystem.Sub3,
+                    style: FontSystem.Sub3.copyWith(
+                      fontSize: 16,
+                    ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 8),
+                  const Spacer(),
                   Text(
                     '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator} | ${state.commentCnt}개의 댓글 ',
                     style: FontSystem.Sub3.copyWith(
+                      fontSize: 14,
                       color: ColorSystem.neutral,
                     ),
                   ),

@@ -21,7 +21,7 @@ class ArticleDetailView extends BaseWidget<ArticleDetailViewModel> {
         Obx(
           () {
             if (viewModel.isLoading) {
-              return const SizedBox(height: 27.424);
+              return const SizedBox(height: 28);
             }
 
             return Wrap(
@@ -31,7 +31,7 @@ class ArticleDetailView extends BaseWidget<ArticleDetailViewModel> {
                     margin: const EdgeInsets.only(right: 4),
                     child: Text(
                       "#$tag",
-                      style: FontSystem.H5.copyWith(
+                      style: FontSystem.Sub2.copyWith(
                         color: ColorSystem.primary,
                       ),
                     ),
@@ -53,7 +53,7 @@ class ArticleDetailView extends BaseWidget<ArticleDetailViewModel> {
             );
           },
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 16),
         Obx(
           () {
             if (viewModel.isLoading) {
@@ -66,38 +66,20 @@ class ArticleDetailView extends BaseWidget<ArticleDetailViewModel> {
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
               styleSheet: MarkdownStyleSheet(
-                p: FontSystem.Sub2.copyWith(
-                  fontSize: 16,
-                  height: 1.5,
-                  color: ColorSystem.neutral.shade900,
-                ),
-                h1: FontSystem.H1.copyWith(
-                  color: ColorSystem.neutral.shade900,
-                ),
+                p: FontSystem.Sub2,
+                h1: FontSystem.H1,
                 h1Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
-                h2: FontSystem.H2.copyWith(
-                  color: ColorSystem.neutral.shade900,
-                ),
+                h2: FontSystem.H2,
                 h2Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
-                h3: FontSystem.H3.copyWith(
-                  color: ColorSystem.neutral.shade900,
-                ),
+                h3: FontSystem.H3,
                 h3Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
-                h4: FontSystem.H4.copyWith(
-                  color: ColorSystem.neutral.shade900,
-                ),
+                h4: FontSystem.H4,
                 h4Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
-                h5: FontSystem.H5.copyWith(
-                  color: ColorSystem.neutral.shade900,
-                ),
+                h5: FontSystem.H5,
                 h5Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
-                h6: FontSystem.Sub2.copyWith(
-                  color: ColorSystem.neutral.shade900,
-                ),
+                h6: FontSystem.Sub2,
                 h6Padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
-                blockquote: FontSystem.Sub2.copyWith(
-                  color: ColorSystem.neutral.shade900,
-                ),
+                blockquote: FontSystem.Sub2,
                 blockquoteDecoration: BoxDecoration(
                   color: ColorSystem.neutral.shade100,
                   borderRadius: BorderRadius.circular(8.0),
@@ -122,7 +104,7 @@ class ArticleDetailView extends BaseWidget<ArticleDetailViewModel> {
 
                 return Text(
                   '${DateTimeUtil.calRemainDateTime(viewModel.articleDetail.createdAt)} | ${viewModel.articleDetail.creator} | ${viewModel.articleDetail.commentCnt}개의 댓글 ',
-                  style: FontSystem.H6.copyWith(
+                  style: FontSystem.Sub3.copyWith(
                     color: ColorSystem.neutral,
                   ),
                 );
