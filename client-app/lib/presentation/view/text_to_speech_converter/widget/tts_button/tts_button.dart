@@ -10,88 +10,102 @@ class TtsButton extends BaseWidget<TextToSpeechConverterViewModel> {
 
   @override
   Widget buildView(BuildContext context) {
-    return Center(
-      child: Obx(
-        () {
-          Function()? onPressed;
-          Widget child;
+    return Row(
+      children: [
+        const Spacer(),
+        Obx(
+          () {
+            Function()? onPressed;
+            Widget child;
 
-          onPressed = () {
-            Function()? execute;
+            onPressed = () {
+              Function()? execute;
+
+              if (viewModel.isSpeaking) {
+                execute = viewModel.pauseSpeaking;
+              } else {
+                execute = viewModel.startSpeaking;
+              }
+
+              execute.call();
+            };
 
             if (viewModel.isSpeaking) {
-              execute = viewModel.pauseSpeaking;
+              child = Column(
+                children: [
+                  const SizedBox(height: 10.5),
+                  Text(
+                    "그만 듣기",
+                    style: FontSystem.H5.copyWith(
+                      color: ColorSystem.white,
+                      height: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 10.5),
+                ],
+              );
             } else {
-              execute = viewModel.startSpeaking;
+              child = Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    viewModel.isFirstSpeaking ? "목소리로 들어보기" : "다시 들어보기",
+                    style: FontSystem.H5.copyWith(
+                      color: ColorSystem.white,
+                      height: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "문장을 들을 수 있어요",
+                    style: FontSystem.Sub2.copyWith(
+                      color: ColorSystem.neutral.shade200,
+                      height: 1.0,
+                    ),
+                  ),
+                ],
+              );
             }
 
-            execute.call();
-          };
+            return OutlinedButton(
+              onPressed: onPressed,
+              style: OutlinedButton.styleFrom(
+                // Padding
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 20,
+                ),
 
-          if (viewModel.isSpeaking) {
-            child = Text(
-              "그만 듣기",
-              style: FontSystem.H4.copyWith(
-                color: ColorSystem.white,
-                height: 1.0,
+                // Size
+                minimumSize: Size(Get.width * 0.6, 0),
+
+                // Color
+                backgroundColor: viewModel.isSpeaking
+                    ? ColorSystem.secondary
+                    : ColorSystem.secondary.shade600,
+                foregroundColor: ColorSystem.white,
+
+                // Shape
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+
+                // Border
+                side: BorderSide(
+                  color: ColorSystem.neutral.shade300,
+                  width: 1,
+                ),
+
+                disabledBackgroundColor: ColorSystem.neutral.shade300,
+              ),
+              child: Center(
+                child: child,
               ),
             );
-          } else {
-            child = Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  viewModel.isFirstSpeaking ? "목소리로 들어보기" : "다시 들어보기",
-                  style: FontSystem.H6.copyWith(
-                    color: ColorSystem.white,
-                    height: 1.0,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "문장을 들을 수 있어요",
-                  style: FontSystem.Sub2.copyWith(
-                    color: ColorSystem.neutral.shade200,
-                    height: 1.0,
-                  ),
-                ),
-              ],
-            );
-          }
-
-          return OutlinedButton(
-            onPressed: onPressed,
-            style: OutlinedButton.styleFrom(
-              // Size
-
-              minimumSize: Size((Get.width - 40) / 2, 60),
-              fixedSize: Size((Get.width - 40) / 2, 60),
-
-              // Color
-              backgroundColor: viewModel.isSpeaking
-                  ? ColorSystem.secondary
-                  : ColorSystem.secondary.shade600,
-              foregroundColor: ColorSystem.white,
-
-              // Shape
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-
-              // Border
-              side: BorderSide(
-                color: ColorSystem.neutral.shade300,
-                width: 1,
-              ),
-
-              disabledBackgroundColor: ColorSystem.neutral.shade300,
-            ),
-            child: Center(
-              child: child,
-            ),
-          );
-        },
-      ),
+          },
+        ),
+        const Spacer(),
+      ],
     );
   }
 }

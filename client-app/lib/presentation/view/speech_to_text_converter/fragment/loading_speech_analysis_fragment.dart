@@ -15,7 +15,6 @@ class LoadingSpeechAnalysisFragment
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 100),
         Center(
           child: SizedBox(
             height: Get.height * 0.5,

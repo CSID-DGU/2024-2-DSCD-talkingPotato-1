@@ -80,6 +80,7 @@ class UserInformationView extends BaseWidget<HomeViewModel> {
       left: 0,
       right: 0,
       child: Container(
+        height: 260,
         margin: const EdgeInsets.symmetric(horizontal: 20),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -103,7 +104,7 @@ class UserInformationView extends BaseWidget<HomeViewModel> {
                     children: [
                       Text(
                         "새로고침",
-                        style: FontSystem.H6.copyWith(
+                        style: FontSystem.Sub3.copyWith(
                           color: ColorSystem.primary,
                         ),
                       ),
@@ -117,48 +118,56 @@ class UserInformationView extends BaseWidget<HomeViewModel> {
                 ),
               ],
             ),
+            const Spacer(),
             Obx(
-              () => ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: viewModel.questionBriefList.length,
-                itemBuilder: (context, index) {
-                  if (viewModel.questionBriefList[index].id == 0) {
-                    Widget? child;
+              () {
+                if (viewModel.isMoreLoading) {
+                  return const Expanded(
+                      child: Center(child: CircularProgressIndicator()));
+                }
+                return ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: viewModel.questionBriefList.length,
+                  itemBuilder: (context, index) {
+                    if (viewModel.questionBriefList[index].id == 0) {
+                      Widget? child;
 
-                    if (index == 0 ||
-                        (viewModel.questionBriefList[index - 1].id != 0)) {
-                      child = Text(
-                        "더 이상 작성한 질문이 없습니다.",
-                        style: FontSystem.H6.copyWith(
-                          color: ColorSystem.neutral.shade400,
+                      if (index == 0 ||
+                          (viewModel.questionBriefList[index - 1].id != 0)) {
+                        child = Text(
+                          "더 이상 작성한 질문이 없습니다.",
+                          style: FontSystem.H6.copyWith(
+                            color: ColorSystem.neutral.shade400,
+                          ),
+                        );
+                      }
+
+                      return SizedBox(
+                        height: 60,
+                        child: Center(
+                          child: child,
                         ),
                       );
                     }
 
-                    return SizedBox(
-                      height: 60,
-                      child: Center(
-                        child: child,
-                      ),
+                    return QuestionMiniDefaultItemView(
+                      state: viewModel.questionBriefList[index],
+                      onTap: () {
+                        Get.toNamed(
+                          "${AppRoutes.QUESTION}/detail/${viewModel.questionBriefList[index].id}",
+                        );
+                      },
                     );
-                  }
-
-                  return QuestionMiniDefaultItemView(
-                    state: viewModel.questionBriefList[index],
-                    onTap: () {
-                      Get.toNamed(
-                        "${AppRoutes.QUESTION}/detail/${viewModel.questionBriefList[index].id}",
-                      );
-                    },
-                  );
-                },
-                separatorBuilder: (context, index) => InfinityHorizonLine(
-                  gap: 1,
-                  color: ColorSystem.neutral.shade200,
-                ),
-              ),
+                  },
+                  separatorBuilder: (context, index) => InfinityHorizonLine(
+                    gap: 1,
+                    color: ColorSystem.neutral.shade200,
+                  ),
+                );
+              },
             ),
+            const Spacer(),
           ],
         ),
       ),

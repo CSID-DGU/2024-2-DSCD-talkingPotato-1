@@ -54,7 +54,7 @@ class SelectingPictureFragment
           onTap: viewModel.takePicture,
           child: Container(
             width: Get.width,
-            height: Get.height * 0.45,
+            height: Get.height * 0.4,
             color: ColorSystem.neutral.shade100,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -79,8 +79,8 @@ class SelectingPictureFragment
       return Image.file(
         File(viewModel.image!.path),
         width: Get.width,
-        height: Get.height * 0.45,
-        fit: BoxFit.cover,
+        height: Get.height * 0.4,
+        fit: BoxFit.fitHeight,
       );
     });
   }

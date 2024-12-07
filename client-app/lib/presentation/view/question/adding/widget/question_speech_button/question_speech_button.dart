@@ -91,11 +91,6 @@ class QuestionSpeechButton extends BaseWidget<QuestionAddingViewModel> {
             return OutlinedButton(
               onPressed: onPressed,
               style: OutlinedButton.styleFrom(
-                // Size
-
-                minimumSize: Size((Get.width - 40) / 2, 60),
-                fixedSize: Size((Get.width - 40) / 2, 60),
-
                 // Color
                 backgroundColor: viewModel.speechToTextState.isListening
                     ? ColorSystem.secondary

@@ -52,7 +52,7 @@ class SttButton extends BaseWidget<SpeechToTextConverterViewModel> {
             if (viewModel.isStoppingSpeechToText) {
               child = Column(
                 children: [
-                  const SizedBox(height: 9),
+                  const SizedBox(height: 10.5),
                   Text(
                     "녹음 종료 중...",
                     style: FontSystem.H4.copyWith(
@@ -60,13 +60,13 @@ class SttButton extends BaseWidget<SpeechToTextConverterViewModel> {
                       height: 1.0,
                     ),
                   ),
-                  const SizedBox(height: 9),
+                  const SizedBox(height: 10.5),
                 ],
               );
             } else if (viewModel.speechToTextState.isListening) {
               child = Column(
                 children: [
-                  const SizedBox(height: 9),
+                  const SizedBox(height: 10.5),
                   Text(
                     "녹음 끝내기",
                     style: FontSystem.H4.copyWith(
@@ -74,7 +74,7 @@ class SttButton extends BaseWidget<SpeechToTextConverterViewModel> {
                       height: 1.0,
                     ),
                   ),
-                  const SizedBox(height: 9),
+                  const SizedBox(height: 10.5),
                 ],
               );
             } else {
@@ -108,6 +108,9 @@ class SttButton extends BaseWidget<SpeechToTextConverterViewModel> {
                   vertical: 16,
                   horizontal: 20,
                 ),
+
+                // Size
+                minimumSize: Size(Get.width * 0.6, 0),
 
                 // Color
                 backgroundColor: viewModel.speechToTextState.isListening

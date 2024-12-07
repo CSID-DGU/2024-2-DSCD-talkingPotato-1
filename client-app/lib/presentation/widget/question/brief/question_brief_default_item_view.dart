@@ -35,7 +35,7 @@ class QuestionBriefDefaultItemView extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '${DateTimeUtil.calRemainDateTime(state.createdAt)}| ${state.creator}',
+                  '${DateTimeUtil.calRemainDateTime(state.createdAt)} | ${state.creator}',
                   style: FontSystem.Sub3.copyWith(
                     color: ColorSystem.neutral,
                   ),
