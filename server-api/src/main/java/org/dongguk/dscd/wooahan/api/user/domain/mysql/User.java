@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.dongguk.dscd.wooahan.api.article.domain.mysql.Comment;
 import org.dongguk.dscd.wooahan.api.medication.domain.mysql.Medication;
 import org.dongguk.dscd.wooahan.api.question.domain.mysql.Question;
 import org.dongguk.dscd.wooahan.api.security.domain.mysql.Account;
@@ -75,6 +76,9 @@ public class User extends Account {
 
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
 
     /* -------------------------------------------- */
