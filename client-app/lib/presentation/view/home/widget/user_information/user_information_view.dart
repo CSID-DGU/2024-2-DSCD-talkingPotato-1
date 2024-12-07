@@ -121,7 +121,7 @@ class UserInformationView extends BaseWidget<HomeViewModel> {
             const Spacer(),
             Obx(
               () {
-                if (viewModel.isMoreLoading) {
+                if (viewModel.isMoreLoading || viewModel.isInitLoading) {
                   return const Expanded(
                       child: Center(child: CircularProgressIndicator()));
                 }
