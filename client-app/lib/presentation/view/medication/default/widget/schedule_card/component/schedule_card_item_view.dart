@@ -49,7 +49,7 @@ class ScheduleCardItemView extends StatelessWidget {
               width: Get.width,
               height: state.drugType == 'CUSTOM' || state.drugType == 'MEDICINE'
                   ? 52 + 32
-                  : 101 + 32,
+                  : 95 + 32,
               duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
                 color: state.isTaken
