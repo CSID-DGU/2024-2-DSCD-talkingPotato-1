@@ -120,11 +120,27 @@ public class NotificationService {
                                 .setBody(content)
                                 .build()
                 )
+                .setAndroidConfig(
+                        AndroidConfig.builder()
+                                .setNotification(
+                                        AndroidNotification.builder()
+                                                .setPriority(AndroidNotification.Priority.HIGH)
+                                                .setChannelId("wooahan_remote_channel_id")
+                                                .setSound("noti.wav")
+                                                .build()
+                                )
+                                .build()
+                )
                 .setApnsConfig(
                         ApnsConfig.builder()
                                 .setAps(
                                         Aps.builder()
-                                                .setSound("default")
+                                                .setSound("noti.wav")
+                                                .build()
+                                )
+                                .setFcmOptions(
+                                        ApnsFcmOptions.builder()
+                                                .setAnalyticsLabel("wooahan")
                                                 .build()
                                 )
                                 .build()
