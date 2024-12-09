@@ -28,7 +28,10 @@ public class Constants {
                 "/auth/reissue/password",
                 "/auth/validations/email",
                 "/auth/validations/authentication-code",
-                "/auth/sign-up"
+                "/auth/sign-up",
+
+                // Notification
+                "/v1/users/**"
         );
     }
 
