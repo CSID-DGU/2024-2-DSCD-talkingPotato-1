@@ -36,7 +36,7 @@ class GenerationService:
                 """
                 Third
                 
-                - you must answer in English and must not provide vectorized answers or translate into other languages. You must answer exclusively in English.
+                - you must answer in Korean and must not provide vectorized answers or translate into other languages. You must answer exclusively in Korean.
                 - maximum length of the answer is 1000 characters.
                 """
             ),
