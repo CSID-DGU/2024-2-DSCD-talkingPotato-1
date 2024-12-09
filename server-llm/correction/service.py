@@ -3,7 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTempla
 from langchain_openai import ChatOpenAI
 
 
-class LanguageService:
+class CorrectionService:
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.3)
 

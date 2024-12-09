@@ -3,9 +3,9 @@ import json
 from django.http import JsonResponse
 from django.views import View
 
-from correction.service import LanguageService
+from correction.service import CorrectionService
 
-language_service = LanguageService()
+language_service = CorrectionService()
 
 
 # Create your views here.
