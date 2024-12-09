@@ -28,7 +28,7 @@ public abstract class Account {
     /* Default Column ----------------------------- */
     /* -------------------------------------------- */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
