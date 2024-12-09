@@ -24,7 +24,7 @@ public class Answer {
     /* -------------------------------------------- */
     /* Information Column - Input ----------------- */
     /* -------------------------------------------- */
-    @Column(name = "content", length = 500, nullable = false)
+    @Column(name = "content", length = 2000, nullable = false)
     private String content;
 
     @Column(name = "created_at", nullable = false)
