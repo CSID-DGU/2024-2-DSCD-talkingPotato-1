@@ -3,6 +3,7 @@ package org.dongguk.dscd.wooahan.api.question.service;
 import lombok.RequiredArgsConstructor;
 import org.dongguk.dscd.wooahan.api.core.exception.error.ErrorCode;
 import org.dongguk.dscd.wooahan.api.core.exception.type.CommonException;
+import org.dongguk.dscd.wooahan.api.core.scheduler.UpdaterScheduler;
 import org.dongguk.dscd.wooahan.api.expert.domain.mysql.Expert;
 import org.dongguk.dscd.wooahan.api.expert.repository.ExpertRepository;
 import org.dongguk.dscd.wooahan.api.question.domain.mysql.Answer;
@@ -25,6 +26,8 @@ public class CreateAnswerService implements CreateAnswerUseCase {
 
     private final ExpertRepository expertRepository;
 
+    private final UpdaterScheduler updaterScheduler;
+
     @Override
     public void execute(
             UUID accountId,
@@ -44,5 +47,7 @@ public class CreateAnswerService implements CreateAnswerUseCase {
                 .build();
 
         answerRepository.save(answer);
+
+        updaterScheduler.removeQuestionTask(questionId);
     }
 }

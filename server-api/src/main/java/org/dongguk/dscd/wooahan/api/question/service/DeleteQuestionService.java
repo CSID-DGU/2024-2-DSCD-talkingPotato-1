@@ -3,6 +3,7 @@ package org.dongguk.dscd.wooahan.api.question.service;
 import lombok.RequiredArgsConstructor;
 import org.dongguk.dscd.wooahan.api.core.exception.error.ErrorCode;
 import org.dongguk.dscd.wooahan.api.core.exception.type.CommonException;
+import org.dongguk.dscd.wooahan.api.core.scheduler.UpdaterScheduler;
 import org.dongguk.dscd.wooahan.api.question.domain.mysql.Question;
 import org.dongguk.dscd.wooahan.api.question.repository.mysql.QuestionRepository;
 import org.dongguk.dscd.wooahan.api.question.usecase.DeleteQuestionUseCase;
@@ -15,6 +16,8 @@ import java.util.UUID;
 public class DeleteQuestionService implements DeleteQuestionUseCase {
 
     private final QuestionRepository questionRepository;
+
+    private final UpdaterScheduler updaterScheduler;
 
     @Override
     public void execute(
@@ -29,5 +32,7 @@ public class DeleteQuestionService implements DeleteQuestionUseCase {
        }
 
        questionRepository.delete(question);
+
+         updaterScheduler.removeQuestionTask(questionId);
     }
 }

@@ -23,8 +23,6 @@ public class TimeValueValidator implements ConstraintValidator<TimeValue, String
             return false;
         }
 
-        System.out.println("value: " + value);
-
         try {
             LocalTime.parse(value, TIME_FORMATTER);
         } catch(DateTimeParseException e) {
