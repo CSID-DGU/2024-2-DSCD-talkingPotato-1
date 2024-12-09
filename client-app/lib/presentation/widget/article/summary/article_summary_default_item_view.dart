@@ -21,7 +21,7 @@ class ArticleSummaryDefaultItemView extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 180,
+        height: 196,
         padding: const EdgeInsets.symmetric(vertical: 16),
         color: ColorSystem.white,
         child: Row(
@@ -54,9 +54,7 @@ class ArticleSummaryDefaultItemView extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     state.preview,
-                    style: FontSystem.Sub3.copyWith(
-                      fontSize: 16,
-                    ),
+                    style: FontSystem.Sub3,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
