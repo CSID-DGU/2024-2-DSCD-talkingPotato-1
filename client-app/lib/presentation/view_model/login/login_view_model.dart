@@ -114,8 +114,6 @@ class LoginViewModel extends GetxController {
   Future<void> _updateDeviceToken() async {
     String? token = await FirebaseMessaging.instance.getToken();
 
-    print('token: $token');
-
     await _updateDeviceTokenInUserUsecase.execute(
       UpdateDeviceTokenInUserCondition(
         deviceToken: token!,

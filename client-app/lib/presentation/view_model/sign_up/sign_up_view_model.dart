@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wooahan/app/utility/validator_util.dart';
@@ -8,9 +9,11 @@ import 'package:wooahan/core/wrapper/state_wrapper.dart';
 import 'package:wooahan/domain/condition/auth/sign_up_by_default_condition.dart';
 import 'package:wooahan/domain/condition/auth/validate_authentication_code_condition.dart';
 import 'package:wooahan/domain/condition/auth/validate_email_condition.dart';
+import 'package:wooahan/domain/condition/user/update_device_token_in_user_condition.dart';
 import 'package:wooahan/domain/usecase/auth/sign_up_by_default_use_case.dart';
 import 'package:wooahan/domain/usecase/auth/validate_authentication_code_use_case.dart';
 import 'package:wooahan/domain/usecase/auth/validate_email_use_case.dart';
+import 'package:wooahan/domain/usecase/user/update_device_token_in_user_use_case.dart';
 
 class SignUpViewModel extends GetxController {
   /* ------------------------------------------------------ */
@@ -30,6 +33,7 @@ class SignUpViewModel extends GetxController {
   late final ValidateEmailUseCase _validateEmailUseCase;
   late final ValidateAuthenticationCodeUseCase
       _validateAuthenticationCodeUseCase;
+  late final UpdateDeviceTokenInUserUseCase _updateDeviceTokenInUserUseCase;
 
   /* ------------------------------------------------------ */
   /* Private Fields --------------------------------------- */
@@ -68,6 +72,8 @@ class SignUpViewModel extends GetxController {
     _validateEmailUseCase = Get.find<ValidateEmailUseCase>();
     _validateAuthenticationCodeUseCase =
         Get.find<ValidateAuthenticationCodeUseCase>();
+    _updateDeviceTokenInUserUseCase =
+        Get.find<UpdateDeviceTokenInUserUseCase>();
 
     _isEnableInEmailInput = false.obs;
     _isEnableInPasswordInput = false.obs;
@@ -220,12 +226,24 @@ class SignUpViewModel extends GetxController {
     );
 
     if (state.success) {
+      await _updateDeviceToken();
+
       _isEnableInCompletedSignUp.value = true;
     }
 
     return ResultWrapper(
       success: state.success,
       message: state.message,
+    );
+  }
+
+  Future<void> _updateDeviceToken() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+
+    await _updateDeviceTokenInUserUseCase.execute(
+      UpdateDeviceTokenInUserCondition(
+        deviceToken: token!,
+      ),
     );
   }
 }
