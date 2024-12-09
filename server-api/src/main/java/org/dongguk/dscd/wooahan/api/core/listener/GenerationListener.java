@@ -2,15 +2,9 @@ package org.dongguk.dscd.wooahan.api.core.listener;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.dongguk.dscd.wooahan.api.core.exception.error.ErrorCode;
-import org.dongguk.dscd.wooahan.api.core.exception.type.CommonException;
-import org.dongguk.dscd.wooahan.api.question.domain.mysql.Answer;
-import org.dongguk.dscd.wooahan.api.question.domain.mysql.Question;
 import org.dongguk.dscd.wooahan.api.question.event.CreateQuestionEvent;
-import org.dongguk.dscd.wooahan.api.question.repository.mysql.AnswerRepository;
-import org.dongguk.dscd.wooahan.api.question.repository.mysql.QuestionRepository;
+import org.dongguk.dscd.wooahan.api.question.service.CreateAnswerService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
@@ -27,8 +21,7 @@ public class GenerationListener {
     @Value("${inner-services.generation.url}")
     String generationServiceUrl;
 
-    private final QuestionRepository questionRepository;
-    private final AnswerRepository answerRepository;
+    private final CreateAnswerService createAnswerService;
 
     private final ObjectMapper objectMapper;
 
@@ -37,9 +30,6 @@ public class GenerationListener {
     @Async
     @EventListener(classes = {CreateQuestionEvent.class})
     public void handleCreateQuestionEvent(CreateQuestionEvent event) {
-        Question question = questionRepository.findById(event.questionId())
-                .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_RESOURCE));
-
         String similarAnswer = "";
 
         try {
@@ -48,7 +38,7 @@ public class GenerationListener {
                     .headers(httpHeaders -> {
                         httpHeaders.set("Content-Type", "application/json");
                     })
-                    .body(generateMessageJson(question.getContent()))
+                    .body(generateMessageJson(event.content()))
                     .retrieve()
                     .body(GenerationResult.class);
 
@@ -56,12 +46,10 @@ public class GenerationListener {
         } catch (Exception ignored) {
         }
 
-        Answer answer = Answer.builder()
-                .question(question)
-                .content(similarAnswer)
-                .build();
-
-        answerRepository.save(answer);
+        createAnswerService.execute(
+                event.questionId(),
+                similarAnswer
+        );
     }
 
     private String generateMessageJson(String content) throws JsonProcessingException {
