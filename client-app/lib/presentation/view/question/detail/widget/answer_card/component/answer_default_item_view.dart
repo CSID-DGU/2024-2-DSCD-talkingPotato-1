@@ -35,7 +35,7 @@ class AnswerDefaultItemView extends StatelessWidget {
             )
           else
             Text(
-              '${state.createdAt} | 우아한 AI',
+              '${DateTimeUtil.calRemainDateTime(state.createdAt)} | 우아한 AI',
               style: FontSystem.Sub3.copyWith(
                 color: ColorSystem.neutral,
               ),
