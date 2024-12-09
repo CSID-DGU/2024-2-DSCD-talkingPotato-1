@@ -34,7 +34,10 @@ class GenerationService:
             ),
             SystemMessagePromptTemplate.from_template(
                 """
-                Third, you must answer in English and must not provide vectorized answers or translate into other languages. You must answer exclusively in English.
+                Third
+                
+                - you must answer in English and must not provide vectorized answers or translate into other languages. You must answer exclusively in English.
+                - maximum length of the answer is 1000 characters.
                 """
             ),
             SystemMessagePromptTemplate.from_template(
