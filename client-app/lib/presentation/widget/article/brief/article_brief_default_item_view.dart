@@ -19,7 +19,7 @@ class ArticleBriefDefaultItemView extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 160,
+        height: 176,
         padding: const EdgeInsets.symmetric(vertical: 16),
         color: ColorSystem.white,
         child: Column(

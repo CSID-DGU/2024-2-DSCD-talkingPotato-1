@@ -9,9 +9,11 @@ import org.dongguk.dscd.wooahan.api.expert.repository.ExpertRepository;
 import org.dongguk.dscd.wooahan.api.question.domain.mysql.Answer;
 import org.dongguk.dscd.wooahan.api.question.domain.mysql.Question;
 import org.dongguk.dscd.wooahan.api.question.dto.request.CreateAnswerDto;
+import org.dongguk.dscd.wooahan.api.question.event.CreateAnswerEvent;
 import org.dongguk.dscd.wooahan.api.question.repository.mysql.AnswerRepository;
 import org.dongguk.dscd.wooahan.api.question.repository.mysql.QuestionRepository;
 import org.dongguk.dscd.wooahan.api.question.usecase.CreateAnswerUseCase;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -27,6 +29,7 @@ public class CreateAnswerService implements CreateAnswerUseCase {
     private final ExpertRepository expertRepository;
 
     private final UpdaterScheduler updaterScheduler;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Override
     public void execute(
@@ -37,7 +40,7 @@ public class CreateAnswerService implements CreateAnswerUseCase {
         Expert expert = expertRepository.findById(accountId)
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_EXPERT));
 
-        Question question = questionRepository.findById(questionId)
+        Question question = questionRepository.findWithUserById(questionId)
                 .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_QUESTION));
 
         Answer answer = Answer.builder()
@@ -49,5 +52,32 @@ public class CreateAnswerService implements CreateAnswerUseCase {
         answerRepository.save(answer);
 
         updaterScheduler.removeQuestionTask(questionId);
+
+        applicationEventPublisher.publishEvent(
+                new CreateAnswerEvent(
+                        question.getCreator().getId()
+                )
+        );
+    }
+
+    public void execute(
+            Long questionId,
+            String similarAnswer
+    ) {
+        Question question = questionRepository.findWithUserById(questionId)
+                .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_QUESTION));
+
+        Answer answer = Answer.builder()
+                .question(question)
+                .content(similarAnswer)
+                .build();
+
+        answerRepository.save(answer);
+
+        applicationEventPublisher.publishEvent(
+                new CreateAnswerEvent(
+                        question.getCreator().getId()
+                )
+        );
     }
 }

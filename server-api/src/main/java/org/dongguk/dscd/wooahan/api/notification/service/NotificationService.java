@@ -39,7 +39,7 @@ public class NotificationService {
 
         // 3. 사용자 목록을 통해 알림 메시지 생성
         List<Message> messageList = recieverList.stream()
-                .map(user -> convertToMap(user, ETime.BREAKFAST))
+                .map(user -> convertToMapForMedication(user, ETime.BREAKFAST))
                 .toList();
 
         // 4. 알림 메시지 전송
@@ -66,7 +66,7 @@ public class NotificationService {
 
         // 3. 사용자 목록을 통해 알림 메시지 생성
         List<Message> messageList = recieverList.stream()
-                .map(user -> convertToMap(user, ETime.LUNCH))
+                .map(user -> convertToMapForMedication(user, ETime.LUNCH))
                 .toList();
 
         // 4. 알림 메시지 전송
@@ -93,7 +93,7 @@ public class NotificationService {
 
         // 3. 사용자 목록을 통해 알림 메시지 생성
         List<Message> messageList = recieverList.stream()
-                .map(user -> convertToMap(user, ETime.DINNER))
+                .map(user -> convertToMapForMedication(user, ETime.DINNER))
                 .toList();
 
         // 4. 알림 메시지 전송
@@ -105,7 +105,44 @@ public class NotificationService {
         }
     }
 
-    Message convertToMap(User user, ETime time) {
+    public void sendPushNotification(
+            UUID userId,
+            ETime time
+    ) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_USER));
+
+        if (!user.getIsAllowedNotification() || user.getDeviceToken() == null) {
+            return;
+        }
+
+        Message message = convertToMapForMedication(user, time);
+
+        try {
+            FirebaseMessaging.getInstance().send(message);
+        } catch (FirebaseMessagingException ignore) {
+        }
+    }
+
+    public void sendPushNotification(
+            UUID userId
+    ){
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_USER));
+
+        if (!user.getIsAllowedNotification() || user.getDeviceToken() == null) {
+            return;
+        }
+
+        Message message = convertToMapForMedication(user);
+
+        try {
+            FirebaseMessaging.getInstance().send(message);
+        } catch (FirebaseMessagingException ignore) {
+        }
+    }
+
+    Message convertToMapForMedication(User user, ETime time) {
         String content = switch (time) {
             case BREAKFAST -> String.format(BREAKFAST_NOTIFICATION_CONTENT_FORM, user.getNickname());
             case LUNCH -> String.format(LUNCH_NOTIFICATION_CONTENT_FORM, user.getNickname());
@@ -148,18 +185,24 @@ public class NotificationService {
                 .build();
     }
 
-    public void sendPushNotification(
-            UUID userId,
-            ETime time
-    ) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_USER));
-
-        Message message = convertToMap(user, time);
-
-        try {
-            FirebaseMessaging.getInstance().send(message);
-        } catch (FirebaseMessagingException ignore) {
-        }
+    Message convertToMapForMedication(User user) {
+        return Message.builder()
+                .setToken(user.getDeviceToken())
+                .setNotification(
+                        Notification.builder()
+                                .setTitle("우아한")
+                                .setBody("작성한 질문에 답변이 등록되었어요!")
+                                .build()
+                )
+                .setApnsConfig(
+                        ApnsConfig.builder()
+                                .setAps(
+                                        Aps.builder()
+                                                .setSound("default")
+                                                .build()
+                                )
+                                .build()
+                )
+                .build();
     }
 }

@@ -3,6 +3,7 @@ package org.dongguk.dscd.wooahan.api.question.repository.mysql;
 import org.dongguk.dscd.wooahan.api.question.domain.mysql.Question;
 import org.dongguk.dscd.wooahan.api.question.dto.projection.ReadQuestionProjection;
 import org.dongguk.dscd.wooahan.api.question.repository.mysql.custom.QuestionRepositoryCustom;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -20,4 +21,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long>, Quest
         WHERE q.id = :id
     """)
     Optional<ReadQuestionProjection> findByIdWithDetail(Long id);
+
+
+    @EntityGraph(attributePaths = {"creator"})
+    Optional<Question> findWithUserById(Long id);
 }
